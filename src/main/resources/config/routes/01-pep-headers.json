@@ -1,0 +1,64 @@
+{
+  "baseURI": "http://employees.sc.com:8002/employeeApp",
+  "handler": {
+    "type": "DispatchHandler",
+    "config": {
+      "bindings": [
+        {
+          "condition": "${request.cookies['iPlanetDirectoryPro'] == null}",
+          "handler": {
+            "type": "StaticResponseHandler",
+            "config": {
+              "status": 302,
+              "reason": "Found",
+              "headers": {
+                "Location": [
+                  "http://openam13.sc.com:8080/openam/XUI/#login/employees&goto=${urlEncode(contexts.router.originalUri)}"
+                ]
+              },
+              "entity": "Redirecting to OpenAM..."
+            }
+          }
+        },
+        {
+          "comment": "This condition is optional, but included for clarity.",
+          "condition": "${request.cookies['iPlanetDirectoryPro'] != null}",
+          "handler": {
+            "type": "Chain",
+            "config": {
+              "filters": [
+                {
+                  "type": "PolicyEnforcementFilter",
+                  "config": {
+                    "openamUrl": "http://openam13.sc.com:8080/openam",
+                    "pepUsername": "policyAdmin",
+                    "pepPassword": "password",
+                    "realm": "employees",
+                    "application": "OpenIG",
+                    "ssoTokenSubject": "${request.cookies['iPlanetDirectoryPro'][0].value}"
+                  }
+                },
+                {
+                  "comment": "Custom filter for retrieving Session attributes",
+                  "name": "OpenAM Attributes",
+                  "type": "ScriptableFilter",
+                  "config": {
+                    "type": "application/x-groovy",
+                    "file": "OpenAMAttributes.groovy",
+                    "args": {
+                      "profileAttributes": "uid mail",
+                      "openamUrl": "http://openam13.sc.com:8080/openam/json/employees/"
+                    }
+                  },
+                  "capture": "all"
+                }
+              ],
+              "handler": "ClientHandler"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "condition": "${matches(request.uri.path, '^/employeeApp') and not contains(request.uri.path, 'not-enforced')}"
+}
