@@ -34,7 +34,7 @@
                     "pepUsername": "policyAdmin",
                     "pepPassword": "password",
                     "realm": "employees",
-                    "application": "OpenIG",
+                    "application": "OpenIG1",
                     "ssoTokenSubject": "${request.cookies['iPlanetDirectoryPro'][0].value}"
                   }
                 },

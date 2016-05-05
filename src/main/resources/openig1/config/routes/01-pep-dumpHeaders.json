@@ -1,5 +1,5 @@
 {
-  "baseURI": "http://employees.sc.com:8000/",
+  "baseURI": "http://dumpheaders.sc.com:8000/",
   "handler": {
     "type": "DispatchHandler",
     "config": {
@@ -34,7 +34,7 @@
                     "pepUsername": "policyAdmin",
                     "pepPassword": "password",
                     "realm": "employees",
-                    "application": "OpenIG",
+                    "application": "OpenIG1",
                     "ssoTokenSubject": "${request.cookies['iPlanetDirectoryPro'][0].value}"
                   }
                 },
