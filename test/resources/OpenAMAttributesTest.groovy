@@ -44,4 +44,3 @@ println("User attributes: " + response.getData())
 for (attr in requiredAttr.split()) {
     println("Required attribute: " + attr + " ,value: " + response.getData().get(attr)[0])
 }
-

@@ -27,8 +27,6 @@
 import groovyx.net.http.RESTClient
 import org.forgerock.http.protocol.Response
 import org.forgerock.http.protocol.Status
-import org.forgerock.http.header.SetCookieHeader
-import org.forgerock.http.protocol.Cookie
 
 /**
  * Creates unauthorized error
@@ -48,7 +46,7 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
     String openAMCookie = request.cookies['iPlanetDirectoryPro'][0].value
 
     // Perform cookie validation and get uid
-    print("iPlanetDirectoryPro cookie found, performing validation")
+    println("iPlanetDirectoryPro cookie found, performing validation")
     response = openAMRESTClient.post(path: 'sessions/' + openAMCookie, query: ['_action': 'validate'])
     isTokenValid = response.getData().get("valid")
     uid = response.getData().get("uid")
@@ -56,27 +54,25 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
     if (isTokenValid && null != uid) {
 
         // Retrieving user profile attributes
-        print("Retrieving user profile attributes: " + profileAttributes + " for user: "+ uid)
+        println("Retrieving user profile attributes: " + profileAttributes + " for user: " + uid)
         response = openAMRESTClient.get(path: 'users/' + uid, headers: ['iPlanetDirectoryPro': openAMCookie])
 
         for (attrName in profileAttributes.split()) {
             attrValue = response.getData().get(attrName)[0];
-            print("Required attribute: " + attrName + " ,value: " + attrValue)
+            println("Required attribute: " + attrName + " ,value: " + attrValue)
 
             // Set the attributes in header
             request.headers.add(attrName, attrValue)
         }
 
-
         // Call the next handler. This returns when the request has been handled.
         return next.handle(context, request)
-    }
-    else {
-        print("Token validation failed")
+    } else {
+        println("Token validation failed")
         return getUnauthorizedError()
     }
 } else {
-    print("No iPlanetDirectoryPro cookie present")
+    println("No iPlanetDirectoryPro cookie present")
     return getUnauthorizedError()
 }
 

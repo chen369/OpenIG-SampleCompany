@@ -1,5 +1,5 @@
 {
-  "baseURI": "http://employees.sc.com:8002/employeeApp",
+  "baseURI": "http://employees.sc.com:8000/",
   "handler": {
     "type": "DispatchHandler",
     "config": {
@@ -50,7 +50,7 @@
                       "openamUrl": "http://openam13.sc.com:8080/openam/json/employees/"
                     }
                   },
-                  "capture": "all"
+                  "capture": "filtered_request"
                 }
               ],
               "handler": "ClientHandler"
@@ -60,5 +60,5 @@
       ]
     }
   },
-  "condition": "${matches(request.uri.path, '^/employeeApp') and not contains(request.uri.path, 'not-enforced')}"
+  "condition": "${matches(request.uri.path, '^/dumpHeaders') and not contains(request.uri.path, 'not-enforced')}"
 }
