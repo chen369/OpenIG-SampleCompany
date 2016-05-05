@@ -1,0 +1,44 @@
+{
+  "baseURI": "http://apis.sc.com:8010",
+  "handler": {
+    "type": "Chain",
+    "config": {
+      "filters": [
+        {
+          "type": "OAuth2ResourceServerFilter",
+          "config": {
+            "providerHandler": "ClientHandler",
+            "scopes": [
+              "uid",
+              "mail"
+            ],
+            "tokenInfoEndpoint": "http://openam13.sc.com:8080/openam/oauth2/employees/tokeninfo",
+            "requireHttps": false,
+            "target": "${attributes.token}"
+          },
+          "capture": "all",
+          "timer": true
+        },
+        {
+          "type": "AssignmentFilter",
+          "config": {
+            "onRequest": [
+              {
+                "target": "${session.username}",
+                "value": "${attributes.token.info.uid}"
+              },
+              {
+                "target": "${session.password}",
+                "value": "${attributes.token.info.mail}"
+              }
+            ]
+          },
+          "capture": "all",
+          "timer": true
+        }
+      ],
+      "handler": "ClientHandler"
+    }
+  },
+  "condition": "${matches(request.uri.path, '^/history')}"
+}

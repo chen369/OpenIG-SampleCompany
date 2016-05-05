@@ -1,0 +1,24 @@
+{
+  "handler": {
+    "type": "Router",
+    "audit": "global",
+    "capture": "all"
+  },
+  "heap": [
+    {
+      "name": "LogSink",
+      "type": "ConsoleLogSink",
+      "config": {
+        "level": "ALL"
+      }
+    },
+    {
+      "name": "capture",
+      "type": "CaptureDecorator",
+      "config": {
+        "_captureEntity": true,
+        "_captureContext": true
+      }
+    }
+  ]
+}

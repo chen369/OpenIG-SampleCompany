@@ -20,7 +20,7 @@
 /*
  * Groovy script for retrieving user profile attributes
  *
- * This script requires these arguments: userId, password, openamUrl
+ * This script requires these arguments: profileAttributes, openamUrl
  */
 @Grab(group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.7.1')
 
@@ -57,6 +57,7 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
         println("Retrieving user profile attributes: " + profileAttributes + " for user: " + uid)
         response = openAMRESTClient.get(path: 'users/' + uid, headers: ['iPlanetDirectoryPro': openAMCookie])
 
+        // Iterate over required profile attributes
         for (attrName in profileAttributes.split()) {
             attrValue = response.getData().get(attrName)[0];
             println("Required attribute: " + attrName + " ,value: " + attrValue)
