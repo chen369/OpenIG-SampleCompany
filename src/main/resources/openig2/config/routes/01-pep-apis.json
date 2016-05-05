@@ -1,0 +1,41 @@
+{
+  "baseURI": "http://apis.sc.com:8010",
+  "handler": {
+    "type": "Chain",
+    "config": {
+      "filters": [
+        {
+          "comment": "Custom filter for OpenAM basic authentication",
+          "name": "OpenAM Basic Authentication",
+          "type": "ScriptableFilter",
+          "config": {
+            "type": "application/x-groovy",
+            "file": "OpenAMBasicAuthFilter.groovy",
+            "args": {
+              "userId": "${request.headers['X-OpenAM-Username'][0]}",
+              "password": "${request.headers['X-OpenAM-Password'][0]}",
+              "openamUrl": "http://openam13.sc.com:8080/openam/json/employees/"
+            }
+          },
+          "capture": "all"
+        },
+        {
+          "comment": "OpenAM Authorization check filter",
+          "name": "OpenAM Authorization",
+          "type": "PolicyEnforcementFilter",
+          "config": {
+            "openamUrl": "http://openam13.sc.com:8080/openam",
+            "pepUsername": "policyAdmin",
+            "pepPassword": "password",
+            "realm": "employees",
+            "application": "OpenIG2",
+            "ssoTokenSubject": "${attributes.tokenId}"
+          },
+          "capture": "all"
+        }
+      ],
+      "handler": "ClientHandler"
+    }
+  },
+  "condition": "${matches(request.uri.path, '^/txHistory')}"
+}
