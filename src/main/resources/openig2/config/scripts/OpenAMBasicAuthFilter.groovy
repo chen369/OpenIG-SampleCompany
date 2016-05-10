@@ -34,6 +34,7 @@ import org.forgerock.http.protocol.Status
  */
 def getUnauthorizedError() {
     Response response = new Response()
+
     response.status = Status.UNAUTHORIZED
     response.entity = "Authentication Failed"
     return response
@@ -84,5 +85,3 @@ catch (Exception e) {
 }
 
 callNextHandler(response.getData().get("tokenId"))
-
-

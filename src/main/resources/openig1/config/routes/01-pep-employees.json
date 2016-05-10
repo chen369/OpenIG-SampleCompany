@@ -5,6 +5,8 @@
     "config": {
       "bindings": [
         {
+          "comment": "Redirect to OpenAM authentication",
+          "name": "OpenAM Authentication",
           "condition": "${request.cookies['iPlanetDirectoryPro'] == null}",
           "handler": {
             "type": "StaticResponseHandler",
@@ -16,18 +18,22 @@
                   "http://openam13.sc.com:8080/openam/XUI/#login/employees&goto=${urlEncode(contexts.router.originalUri)}"
                 ]
               },
-              "entity": "Redirecting to OpenAM..."
-            }
+              "entity": "Redirecting to OpenAM for authentication..."
+            },
+            "capture": "all"
           }
         },
         {
-          "comment": "This condition is optional, but included for clarity.",
+          "comment": "OpenAM Authorization chain for policy validation and attributes retrieval",
+          "name": "OpenAM Authorization Chain",
           "condition": "${request.cookies['iPlanetDirectoryPro'] != null}",
           "handler": {
             "type": "Chain",
             "config": {
               "filters": [
                 {
+                  "comment": "OpenAM Authorization check filter",
+                  "name": "OpenAM Authorization",
                   "type": "PolicyEnforcementFilter",
                   "config": {
                     "openamUrl": "http://openam13.sc.com:8080/openam",
@@ -36,10 +42,11 @@
                     "realm": "employees",
                     "application": "OpenIG1",
                     "ssoTokenSubject": "${request.cookies['iPlanetDirectoryPro'][0].value}"
-                  }
+                  },
+                  "capture": "all"
                 },
                 {
-                  "comment": "Custom filter for retrieving Session attributes",
+                  "comment": "Custom filter for retrieving user's attributes and setting as HTTP headers",
                   "name": "OpenAM Attributes",
                   "type": "ScriptableFilter",
                   "config": {
@@ -50,7 +57,7 @@
                       "openamUrl": "http://openam13.sc.com:8080/openam/json/employees/"
                     }
                   },
-                  "capture": "filtered_request"
+                  "capture": "all"
                 }
               ],
               "handler": "ClientHandler"

@@ -18,7 +18,7 @@
  */
 
 /*
- * Groovy script for retrieving user profile attributes
+ * Groovy script for retrieving user profile attributes and setting as HTTP headers
  *
  * This script requires these arguments: profileAttributes, openamUrl
  */
@@ -51,6 +51,7 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
     isTokenValid = response.getData().get("valid")
     uid = response.getData().get("uid")
 
+    // If cookie validation succeeds and has valid uid
     if (isTokenValid && null != uid) {
 
         // Retrieving user profile attributes
