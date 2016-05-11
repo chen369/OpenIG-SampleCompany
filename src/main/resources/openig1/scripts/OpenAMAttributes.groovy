@@ -61,9 +61,9 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
         // Iterate over required profile attributes
         for (attrName in profileAttributes.split()) {
             attrValue = response.getData().get(attrName)[0];
-            println("Required attribute: " + attrName + " ,value: " + attrValue)
 
             // Set the attributes in header
+            println("Setting HTTP header: " + attrName + " ,value: " + attrValue)
             request.headers.add(attrName, attrValue)
         }
 

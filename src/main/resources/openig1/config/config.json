@@ -7,9 +7,10 @@
   "heap": [
     {
       "name": "LogSink",
-      "type": "ConsoleLogSink",
+      "type": "FileLogSink",
       "config": {
-        "level": "ALL"
+        "file": "/home/forgerock/.openig1/logs/openig.log",
+        "level": "DEBUG"
       }
     },
     {

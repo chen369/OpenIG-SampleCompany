@@ -24,10 +24,10 @@
           }
         },
         {
-          "comment": "OpenAM Authorization chain for policy validation and attributes retrieval",
-          "name": "OpenAM Authorization Chain",
           "condition": "${request.cookies['iPlanetDirectoryPro'] != null}",
           "handler": {
+            "comment": "OpenAM Authorization chain for policy validation and attributes retrieval",
+            "name": "OpenAM Authorization Chain",
             "type": "Chain",
             "config": {
               "filters": [

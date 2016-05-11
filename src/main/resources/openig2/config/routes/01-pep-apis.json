@@ -1,6 +1,8 @@
 {
   "baseURI": "http://apis.sc.com:8010",
   "handler": {
+    "comment": "OpenAM chain for authentication and authorization check",
+    "name": "OpenAM Chain",
     "type": "Chain",
     "config": {
       "filters": [
@@ -31,6 +33,7 @@
             "application": "OpenIG2",
             "ssoTokenSubject": "${attributes.tokenId}"
           },
+          // Can add additional filters to inject HTTP headers
           "capture": "all"
         }
       ],

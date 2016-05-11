@@ -24,13 +24,38 @@
           }
         },
         {
-          "comment": "OpenAM Authorization chain for policy validation and attributes retrieval",
-          "name": "OpenAM Authorization Chain",
           "condition": "${request.cookies['iPlanetDirectoryPro'] != null}",
           "handler": {
+            "comment": "OpenAM Authorization chain for policy validation and attributes retrieval",
+            "name": "OpenAM Authorization Chain",
             "type": "Chain",
             "config": {
               "filters": [
+                {
+                  "name": "SwitchFilter",
+                  "type": "SwitchFilter",
+                  "config": {
+                    "onResponse": [
+                      {
+                        "condition": "${response.status.code == 401}",
+                        "handler": {
+                          "type": "StaticResponseHandler",
+                          "config": {
+                            "status": 302,
+                            "reason": "Found",
+                            "headers": {
+                              "Location": [
+                                "http://employees-ig.sc.com:9000/employeeApp/accessDenied.html"
+                              ]
+                            }
+                          },
+                          "capture": "all"
+                        }
+                      }
+                    ]
+                  },
+                  "capture": "all"
+                },
                 {
                   "comment": "OpenAM Authorization check filter",
                   "name": "OpenAM Authorization",
@@ -67,5 +92,5 @@
       ]
     }
   },
-  "condition": "${matches(request.uri.path, '^/employeeApp') and not contains(request.uri.path, 'not-enforced')}"
+  "condition": "${matches(request.uri.path, '^/employeeApp') and not contains(request.uri.path, 'accessDenied.html') and not contains(request.uri.path, '.js') and not contains(request.uri.path, '.css') and not contains(request.uri.path, '.jpg')}"
 }
