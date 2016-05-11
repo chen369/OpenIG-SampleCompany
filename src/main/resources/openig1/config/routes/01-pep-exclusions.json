@@ -1,6 +1,62 @@
 {
   "baseURI": "http://employees.sc.com:8002/employeeApp/*",
-  "handler": "ClientHandler",
-  "capture": "all",
-  "condition": "${contains(request.uri.path, 'accessDenied.html') or contains(request.uri.path, '.js') or contains(request.uri.path, '.css') or contains(request.uri.path, '.jpg')}"
+  "handler": {
+    "comment": "OpenAM URL Exclusion Chain",
+    "name": "OpenAM URL Exclusion Chain",
+    "type": "Chain",
+    "config": {
+      "filters": [
+        {
+          "name": "OpenAM URL Exclusion Switch",
+          "type": "SwitchFilter",
+          "config": {
+            "onRequest": [
+              {
+                "condition": "${contains(request.uri.path, 'logout.html')}",
+                "handler": {
+                  "comment": "OpenAM Logout",
+                  "name": "OpenAM Logout Chain",
+                  "type": "Chain",
+                  "config": {
+                    "filters": [
+                      {
+                        "comment": "Custom filter for OpenAM Logout",
+                        "name": "OpenAM Logout",
+                        "type": "ScriptableFilter",
+                        "config": {
+                          "type": "application/x-groovy",
+                          "file": "OpenAMLogout.groovy",
+                          "args": {
+                            "openamUrl": "http://openam13.sc.com:8080/openam/json/employees/"
+                          }
+                        },
+                        "capture": "all"
+                      },
+                      {
+                        "comment": "Suppress iPlanetDirectoryPro cookie",
+                        "name": "Suppress iPlanetDirectoryPro cookie",
+                        "type": "CookieFilter",
+                        "config": {
+                          "suppressed": ["iPlanetDirectoryPro"]
+                        },
+                        "capture": "all"
+                      }
+                    ],
+                    "handler": "ClientHandler"
+                  }
+                }
+              },
+              {
+                "condition": "${contains(request.uri.path, 'accessDenied.html') or contains(request.uri.path, '.ico') or contains(request.uri.path, '.js') or contains(request.uri.path, '.css') or contains(request.uri.path, '.jpg')}",
+                "handler": "ClientHandler"
+              }
+            ]
+          },
+          "capture": "all"
+        }
+      ],
+      "handler": "ClientHandler"
+    }
+  },
+  "condition": "${contains(request.uri.path, 'logout.html') or contains(request.uri.path, 'accessDenied.html') or contains(request.uri.path, '.ico') or contains(request.uri.path, '.js') or contains(request.uri.path, '.css') or contains(request.uri.path, '.jpg')}"
 }

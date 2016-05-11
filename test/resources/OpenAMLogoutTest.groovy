@@ -18,20 +18,28 @@
  */
 
 /*
- * Groovy script for testing OpenAM Attributes using groovyx.net.http.RESTClient.
+ * Groovy script for testing OpenAM Logout using groovyx.net.http.RESTClient.
  * Refer https://github.com/jgritman/httpbuilder/wiki/RESTClient
  */
 import groovyx.net.http.RESTClient
+import org.forgerock.http.protocol.Cookie
+import org.forgerock.http.protocol.Request
 
-def openAMREST = new RESTClient('http://openam13.sample.com:8080/openam/json/')
-def response = openAMREST.post(path: 'authenticate', headers: ['X-OpenAM-Username': 'testUser1', 'X-OpenAM-Password': 'password'])
+openAMRESTClient = new RESTClient('http://openam13.sc.com:8080/openam/json/employees/')
+response = openAMRESTClient.post(path: 'authenticate', headers: ['X-OpenAM-Username': 'emp1', 'X-OpenAM-Password': 'password'])
 
 assert response.status == 200  // HTTP response code; 404 means not found, etc.
 tokenId = response.getData().get("tokenId")
 println("tokenId: " + tokenId)
 
-response = openAMREST.post(path: 'sessions/' + tokenId, query: ['_action': 'validate'])
-isTokenValid = response.getData().get("valid")
+response = openAMRESTClient.post(path: 'sessions/', query: ['_action': 'logout'], headers: ['iplanetDirectoryPro':tokenId])
 println("Token validation response: " + response.getData())
-assert isTokenValid
+assert response.status == 200
+assert response.getData() != null
 
+Cookie openAMCookie = new Cookie()
+openAMCookie.setName("iPlanetDirectoryPro")
+openAMCookie.setValue(tokenId)
+
+Request request = new Request()
+request.cookies.remove("")
