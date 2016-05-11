@@ -1,6 +1,0 @@
-{
-  "baseURI": "http://employees.sc.com:8002/employeeApp/*",
-  "handler": "ClientHandler",
-  "capture": "all",
-  "condition": "${contains(request.uri.path, 'accessDenied.html') or contains(request.uri.path, '.js') or contains(request.uri.path, '.css') or contains(request.uri.path, '.jpg')}"
-}
