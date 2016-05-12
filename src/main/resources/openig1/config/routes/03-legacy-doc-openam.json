@@ -15,7 +15,7 @@
               "reason": "Found",
               "headers": {
                 "Location": [
-                  "http://openam13.sc.com:8080/openam/XUI/#login/employees&goto=${urlEncode(contexts.router.originalUri)}"
+                  "http://openam13.sc.com:8080/openam/XUI/#login&goto=${urlEncode(contexts.router.originalUri)}"
                 ]
               },
               "entity": "Redirecting to OpenAM for authentication..."
@@ -26,8 +26,8 @@
         {
           "condition": "${request.cookies['iPlanetDirectoryPro'] != null}",
           "handler": {
-            "comment": "OpenAM Authorization chain for policy validation and attributes retrieval",
-            "name": "OpenAM Authorization Chain",
+            "comment": "OpenAM Password replay chain",
+            "name": "OpenAM Password Replay Chain",
             "type": "Chain",
             "config": {
               "filters": [
@@ -39,23 +39,62 @@
                     "openamUrl": "http://openam13.sc.com:8080/openam",
                     "pepUsername": "policyAdmin",
                     "pepPassword": "password",
-                    "realm": "employees",
-                    "application": "OpenIG1",
+                    "realm": "/",
+                    "application": "DocApp",
                     "ssoTokenSubject": "${request.cookies['iPlanetDirectoryPro'][0].value}"
                   },
                   "capture": "all"
                 },
                 {
-                  "comment": "Scripted filter for retrieving user's attributes and setting as HTTP headers",
-                  "name": "OpenAM Attributes",
+                  "comment": "Scripted filter for retrieving session attributes and setting as HTTP headers",
+                  "name": "OpenAM Password Headers",
                   "type": "ScriptableFilter",
                   "config": {
                     "type": "application/x-groovy",
-                    "file": "OpenAMAttributes.groovy",
+                    "file": "OpenAMReplayHeaders.groovy",
                     "args": {
-                      "profileAttributes": "uid mail",
-                      "openamUrl": "http://openam13.sc.com:8080/openam/json/employees/"
+                      "passwordAttribute": "sunIdentityUserPassword",
+                      "openamUrl": "http://openam13.sc.com:8080/openam/json/"
                     }
+                  },
+                  "capture": "all"
+                },
+                {
+                  "type": "PasswordReplayFilter",
+                  "config": {
+                    "loginPage": "${true}",
+                    "headerDecryption": {
+                      "algorithm": "DES/ECB/NoPadding",
+                      "key": "usgpVLo7Sfg=",
+                      "keyType": "DES",
+                      "charSet": "utf-8",
+                      "headers": [
+                        "password"
+                      ]
+                    },
+                    "request": {
+                      "method": "POST",
+                      "uri": "http://legacy.sc.com:8002/",
+                      "form": {
+                        "username": [
+                          "${request.headers['username'][0]}"
+                        ],
+                        "password": [
+                          "${request.headers['password'][0]}"
+                        ]
+                      }
+                    }
+                  },
+                  "capture": "all"
+                },
+                {
+                  "type": "HeaderFilter",
+                  "config": {
+                    "messageType": "REQUEST",
+                    "remove": [
+                      "password",
+                      "username"
+                    ]
                   },
                   "capture": "all"
                 }

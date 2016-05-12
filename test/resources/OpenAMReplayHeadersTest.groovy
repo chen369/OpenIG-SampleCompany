@@ -18,13 +18,14 @@
  */
 
 /*
- * Groovy script for testing OpenAM attributes using groovyx.net.http.RESTClient.
+ * Groovy script for testing OpenAM replay headers using groovyx.net.http.RESTClient.
  * Refer https://github.com/jgritman/httpbuilder/wiki/RESTClient
  */
 import groovyx.net.http.RESTClient
+import static groovyx.net.http.ContentType.*
 
-openAMRESTClient = new RESTClient('http://openam13.sc.com:8080/openam/json/employees/')
-response = openAMRESTClient.post(path: 'authenticate', headers: ['X-OpenAM-Username': 'emp1', 'X-OpenAM-Password': 'password'])
+openAMRESTClient = new RESTClient('http://openam13.sc.com:8080/openam/json/')
+response = openAMRESTClient.post(path: 'authenticate', headers: ['X-OpenAM-Username': 'george', 'X-OpenAM-Password': 'costanza'])
 
 assert response.status == 200  // HTTP response code; 404 means not found, etc.
 tokenId = response.getData().get("tokenId")
@@ -35,12 +36,7 @@ isTokenValid = response.getData().get("valid")
 uid = response.getData().get("uid")
 println("Token validation response: " + response.getData())
 assert isTokenValid
-assert 'emp1' == uid
+assert 'george' == uid
 
-requiredAttr = "uid mail"
-response = openAMRESTClient.get(path: 'users/' + uid, headers: ['iPlanetDirectoryPro': tokenId])
-println("User attributes: " + response.getData())
-
-for (attr in requiredAttr.split()) {
-    println("Required attribute: " + attr + " ,value: " + response.getData().get(attr)[0])
-}
+response = openAMRESTClient.post(path: 'sessions/', query: ['_action': 'getProperty'], headers: ['Content-Type':'application/json','iPlanetDirectoryPro': tokenId], body: ["properties": ["sunIdentityUserPassword"]], requestContentType : JSON )
+println("User attributes: " + response.getData().get("sunIdentityUserPassword"))
