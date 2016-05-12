@@ -20,7 +20,7 @@
 /*
  * Groovy script for retrieving user profile attributes and setting as HTTP headers
  *
- * This script requires these arguments: profileAttributes, openamUrl
+ * This script requires these arguments: passwordAttribute, openamUrl
  */
 @Grab(group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.7.1')
 
@@ -58,14 +58,14 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
 
         // Retrieving user profile attributes
         logger.info("Retrieving session attribute: " + passwordAttribute)
-        response = openAMRESTClient.post(path: 'sessions/', query: ['_action': 'getProperty'], headers: ['Content-Type':'application/json','iPlanetDirectoryPro': openAMCookie], body: ["properties": ["sunIdentityUserPassword"]], requestContentType : JSON )
+        response = openAMRESTClient.post(path: 'sessions/', query: ['_action': 'getProperty'], headers: ['Content-Type':'application/json','iPlanetDirectoryPro': openAMCookie], body: ["properties": [passwordAttribute]], requestContentType : JSON )
 
         // Set the attributes in header
         logger.info("Setting HTTP header: " + "username" + " ,value: " + uid)
         request.headers.add("username", uid)
 
-        logger.info("Setting HTTP header: " + "password" + " ,value: " + response.getData().get("sunIdentityUserPassword"))
-        request.headers.add("password", response.getData().get("sunIdentityUserPassword"))
+        logger.info("Setting HTTP header: " + "password" + " ,value: " + response.getData().get(passwordAttribute))
+        request.headers.add("password", response.getData().get(passwordAttribute))
 
         // Call the next handler. This returns when the request has been handled.
         return next.handle(context, request)
