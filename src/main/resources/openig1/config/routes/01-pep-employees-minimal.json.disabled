@@ -1,0 +1,57 @@
+{
+  "baseURI": "http://employees.sc.com:8002/employeeApp",
+  "handler": {
+    "type": "DispatchHandler",
+    "config": {
+      "bindings": [
+        {
+          "comment": "Redirect to OpenAM authentication",
+          "name": "OpenAM Authentication",
+          "condition": "${request.cookies['iPlanetDirectoryPro'] == null}",
+          "handler": {
+            "type": "StaticResponseHandler",
+            "config": {
+              "status": 302,
+              "reason": "Found",
+              "headers": {
+                "Location": [
+                  "http://openam13.sc.com:8080/openam/XUI/#login/employees&goto=${urlEncode(contexts.router.originalUri)}"
+                ]
+              },
+              "entity": "Redirecting to OpenAM for authentication..."
+            },
+            "capture": "all"
+          }
+        },
+        {
+          "comment": "OpenAM Authorization chain for policy validation and attributes retrieval",
+          "name": "OpenAM Authorization Chain",
+          "condition": "${request.cookies['iPlanetDirectoryPro'] != null}",
+          "handler": {
+            "type": "Chain",
+            "config": {
+              "filters": [
+                {
+                  "comment": "OpenAM Authorization check filter",
+                  "name": "OpenAM Authorization",
+                  "type": "PolicyEnforcementFilter",
+                  "config": {
+                    "openamUrl": "http://openam13.sc.com:8080/openam",
+                    "pepUsername": "policyAdmin",
+                    "pepPassword": "password",
+                    "realm": "employees",
+                    "application": "OpenIG1",
+                    "ssoTokenSubject": "${request.cookies['iPlanetDirectoryPro'][0].value}"
+                  },
+                  "capture": "all"
+                }
+              ],
+              "handler": "ClientHandler"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "condition": "${matches(request.uri.path, '^/employeeApp') and not contains(request.uri.path, 'not-enforced')}"
+}
