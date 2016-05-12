@@ -1,0 +1,50 @@
+{
+  "handler": {
+    "type": "Chain",
+    "config": {
+      "filters": [
+        {
+          "type": "PasswordReplayFilter",
+          "config": {
+            "loginPage": "${true}",
+            "headerDecryption": {
+              "algorithm": "DES/ECB/NoPadding",
+              "key": "usgpVLo7Sfg=",
+              "keyType": "DES",
+              "charSet": "utf-8",
+              "headers": [
+                "password"
+              ]
+            },
+            "request": {
+              "method": "POST",
+              "uri": "http://legacy.sc.com:8002/",
+              "form": {
+                "username": [
+                  "${request.headers['username'][0]}"
+                ],
+                "password": [
+                  "${request.headers['password'][0]}"
+                ]
+              }
+            }
+          },
+          "capture": "all"
+        },
+        {
+          "type": "HeaderFilter",
+          "config": {
+            "messageType": "REQUEST",
+            "remove": [
+              "password",
+              "username"
+            ]
+          },
+          "capture": "all"
+        }
+      ],
+      "handler": "ClientHandler"
+    }
+  },
+  "condition": "${matches(request.uri.path, '^/replay')}"
+}
