@@ -31,7 +31,6 @@ def openAMRESTClient = new RESTClient(openamUrl)
 
 // Check if OpenAM session cookie is present
 if (null != request.cookies['iPlanetDirectoryPro']) {
-    Cookie openAMCookie = request.cookies['iPlanetDirectoryPro'][0]
     String openAMCookieValue = request.cookies['iPlanetDirectoryPro'][0].value
 
     // Perform logout

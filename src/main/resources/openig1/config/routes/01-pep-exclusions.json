@@ -20,7 +20,7 @@
                   "config": {
                     "filters": [
                       {
-                        "comment": "Custom filter for OpenAM Logout",
+                        "comment": "Scripted filter for OpenAM Logout",
                         "name": "OpenAM Logout",
                         "type": "ScriptableFilter",
                         "config": {
@@ -31,24 +31,11 @@
                           }
                         },
                         "capture": "all"
-                      },
-                      {
-                        "comment": "Suppress iPlanetDirectoryPro cookie",
-                        "name": "Suppress iPlanetDirectoryPro cookie",
-                        "type": "CookieFilter",
-                        "config": {
-                          "suppressed": ["iPlanetDirectoryPro"]
-                        },
-                        "capture": "all"
                       }
                     ],
                     "handler": "ClientHandler"
                   }
                 }
-              },
-              {
-                "condition": "${contains(request.uri.path, 'accessDenied.html') or contains(request.uri.path, '.ico') or contains(request.uri.path, '.js') or contains(request.uri.path, '.css') or contains(request.uri.path, '.jpg')}",
-                "handler": "ClientHandler"
               }
             ]
           },

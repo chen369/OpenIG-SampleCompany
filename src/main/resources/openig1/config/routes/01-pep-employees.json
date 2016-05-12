@@ -1,13 +1,13 @@
 {
   "baseURI": "http://employees.sc.com:8002/employeeApp",
   "handler": {
-    "comment": "OpenAM Authorization chain for policy validation and attributes retrieval",
-    "name": "OpenAM Authorization Chain",
+    "comment": "OpenAM Authentication, Authorization, Attributes retrieval chain",
+    "name": "OpenAM Chain",
     "type": "Chain",
     "config": {
       "filters": [
         {
-          "comment": "OpenAM Authentication redirect",
+          "comment": "Scripted filter for OpenAM Authentication redirect",
           "name": "OpenAM Authentication redirect",
           "type": "ScriptableFilter",
           "config": {
@@ -21,7 +21,7 @@
           "capture": "all"
         },
         {
-          "name": "Access Denied",
+          "name": "Access Denied check filter",
           "type": "SwitchFilter",
           "config": {
             "onResponse": [
@@ -60,7 +60,7 @@
           "capture": "all"
         },
         {
-          "comment": "Custom filter for retrieving user's attributes and setting as HTTP headers",
+          "comment": "Scripted filter for retrieving user's attributes and setting as HTTP headers",
           "name": "OpenAM Attributes",
           "type": "ScriptableFilter",
           "config": {

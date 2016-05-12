@@ -7,7 +7,7 @@
     "config": {
       "filters": [
         {
-          "comment": "Custom filter for OpenAM basic authentication",
+          "comment": "Scripted filter for OpenAM basic authentication",
           "name": "OpenAM Basic Authentication",
           "type": "ScriptableFilter",
           "config": {

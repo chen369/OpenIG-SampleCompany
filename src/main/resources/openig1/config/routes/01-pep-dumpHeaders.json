@@ -46,7 +46,7 @@
                   "capture": "all"
                 },
                 {
-                  "comment": "Custom filter for retrieving user's attributes and setting as HTTP headers",
+                  "comment": "Scripted filter for retrieving user's attributes and setting as HTTP headers",
                   "name": "OpenAM Attributes",
                   "type": "ScriptableFilter",
                   "config": {
