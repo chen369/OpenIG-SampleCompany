@@ -39,4 +39,4 @@ assert isTokenValid
 assert 'george' == uid
 
 response = openAMRESTClient.post(path: 'sessions/', query: ['_action': 'getProperty'], headers: ['Content-Type':'application/json','iPlanetDirectoryPro': tokenId], body: ["properties": ["sunIdentityUserPassword"]], requestContentType : JSON )
-println("User attributes: " + response.getData().get("sunIdentityUserPassword"))
+println("User encrypted password from sessiona: " + response.getData().get("sunIdentityUserPassword"))

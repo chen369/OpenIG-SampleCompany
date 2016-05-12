@@ -60,6 +60,8 @@
                   "capture": "all"
                 },
                 {
+                  "comment": "OpenAM Password Replay",
+                  "name": "OpenAM Password Replay",
                   "type": "PasswordReplayFilter",
                   "config": {
                     "loginPage": "${true}",
@@ -88,6 +90,8 @@
                   "capture": "all"
                 },
                 {
+                  "comment": "Remove OpenAM Headers",
+                  "name": "Remove OpenAM Headers",
                   "type": "HeaderFilter",
                   "config": {
                     "messageType": "REQUEST",
