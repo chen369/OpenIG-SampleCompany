@@ -39,16 +39,6 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
     response = openAMRESTClient.post(path: 'sessions/' , query: ['_action': 'logout'], headers: ['iplanetDirectoryPro': openAMCookieValue])
     result = response.getData().get("result")
     println("OpenAM logout request response: " + result)
-
-    //iplanetDirectoryPro cookie invalidation
-    request.cookies['iPlanetDirectoryPro'][0].maxAge = -1
-    //request.cookies['iPlanetDirectoryPro'][0] = null
-    request.cookies['iPlanetDirectoryPro'][0].name = "iPlanetDirectoryPro_expired"
-    request.cookies['iPlanetDirectoryPro'][0].value = "1111"
-    request.cookies.remove("iPlanetDirectoryPro")
-    attributes.validToken = "invalid"
-    println("iPlanetDirectoryPro cookie: " + request.cookies['iPlanetDirectoryPro'][0].name)
-    println("attributes.validToken: " + attributes.validToken)
 }
 
 return next.handle(context, request)
