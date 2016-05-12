@@ -35,10 +35,10 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
     String openAMCookieValue = request.cookies['iPlanetDirectoryPro'][0].value
 
     // Perform logout
-    println("iPlanetDirectoryPro cookie found, performing logout")
+    logger.info("iPlanetDirectoryPro cookie found, performing logout")
     response = openAMRESTClient.post(path: 'sessions/' , query: ['_action': 'logout'], headers: ['iplanetDirectoryPro': openAMCookieValue])
     result = response.getData().get("result")
-    println("OpenAM logout request response: " + result)
+    logger.info("OpenAM logout request response: " + result)
 }
 
 return next.handle(context, request)

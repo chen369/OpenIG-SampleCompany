@@ -46,7 +46,7 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
     String openAMCookie = request.cookies['iPlanetDirectoryPro'][0].value
 
     // Perform cookie validation and get uid
-    println("iPlanetDirectoryPro cookie found, performing validation")
+    logger.info("iPlanetDirectoryPro cookie found, performing validation")
     response = openAMRESTClient.post(path: 'sessions/' + openAMCookie, query: ['_action': 'validate'])
     isTokenValid = response.getData().get("valid")
     uid = response.getData().get("uid")
@@ -55,7 +55,7 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
     if (isTokenValid && null != uid) {
 
         // Retrieving user profile attributes
-        println("Retrieving user profile attributes: " + profileAttributes + " for user: " + uid)
+        logger.info("Retrieving user profile attributes: " + profileAttributes + " for user: " + uid)
         response = openAMRESTClient.get(path: 'users/' + uid, headers: ['iPlanetDirectoryPro': openAMCookie])
 
         // Iterate over required profile attributes
@@ -63,18 +63,18 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
             attrValue = response.getData().get(attrName)[0];
 
             // Set the attributes in header
-            println("Setting HTTP header: " + attrName + " ,value: " + attrValue)
+            logger.info("Setting HTTP header: " + attrName + " ,value: " + attrValue)
             request.headers.add(attrName, attrValue)
         }
 
         // Call the next handler. This returns when the request has been handled.
         return next.handle(context, request)
     } else {
-        println("Token validation failed")
+        logger.info("Token validation failed")
         return getUnauthorizedError()
     }
 } else {
-    println("No iPlanetDirectoryPro cookie present")
+    logger.info("No iPlanetDirectoryPro cookie present")
     return getUnauthorizedError()
 }
 

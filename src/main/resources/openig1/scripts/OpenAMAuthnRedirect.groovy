@@ -33,7 +33,7 @@ import org.forgerock.openig.handler.StaticResponseHandler
  * Invokes StaticResponseHandler
  */
 def invokeStaticResponseHandler() {
-    println("Invalid OpenAM session, redirect to OpenAM for authentication")
+    logger.info("Invalid OpenAM session, redirect to OpenAM for authentication")
 
     final StaticResponseHandler handler = new StaticResponseHandler(Status.FOUND);
     handler.addHeader("Location", Expression.valueOf(openamAuthUrl, String.class));
@@ -47,12 +47,12 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
     String openAMCookie = request.cookies['iPlanetDirectoryPro'][0].value
 
     // Perform cookie validation
-    println("iPlanetDirectoryPro cookie found, performing validation")
+    logger.info("iPlanetDirectoryPro cookie found, performing validation")
     response = openAMRESTClient.post(path: 'sessions/' + openAMCookie, query: ['_action': 'validate'])
     isTokenValid = response.getData().get("valid")
 
     if (isTokenValid) {
-        println("Valid OpenAM session, skipping authentication")
+        logger.info("Valid OpenAM session, skipping authentication")
 
         // Call the next handler. This returns when the request has been handled.
         return next.handle(context, request)

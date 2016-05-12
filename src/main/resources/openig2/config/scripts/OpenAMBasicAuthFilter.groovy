@@ -59,21 +59,21 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
     String openAMCookie = request.cookies['iPlanetDirectoryPro'][0].value
 
     // Perform cookie validation
-    println("iPlanetDirectoryPro cookie found, performing validation")
+    logger.info("iPlanetDirectoryPro cookie found, performing validation")
     response = openAMRESTClient.post(path: 'sessions/' + openAMCookie, query: ['_action': 'validate'])
     isTokenValid = response.getData().get("valid")
 
     if (isTokenValid) {
-        println("Valid OpenAM session, skipping authentication")
+        logger.info("Valid OpenAM session, skipping authentication")
 
         return callNextHandler(openAMCookie)
     } else {
-        println("Invalid OpenAM session")
+        logger.info("Invalid OpenAM session")
     }
 }
 
 // Invoke OpenAM authentication
-println("Authenticating user: " + userId)
+logger.info("Authenticating user: " + userId)
 
 try {
     response = openAMRESTClient.post(path: 'authenticate', headers: ['X-OpenAM-Username': userId, 'X-OpenAM-Password': password])
