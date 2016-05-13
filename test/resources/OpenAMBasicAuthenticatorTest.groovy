@@ -44,7 +44,7 @@ try {
     response = openAMREST.post(path: 'authenticate', headers: ['X-OpenAM-Username': 'testUser1', 'X-OpenAM-Password': 'password1'])
 }
 catch (Exception e) {
-    response =  getUnauthorizedError()
+    response = getUnauthorizedError()
     assert response.status == Status.UNAUTHORIZED
     assert response.getEntity().getJson().getAt("message") == "Authentication Failed"
     return

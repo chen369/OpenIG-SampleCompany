@@ -21,6 +21,7 @@
           "capture": "all"
         },
         {
+          "comment": "Access Denied check filter",
           "name": "Access Denied check filter",
           "type": "SwitchFilter",
           "config": {

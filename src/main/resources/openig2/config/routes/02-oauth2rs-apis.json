@@ -5,6 +5,7 @@
     "config": {
       "filters": [
         {
+          "comment": "OAuth2 Resource Server",
           "type": "OAuth2ResourceServerFilter",
           "config": {
             "providerHandler": "ClientHandler",
@@ -16,25 +17,24 @@
             "requireHttps": false,
             "target": "${attributes.token}"
           },
-          "capture": "all",
-          "timer": true
+          "capture": "all"
         },
         {
-          "type": "AssignmentFilter",
+          "comment": "Set OAuth2 scopes as HTTP headers",
+          "name": "Application Headers",
+          "type": "HeaderFilter",
           "config": {
-            "onRequest": [
-              {
-                "target": "${session.username}",
-                "value": "${attributes.token.info.uid}"
-              },
-              {
-                "target": "${session.password}",
-                "value": "${attributes.token.info.mail}"
-              }
-            ]
+            "messageType": "REQUEST",
+            "add": {
+              "username": [
+                "${attributes.token.info.uid}"
+              ],
+              "mail": [
+                "${attributes.token.info.mail}"
+              ]
+            }
           },
-          "capture": "all",
-          "timer": true
+          "capture": "all"
         }
       ],
       "handler": "ClientHandler"

@@ -22,7 +22,8 @@
  * Refer https://github.com/jgritman/httpbuilder/wiki/RESTClient
  */
 import groovyx.net.http.RESTClient
-import static groovyx.net.http.ContentType.*
+
+import static groovyx.net.http.ContentType.JSON
 
 openAMRESTClient = new RESTClient('http://openam13.sc.com:8080/openam/json/')
 response = openAMRESTClient.post(path: 'authenticate', headers: ['X-OpenAM-Username': 'george', 'X-OpenAM-Password': 'costanza'])
@@ -38,5 +39,5 @@ println("Token validation response: " + response.getData())
 assert isTokenValid
 assert 'george' == uid
 
-response = openAMRESTClient.post(path: 'sessions/', query: ['_action': 'getProperty'], headers: ['Content-Type':'application/json','iPlanetDirectoryPro': tokenId], body: ["properties": ["sunIdentityUserPassword"]], requestContentType : JSON )
+response = openAMRESTClient.post(path: 'sessions/', query: ['_action': 'getProperty'], headers: ['Content-Type': 'application/json', 'iPlanetDirectoryPro': tokenId], body: ["properties": ["sunIdentityUserPassword"]], requestContentType: JSON)
 println("User encrypted password from sessiona: " + response.getData().get("sunIdentityUserPassword"))

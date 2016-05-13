@@ -32,7 +32,7 @@ assert response.status == 200  // HTTP response code; 404 means not found, etc.
 tokenId = response.getData().get("tokenId")
 println("tokenId: " + tokenId)
 
-response = openAMRESTClient.post(path: 'sessions/', query: ['_action': 'logout'], headers: ['iplanetDirectoryPro':tokenId])
+response = openAMRESTClient.post(path: 'sessions/', query: ['_action': 'logout'], headers: ['iplanetDirectoryPro': tokenId])
 println("Token validation response: " + response.getData())
 assert response.status == 200
 assert response.getData() != null
