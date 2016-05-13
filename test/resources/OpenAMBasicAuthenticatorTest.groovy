@@ -22,9 +22,33 @@
  * Refer https://github.com/jgritman/httpbuilder/wiki/RESTClient
  */
 import groovyx.net.http.RESTClient
+import org.forgerock.http.protocol.Response
+import org.forgerock.http.protocol.Status
 
-def openAMREST = new RESTClient('http://openam13.sample.com:8080/openam/json/')
-def response = openAMREST.post(path: 'authenticate', headers: ['X-OpenAM-Username': 'testUser1', 'X-OpenAM-Password': 'password'])
+/**
+ * Creates unauthorized error
+ * @return Status.UNAUTHORIZED
+ */
+def getUnauthorizedError() {
+    Response response = new Response()
+
+    response.status = Status.UNAUTHORIZED
+    response.headers.add("Content-Type", ["application/json; charset=utf-8"])
+    response.entity = "{\"code\": 401,\"reason\":\"Unauthorized\",\"message\":\"Authentication Failed\"}"
+    return response
+}
+
+def openAMREST = new RESTClient('http://openam13.sc.com:8080/openam/json/')
+def response
+try {
+    response = openAMREST.post(path: 'authenticate', headers: ['X-OpenAM-Username': 'testUser1', 'X-OpenAM-Password': 'password1'])
+}
+catch (Exception e) {
+    response =  getUnauthorizedError()
+    assert response.status == Status.UNAUTHORIZED
+    assert response.getEntity().getJson().getAt("message") == "Authentication Failed"
+    return
+}
 
 assert response.status == 200  // HTTP response code; 404 means not found, etc.
 tokenId = response.getData().get("tokenId")

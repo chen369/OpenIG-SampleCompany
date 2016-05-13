@@ -33,11 +33,13 @@ import org.forgerock.http.protocol.Status
  * @return Status.UNAUTHORIZED
  */
 def getUnauthorizedError() {
-    Response response = new Response()
+    logger.info("Returning UNAUTHORIZED error")
+    Response errResponse = new Response()
 
-    response.status = Status.UNAUTHORIZED
-    response.entity = "Authentication Failed"
-    return response
+    errResponse.status = Status.UNAUTHORIZED
+    errResponse.headers.add("Content-Type", ["application/json; charset=utf-8"])
+    errResponse.entity = "{\"code\": 401,\"reason\":\"Unauthorized\",\"message\":\"Authentication Failed\"}"
+    return errResponse
 }
 
 /**
@@ -79,6 +81,7 @@ try {
     response = openAMRESTClient.post(path: 'authenticate', headers: ['X-OpenAM-Username': userId, 'X-OpenAM-Password': password])
 }
 catch (Exception e) {
+    logger.info("Exception in authenticating user: " + e.getMessage())
     // In case of any failure like authentication failure, server exception etc, return UNAUTHORIZED status. This can be modified to return specific response status for different failures.
     // No need to call next.handle() as we want to terminate handing here
     return getUnauthorizedError()

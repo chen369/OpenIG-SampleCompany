@@ -33,10 +33,13 @@ import org.forgerock.http.protocol.Status
  * @return Status.UNAUTHORIZED
  */
 def getUnauthorizedError() {
-    Response response = new Response()
-    response.status = Status.UNAUTHORIZED
-    response.entity = "Authentication Failed"
-    return response
+    logger.info("Returning UNAUTHORIZED error")
+    Response errResponse = new Response()
+
+    errResponse.status = Status.UNAUTHORIZED
+    errResponse.headers.add("Content-Type", ["application/json; charset=utf-8"])
+    errResponse.entity = "{\"code\": 401,\"reason\":\"Unauthorized\",\"message\":\"Authentication Failed\"}"
+    return errResponse
 }
 
 def openAMRESTClient = new RESTClient(openamUrl)

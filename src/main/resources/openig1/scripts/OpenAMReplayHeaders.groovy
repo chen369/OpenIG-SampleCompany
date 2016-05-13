@@ -35,10 +35,13 @@ import static groovyx.net.http.ContentType.JSON
  * @return Status.UNAUTHORIZED
  */
 def getUnauthorizedError() {
-    Response response = new Response()
-    response.status = Status.UNAUTHORIZED
-    response.entity = "Authentication Failed"
-    return response
+    logger.info("Returning UNAUTHORIZED error")
+    Response errResponse = new Response()
+
+    errResponse.status = Status.UNAUTHORIZED
+    errResponse.headers.add("Content-Type", ["application/json; charset=utf-8"])
+    errResponse.entity = "{\"code\": 401,\"reason\":\"Unauthorized\",\"message\":\"Authentication Failed\"}"
+    return errResponse
 }
 
 def openAMRESTClient = new RESTClient(openamUrl)
@@ -58,7 +61,7 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
 
         // Retrieving user profile attributes
         logger.info("Retrieving session attribute: " + passwordAttribute)
-        response = openAMRESTClient.post(path: 'sessions/', query: ['_action': 'getProperty'], headers: ['Content-Type':'application/json','iPlanetDirectoryPro': openAMCookie], body: ["properties": [passwordAttribute]], requestContentType : JSON )
+        response = openAMRESTClient.post(path: 'sessions/', query: ['_action': 'getProperty'], headers: ['Content-Type': 'application/json', 'iPlanetDirectoryPro': openAMCookie], body: ["properties": [passwordAttribute]], requestContentType: JSON)
 
         // Set the attributes in header
         logger.info("Setting HTTP header: " + "username" + " ,value: " + uid)
