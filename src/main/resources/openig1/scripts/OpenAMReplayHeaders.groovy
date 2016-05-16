@@ -59,7 +59,7 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
     // If cookie validation succeeds and has valid uid
     if (isTokenValid && null != uid) {
 
-        // Retrieving user profile attributes
+        // Retrieving session attributes
         logger.info("Retrieving session attribute: " + passwordAttribute)
         response = openAMRESTClient.post(path: 'sessions/', query: ['_action': 'getProperty'], headers: ['Content-Type': 'application/json', 'iPlanetDirectoryPro': openAMCookie], body: ["properties": [passwordAttribute]], requestContentType: JSON)
 
