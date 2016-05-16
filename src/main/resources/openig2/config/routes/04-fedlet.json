@@ -1,0 +1,18 @@
+{
+  "handler": {
+    "type": "SamlFederationHandler",
+    "config": {
+      "assertionMapping": {
+        "username": "mail",
+        "password": "employeenumber"
+      },
+      "subjectMapping": "subjectName",
+      "redirectURI": "/travelApp"
+    }
+  },
+  "condition": "${matches(request.uri.path, '^/saml')}",
+  "session": "JwtSession"
+}
+
+
+

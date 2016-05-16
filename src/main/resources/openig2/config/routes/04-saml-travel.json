@@ -1,0 +1,32 @@
+{
+  "baseURI": "http://travel.sc-int.com:8012",
+  "handler": {
+    "type": "DispatchHandler",
+    "config": {
+      "bindings": [
+        {
+          "condition": "${empty session.username}",
+          "handler": {
+            "type": "StaticResponseHandler",
+            "config": {
+              "status": 302,
+              "reason": "Found",
+              "headers": {
+                "Location": [
+                  "http://acs.sc-int.com:9002/saml/SPInitiatedSSO"
+                ]
+              }
+            }
+          },
+          "baseURI": "http://travel.sc-int.com:8012"
+        },
+        {
+          "handler": "ClientHandler"
+        }
+      ]
+    }
+  },
+  "condition": "${matches(request.uri.path, '^/travelApp')}",
+  "session": "JwtSession"
+}
+
