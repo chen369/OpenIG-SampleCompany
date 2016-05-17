@@ -5,6 +5,8 @@
     "config": {
       "bindings": [
         {
+          "comment": "SAML federation handler for /saml",
+          "name": "SamlFederationHandler",
           "condition": "${matches(request.uri.path, '^/saml')}",
           "handler": {
             "type": "SamlFederationHandler",
@@ -20,7 +22,9 @@
           }
         },
         {
-          "condition": "${empty session.mail}",
+          "comment": "SP init SSO in case user is not authenticated",
+          "name": "StaticResponseHandler",
+          "condition": "${empty session.mail and not matches(request.uri.path, '^/saml')}",
           "handler": {
             "type": "StaticResponseHandler",
             "config": {
@@ -36,12 +40,16 @@
           }
         },
         {
+          "comment": "Chain to set HTTP headers/ cookies required by SP",
+          "name": "SP Chain",
           "condition": "${not empty session.mail}",
           "handler": {
             "type": "Chain",
             "config": {
               "filters": [
                 {
+                  "comment": "Set HTTP headers",
+                  "name": "HeaderFilter",
                   "comment": "Set HTTP headers",
                   "name": "Application Headers",
                   "type": "HeaderFilter",
