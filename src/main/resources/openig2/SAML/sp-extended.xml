@@ -65,8 +65,8 @@
            <Value>exact</Value>
         </Attribute>
         <Attribute name="attributeMap">
+           <Value>uid=uid</Value>
            <Value>mail=mail</Value>
-           <Value>name=cn</Value>
         </Attribute>
         <Attribute name="saml2AuthModuleName">
            <Value></Value>

@@ -5,6 +5,21 @@
     "config": {
       "bindings": [
         {
+          "condition": "${matches(request.uri.path, '^/saml')}",
+          "handler": {
+            "type": "SamlFederationHandler",
+            "config": {
+              "assertionMapping": {
+                "uid": "uid",
+                "mail": "mail"
+              },
+              "subjectMapping": "subjectName",
+              "redirectURI": "http://travel-ig.sample.com:9002/travelApp"
+            },
+            "capture": "all"
+          }
+        },
+        {
           "condition": "${empty session.mail}",
           "handler": {
             "type": "StaticResponseHandler",
@@ -13,7 +28,7 @@
               "reason": "Found",
               "headers": {
                 "Location": [
-                  "http://travel-ig.sample.com:9002/saml/SPInitiatedSSO"
+                  "http://travel-ig.sample.com:9002/saml/SPInitiatedSSO?RelayState=${urlEncode(contexts.router.originalUri)}"
                 ]
               }
             },
@@ -21,12 +36,37 @@
           }
         },
         {
-          "handler": "ClientHandler"
+          "condition": "${not empty session.mail}",
+          "handler": {
+            "type": "Chain",
+            "config": {
+              "filters": [
+                {
+                  "comment": "Set HTTP headers",
+                  "name": "Application Headers",
+                  "type": "HeaderFilter",
+                  "config": {
+                    "messageType": "REQUEST",
+                    "add": {
+                      "username": [
+                        "${session.username}"
+                      ],
+                      "mail": [
+                        "${session.mail}"
+                      ]
+                    }
+                  },
+                  "capture": "all"
+                }
+              ],
+              "handler": "ClientHandler"
+            }
+          }
         }
       ]
     }
   },
-  "condition": "${matches(request.uri.path, '^/travelApp')}",
+  "condition": "${matches(request.uri.path, '^/travelApp') or matches(request.uri.path, '^/saml')}",
   "session": "JwtSession"
 }
 
