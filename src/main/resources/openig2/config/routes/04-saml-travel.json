@@ -49,7 +49,7 @@
                     "messageType": "REQUEST",
                     "add": {
                       "username": [
-                        "${session.username}"
+                        "${session.uid}"
                       ],
                       "mail": [
                         "${session.mail}"
