@@ -1,6 +1,6 @@
-#Mon May 16 12:03:37 EDT 2016
+#Mon May 16 21:33:31 EDT 2016
 sun-fm-saml2-writerservice-url=
 sun-fm-cot-status=Active
 cot-name=employeesCOT
-sun-fm-trusted-providers=http\://openam13.sc.com\:8080/openam,TravelApp
+sun-fm-trusted-providers=http\://openam13.sc.com\:8080/openam,OpenIG2
 sun-fm-saml2-readerservice-url=

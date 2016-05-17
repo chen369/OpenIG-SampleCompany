@@ -1,11 +1,11 @@
 {
-  "baseURI": "http://travel.sc-int.com:8012",
+  "baseURI": "http://travel.sample.com:8012",
   "handler": {
     "type": "DispatchHandler",
     "config": {
       "bindings": [
         {
-          "condition": "${empty session.username}",
+          "condition": "${empty session.mail}",
           "handler": {
             "type": "StaticResponseHandler",
             "config": {
@@ -13,12 +13,12 @@
               "reason": "Found",
               "headers": {
                 "Location": [
-                  "http://acs.sc-int.com:9002/saml/SPInitiatedSSO"
+                  "http://travel-ig.sample.com:9002/saml/SPInitiatedSSO"
                 ]
               }
-            }
-          },
-          "baseURI": "http://travel.sc-int.com:8012"
+            },
+            "capture": "all"
+          }
         },
         {
           "handler": "ClientHandler"

@@ -1,7 +1,7 @@
 <EntityConfig xmlns="urn:sun:fm:SAML:2.0:entityconfig"
     xmlns:fm="urn:sun:fm:SAML:2.0:entityconfig"
     hosted="1"
-    entityID="TravelApp">
+    entityID="OpenIG2">
 
     <SPSSOConfig metaAlias="/sp">
         <Attribute name="description">
@@ -65,8 +65,8 @@
            <Value>exact</Value>
         </Attribute>
         <Attribute name="attributeMap">
-           <Value>name=cn</Value>
            <Value>mail=mail</Value>
+           <Value>name=cn</Value>
         </Attribute>
         <Attribute name="saml2AuthModuleName">
            <Value></Value>
@@ -81,7 +81,7 @@
            <Value></Value>
        </Attribute>
        <Attribute name="appLogoutUrl">
-           <Value>http://travel-ig.sc-int.com:9002/travelApp//logout</Value>
+           <Value>http://travel-ig.sample.com:9002/saml/logout</Value>
        </Attribute>
        <Attribute name="assertionTimeSkew">
            <Value>300</Value>

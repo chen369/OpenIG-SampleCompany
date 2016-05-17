@@ -3,12 +3,13 @@
     "type": "SamlFederationHandler",
     "config": {
       "assertionMapping": {
-        "username": "mail",
-        "password": "employeenumber"
+        "mail": "mail",
+        "name": "name"
       },
       "subjectMapping": "subjectName",
-      "redirectURI": "/travelApp"
-    }
+      "redirectURI": "http://travel-ig.sample.com:9002/travelApp"
+    },
+    "capture": "all"
   },
   "condition": "${matches(request.uri.path, '^/saml')}",
   "session": "JwtSession"
