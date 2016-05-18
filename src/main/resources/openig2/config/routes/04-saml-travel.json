@@ -5,8 +5,15 @@
     "config": {
       "bindings": [
         {
+          "comment": "URL and Extensions exclusions",
+          "name": "Exclusions",
+          "condition": "${contains(request.uri.path, 'logout.html') or contains(request.uri.path, 'accessDenied.html') or contains(request.uri.path, '.ico') or contains(request.uri.path, '.js') or contains(request.uri.path, '.css') or contains(request.uri.path, '.jpg')}",
+          "handler": "ClientHandler",
+          "capture": "all"
+        },
+        {
           "comment": "SAML federation handler for /saml",
-          "name": "SamlFederationHandler",
+          "name": "Saml Federation Handler",
           "condition": "${matches(request.uri.path, '^/saml')}",
           "handler": {
             "type": "SamlFederationHandler",
@@ -23,8 +30,8 @@
         },
         {
           "comment": "SP init SSO in case user is not authenticated",
-          "name": "StaticResponseHandler",
-          "condition": "${empty session.mail and not matches(request.uri.path, '^/saml')}",
+          "name": "SP init SSO",
+          "condition": "${empty session.mail}",
           "handler": {
             "type": "StaticResponseHandler",
             "config": {
@@ -40,7 +47,7 @@
           }
         },
         {
-          "comment": "Chain to set HTTP headers/ cookies required by SP",
+          "comment": "(Optional) Chain to set HTTP headers/ cookies required by SP app",
           "name": "SP Chain",
           "condition": "${not empty session.mail}",
           "handler": {
@@ -48,10 +55,8 @@
             "config": {
               "filters": [
                 {
-                  "comment": "Set HTTP headers",
-                  "name": "HeaderFilter",
-                  "comment": "Set HTTP headers",
-                  "name": "Application Headers",
+                  "comment": "Set HTTP headers for SP app",
+                  "name": "SP Headers",
                   "type": "HeaderFilter",
                   "config": {
                     "messageType": "REQUEST",
