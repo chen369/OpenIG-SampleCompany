@@ -66,6 +66,7 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
             attrValue = response.getData().get(attrName)[0];
 
             // Set the attributes in header
+            // These header values can be encrypted by a symmetric key shared between OpenIG and protected application
             logger.info("Setting HTTP header: " + attrName + " ,value: " + attrValue)
             request.headers.add(attrName, attrValue)
         }

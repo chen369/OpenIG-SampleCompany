@@ -55,7 +55,7 @@
             "config": {
               "filters": [
                 {
-                  "comment": "Set HTTP headers for SP app",
+                  "comment": "(Optional) Set HTTP headers for SP app",
                   "name": "SP Headers",
                   "type": "HeaderFilter",
                   "config": {
@@ -67,6 +67,22 @@
                       "mail": [
                         "${session.mail}"
                       ]
+                    }
+                  },
+                  "capture": "all"
+                },
+                {
+                  "comment": "(Optional) Set cookie for SP app",
+                  "name": "SP Cookie",
+                  "type": "ScriptableFilter",
+                  "config": {
+                    "type": "application/x-groovy",
+                    "file": "SPCookie.groovy",
+                    "args": {
+                      "cookieName": "spCookie",
+                      "cookieDomain": ".sample.com",
+                      "cookiePath": "/",
+                      "cookieValue": "username:${session.uid} mail:${session.mail}"
                     }
                   },
                   "capture": "all"
