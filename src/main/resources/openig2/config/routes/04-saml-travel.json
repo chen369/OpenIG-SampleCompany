@@ -5,7 +5,7 @@
     "config": {
       "bindings": [
         {
-          "comment": "URL and Extensions exclusions",
+          "comment": "(Optional) URL and Extensions exclusions",
           "name": "Exclusions",
           "condition": "${contains(request.uri.path, 'logout.html') or contains(request.uri.path, 'accessDenied.html') or contains(request.uri.path, '.ico') or contains(request.uri.path, '.js') or contains(request.uri.path, '.css') or contains(request.uri.path, '.jpg')}",
           "handler": "ClientHandler",

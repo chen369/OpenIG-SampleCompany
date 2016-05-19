@@ -61,9 +61,9 @@
             "application": "OpenIG2",
             "ssoTokenSubject": "${attributes.tokenId}"
           },
-          // (Optional) Can add additional filters inject user attributes in HTTP headers
           "capture": "all"
         }
+        // (Optional) Can add additional filters inject user attributes in HTTP headers
       ],
       "handler": "ClientHandler"
     }
