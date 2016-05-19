@@ -20,13 +20,12 @@
 /*
  * Groovy script for setting SP cookie
  *
- * This script requires these arguments: profileAttributes, openamUrl
+ * This script requires these arguments: cookieName, cookieDomain, cookiePath, cookieValue(name:value pairs)
  */
 
 import org.forgerock.http.header.SetCookieHeader
 import org.forgerock.http.protocol.Cookie
 import org.forgerock.http.protocol.Response
-import org.forgerock.http.protocol.Status
 import org.forgerock.util.AsyncFunction
 
 

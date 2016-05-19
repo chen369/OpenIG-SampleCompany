@@ -21,7 +21,7 @@
           "capture": "all"
         },
         {
-          "comment": "Access Denied check filter",
+          "comment": "(Optional) Access Denied check filter",
           "name": "Access Denied check filter",
           "type": "SwitchFilter",
           "config": {
@@ -61,7 +61,7 @@
           "capture": "all"
         },
         {
-          "comment": "Scripted filter for retrieving user's attributes and setting as HTTP headers",
+          "comment": "(Optional) Scripted filter for retrieving user's attributes and setting as HTTP headers",
           "name": "OpenAM Attributes",
           "type": "ScriptableFilter",
           "config": {

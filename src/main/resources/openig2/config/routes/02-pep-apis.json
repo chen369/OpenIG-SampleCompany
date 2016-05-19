@@ -22,7 +22,7 @@
           "capture": "all"
         },
         {
-          "comment": "Access Denied check filter",
+          "comment": "(Optional) Access Denied check filter",
           "name": "Access Denied check filter",
           "type": "SwitchFilter",
           "config": {
@@ -61,7 +61,7 @@
             "application": "OpenIG2",
             "ssoTokenSubject": "${attributes.tokenId}"
           },
-          // Can add additional filters inject user attributes in HTTP headers
+          // (Optional) Can add additional filters inject user attributes in HTTP headers
           "capture": "all"
         }
       ],

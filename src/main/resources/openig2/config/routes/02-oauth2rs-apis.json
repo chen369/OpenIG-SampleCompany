@@ -20,7 +20,7 @@
           "capture": "all"
         },
         {
-          "comment": "Set OAuth2 scopes as HTTP headers",
+          "comment": "(Optional) Set OAuth2 scopes as HTTP headers",
           "name": "Application Headers",
           "type": "HeaderFilter",
           "config": {
