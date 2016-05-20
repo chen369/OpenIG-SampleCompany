@@ -1,5 +1,5 @@
 {
-  "baseURI": "http://apis.sc.com:8010",
+  "baseURI": "http://apis.sample.com:8010",
   "handler": {
     "type": "Chain",
     "config": {
