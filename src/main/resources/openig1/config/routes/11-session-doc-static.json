@@ -1,0 +1,41 @@
+{
+  "handler": {
+    "type": "Chain",
+    "config": {
+      "filters": [
+        {
+          "comment": "Set session attributes",
+          "name": "Session attributes",
+          "type": "ScriptableFilter",
+          "config": {
+            "type": "application/x-groovy",
+            "file": "SessionAttributes.groovy",
+            "args": {
+              "username": "demo",
+              "password": "changeit"
+            }
+          },
+          "capture": "all"
+        },
+        {
+          "type": "StaticRequestFilter",
+          "config": {
+            "method": "POST",
+            "uri": "http://docapp.sample.com:8002",
+            "form": {
+              "username": [
+                "${session.username}"
+              ],
+              "password": [
+                "${session.password}"
+              ]
+            }
+          }
+        }
+      ],
+      "handler": "ClientHandler"
+    }
+  },
+  "condition": "${matches(request.uri.path, '^/static')}",
+  "session": "JwtSession"
+}
