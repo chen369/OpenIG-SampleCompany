@@ -9,7 +9,7 @@
       "name": "LogSink",
       "type": "FileLogSink",
       "config": {
-        "file": "/home/forgerock/.openig1/logs/openig.log",
+        "file": "${env['OPENIG_BASE']}/logs/openig.log",
         "level": "DEBUG"
       }
     },
