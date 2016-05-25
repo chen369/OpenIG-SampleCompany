@@ -32,7 +32,7 @@
                 "config": {
                   "status": 302,
                   "reason": "Found",
-                  "entity": "Reload this page again. This will help roundrobin non-sticky LB to hit the other OpenIG node"
+                  "entity": "<html><p><i><a href=\"${contexts.router.originalUri}\">Click here</a> to reload this page again. This will force Load balancer(roundrobin and non-sticky) to hit the other OpenIG node</i></p></html>"
                 },
                 "capture": "all"
               }
