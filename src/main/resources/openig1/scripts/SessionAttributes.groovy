@@ -23,6 +23,9 @@
  * This script requires these arguments: Session attributes to set
  */
 
+logger.info("Setting Session attribute openIGHome: " + openIGHome)
+session.put("openIGHome", openIGHome)
+
 logger.info("Setting Session attribute username: " + username)
 session.put("username", username)
 

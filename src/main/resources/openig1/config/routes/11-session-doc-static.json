@@ -1,39 +1,79 @@
 {
+  "baseURI": "http://docapp.sample.com:8002",
   "handler": {
-    "type": "Chain",
+    "type": "DispatchHandler",
     "config": {
-      "filters": [
+      "bindings": [
         {
-          "comment": "Set session attributes",
-          "name": "Session attributes",
-          "type": "ScriptableFilter",
-          "config": {
-            "type": "application/x-groovy",
-            "file": "SessionAttributes.groovy",
-            "args": {
-              "username": "demo",
-              "password": "changeit"
-            }
-          },
-          "capture": "all"
+          "comment": "Set session attributes on OpenIG nodeX",
+          "name": "Set Session Attributes",
+          "condition": "${empty session.openIGHome}",
+          "handler": {
+            "type": "Chain",
+            "config": {
+              "filters": [
+                {
+                  "comment": "Set session attributes on OpenIG nodeX",
+                  "name": "Session attributes",
+                  "type": "ScriptableFilter",
+                  "config": {
+                    "type": "application/x-groovy",
+                    "file": "SessionAttributes.groovy",
+                    "args": {
+                      "username": "demo",
+                      "password": "changeit",
+                      "openIGHome": "${env['OPENIG_BASE']}"
+                    }
+                  },
+                  "capture": "all"
+                }
+              ],
+              "handler": {
+                "type": "StaticResponseHandler",
+                "config": {
+                  "status": 302,
+                  "reason": "Found",
+                  "entity": "Reload this page again. This will help roundrobin non-sticky LB to hit the other OpenIG node"
+                },
+                "capture": "all"
+              }
+            },
+            "capture": "all"
+          }
         },
         {
-          "type": "StaticRequestFilter",
-          "config": {
-            "method": "POST",
-            "uri": "http://docapp.sample.com:8002",
-            "form": {
-              "username": [
-                "${session.username}"
+          "comment": "Retrieve session attributes on OpenIG nodeY",
+          "name": "Get Session Attributes",
+          "condition": "${not empty session.openIGHome}",
+          "handler": {
+            "comment": "Retrieve session attributes on OpenIG nodeY",
+            "name": "Get Session Attributes",
+            "type": "Chain",
+            "config": {
+              "filters": [
+                {
+                  "type": "StaticRequestFilter",
+                  "config": {
+                    "method": "POST",
+                    "uri": "http://docapp.sample.com:8002",
+                    "form": {
+                      "username": [
+                        "${session.username}"
+                      ],
+                      "password": [
+                        "${session.password}"
+                      ]
+                    }
+                  },
+                  "capture": "all"
+                }
               ],
-              "password": [
-                "${session.password}"
-              ]
-            }
+              "handler": "ClientHandler"
+            },
+            "capture": "all"
           }
         }
-      ],
-      "handler": "ClientHandler"
+      ]
     }
   },
   "condition": "${matches(request.uri.path, '^/static')}",
