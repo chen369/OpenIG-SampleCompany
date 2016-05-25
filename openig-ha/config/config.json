@@ -2,7 +2,6 @@
   "handler": {
     "type": "Router",
     "audit": "global",
-    "baseURI": "http://docapp.sample.com:8002",	
     "capture": "all"
   },
   "heap": [

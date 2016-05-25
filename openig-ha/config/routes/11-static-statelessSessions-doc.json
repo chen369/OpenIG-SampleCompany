@@ -20,8 +20,7 @@
                     "type": "application/x-groovy",
                     "file": "SessionAttributes.groovy",
                     "args": {
-                      "username": "demo",
-                      "password": "changeit",
+                      "sessionAttributes": "username:demo password:changeit",
                       "openIGHome": "${env['OPENIG_BASE']}"
                     }
                   },

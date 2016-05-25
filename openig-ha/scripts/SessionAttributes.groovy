@@ -26,21 +26,15 @@
 logger.info("Setting Session attribute openIGHome: " + openIGHome)
 session.put("openIGHome", openIGHome)
 
-logger.info("Setting Session attribute username: " + username)
-session.put("username", username)
-
-logger.info("Setting Session attribute password: " + password)
-session.put("password", password)
-
-// Iterate over arguments
-/*for (arg in args[]) {
-    attrName = arg.name
-    attrValue = arg.value
+// Iterate over session attributes
+for (sessionAttr in sessionAttributes.split()) {
+    logger.info("Parsing attribute: " + sessionAttr)
+    def (attrName, attrValue) = sessionAttr.tokenize( ':' )
 
     // Set the attributes in Session
     logger.info("Setting Session attribute: " + attrName + " ,value: " + attrValue)
     session.put(attrName, attrValue)
-}*/
+}
 
 // Call the next handler. This returns when the request has been handled.
 return next.handle(context, request)
