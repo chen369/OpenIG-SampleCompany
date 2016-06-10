@@ -1,0 +1,61 @@
+{
+  "baseURI": "http://customers.sc.com:8004/customerApp",
+  "heap": [
+    {
+      "comment": "To reuse issuers, configure them in the parent route",
+      "name": "openam",
+      "type": "Issuer",
+      "config": {
+        "wellKnownEndpoint": "http://openam13.sc.com:8080/openam/oauth2/customers/.well-known/openid-configuration"
+      }
+    },
+    {
+      "comment": "To reuse client registrations, configure them in the parent route",
+      "name": "OidcRelyingParty",
+      "type": "ClientRegistration",
+      "config": {
+        "clientId": "OpenIG1",
+        "clientSecret": "password",
+        "issuer": "openam",
+        "redirect_uris": [
+          "http://customers-ig.sc.com:9000/customerApp/callback"
+        ],
+        "scopes": [
+          "openid",
+          "profile"
+        ]
+      }
+    }
+  ],
+  "handler": {
+    "type": "Chain",
+    "config": {
+      "filters": [
+        {
+          "type": "OAuth2ClientFilter",
+          "config": {
+            "clientEndpoint": "/customerApp",
+            "requireHttps": false,
+            "requireLogin": true,
+            "target": "${attributes.openid}",
+            "failureHandler": {
+              "type": "StaticResponseHandler",
+              "config": {
+                "comment": "Trivial failure handler for debugging only",
+                "status": 500,
+                "reason": "Error",
+                "entity": "${attributes.openid}"
+              }
+            },
+            "registration": "OidcRelyingParty"
+          }
+        }
+      ],
+      "handler": "ClientHandler"
+    }
+  },
+  "condition": "${matches(request.uri.path, '^/customerApp') and not contains(request.uri.path, 'logout.html') and not contains(request.uri.path, 'accessDenied.html') and not contains(request.uri.path, '.ico') and not contains(request.uri.path, '.js') and not contains(request.uri.path, '.css') and not contains(request.uri.path, '.jpg')}"
+}
+
+
+  
