@@ -33,14 +33,14 @@
                   "name": "AccessDeniedHandler",
                   "type": "StaticResponseHandler",
                   "config": {
-                    "status": 401,
-                    "reason": "Unauthorized",
+                    "status": 403,
+                    "reason": "Forbidden",
                     "headers": {
                       "Content-Type": [
                         "application/json; charset=utf-8"
                       ]
                     },
-                    "entity": "{\"code\": 401,\"reason\":\"Unauthorized\",\"message\":\"Authentication Failed\"}"
+                    "entity": "{\"code\": 403,\"reason\":\"Forbidden\",\"message\":\"Authorization Failed\"}"
                   }
                 },
                 "capture": "all"
