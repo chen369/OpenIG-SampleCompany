@@ -5,19 +5,16 @@
 
 Disclaimer of Liability :
 =========================
-The code for this project is only meant for DEMO purposes only and is not PRODUCTION ready. This is a sample implementation only and is not supported by ForgeRock. 
-I make no warranty, representation or undertaking whether expressed or implied, nor does it assume any legal liability, whether direct or indirect, or responsibility for the accuracy, 
-completeness, or usefulness of any information. 
+The sample code described herein is provided on an "as is" basis, without warranty of any kind, to the fullest extent permitted by law. ForgeRock does not warrant or guarantee the individual success developers may have in implementing the sample code on their development platforms or in production configurations.
 
-Further analysis on the detailed requirements, fine-tuning and validation of the proposed architecture is still required by the selected Systems Integrator and/or Architects in charge of 
-architecting the IAM project. 
+ForgeRock does not warrant, guarantee or make any representations regarding the use, results of use, accuracy, timeliness or completeness of any data or information relating to the sample code. ForgeRock disclaims all warranties, expressed or implied, and in particular, disclaims all warranties of merchantability, and warranties related to the code, or any service or software related thereto.
+
+ForgeRock shall not be liable for any direct, indirect or consequential damages or costs of any type arising out of any action taken by you or others related to the sample code.
 
 Pre-requisites :
 ================
-1. OpenIG & OpenAM is deployed and configured.
-2. REST API server is up and running. This sample uses OpenDJ as REST API server.
-3. "OpenDJ Authorization header" filter is required for this sample as OpenDJ is used as REST API server. This filter can be customized as required by specific REST application.
-4. The server hosting OpenIG should have internet connectivity as first request tries to download required jars from maven repo. The custom groovy script uses @Grab and it downloads the required dependencies under <User-Home>/.groovy/grapes.
+1. OpenIG1, OpenIG2, OpenDJ OpenAM servers are deployed.
+2. The server hosting OpenIG should have internet connectivity as first request tries to download required jars from maven repo. The custom groovy script uses @Grab and it downloads the required dependencies under <User-Home>/.groovy/grapes.
    
 OpenIG Configuration:
 =====================
@@ -27,17 +24,6 @@ Testing:
 ======== 
 Curl command(s):
 Note the first request may take few minutes as it downloads the required jars from maven repo.
-
-
-
-Disclaimer of Liability :
-=========================
-The code for this project is only meant for DEMO purposes only and is not PRODUCTION ready. This is a sample implementation only and is not supported by ForgeRock. 
-I make no warranty, representation or undertaking whether expressed or implied, nor does it assume any legal liability, whether direct or indirect, or responsibility for the accuracy, 
-completeness, or usefulness of any information. 
-
-Further analysis on the detailed requirements, fine-tuning and validation of the proposed architecture is still required by the selected Systems Integrator and/or Architects in charge of 
-architecting the IAM project.
 
 * * *
 

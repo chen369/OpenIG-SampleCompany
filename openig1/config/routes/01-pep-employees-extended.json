@@ -78,5 +78,5 @@
       "handler": "ClientHandler"
     }
   },
-  "condition": "${matches(request.uri.path, '^/employeeApp') and not contains(request.uri.path, 'logout.html') and not contains(request.uri.path, 'accessDenied.html') and not contains(request.uri.path, '.ico') and not contains(request.uri.path, '.js') and not contains(request.uri.path, '.css') and not contains(request.uri.path, '.jpg')}"
+  "condition": "${matches(request.uri.path, '^/employeeApp')}"
 }
