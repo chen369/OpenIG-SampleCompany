@@ -16,19 +16,19 @@ Pre-requisites :
 1. The server hosting OpenIG should have internet connectivity as first request tries to download required jars from maven repo. The custom groovy script uses @Grab and it downloads the required dependencies under <User-Home>/.groovy/grapes.
 2. Binaries for OpenIG, OpenDJ and OpenAM are available.
 3. Specify below local host enteries (both on server hosting and client accessing these applications): <br />
-   [IP Address]  openig1.sc.com  # OpenIG, Port:9000
-   [IP Address]  openig2.sc.com  # OpenIG, Port:9002
-   [IP Address]  openam13.sc.com # OpenAM, Port:8080
-   [IP Address]  employees.sc.com # Internal Employee App, Port:8002
-   [IP Address]  employees-ig.sc.com  # Internal Employee App via OpenIG, Port:9000
-   [IP Address]  customers.sc.com  # External Customer App, Port:8004
-   [IP Address]  customers-ig.sc.com # External Customer App  via OpenIG, Port:9000
-   [IP Address]  apis.sample.com # API server, Port:8010
-   [IP Address]  apis-ig.sample.com  # API server via OpenIG, Port:9002
-   [IP Address]  travel.sample.com  # Internal Travel App, Port:8012
-   [IP Address]  travel-ig.sample.com # Internal Travel App via OpenIG, Port:9002
-   [IP Address]  benefits.sample.com # Internal Benefits App, Port:8014
-   [IP Address]  benefits-ig.sample.com # Internal Benefits App via OpenIG, Port:9002 
+   [IP Address]  openig1.sc.com  # OpenIG, Port:9000 <br />
+   [IP Address]  openig2.sc.com  # OpenIG, Port:9002 <br />
+   [IP Address]  openam13.sc.com # OpenAM, Port:8080 <br />
+   [IP Address]  employees.sc.com # Internal Employee App, Port:8002 <br />
+   [IP Address]  employees-ig.sc.com  # Internal Employee App via OpenIG, Port:9000 <br />
+   [IP Address]  customers.sc.com  # External Customer App, Port:8004 <br />
+   [IP Address]  customers-ig.sc.com # External Customer App  via OpenIG, Port:9000 <br />
+   [IP Address]  apis.sample.com # API server, Port:8010 <br />
+   [IP Address]  apis-ig.sample.com  # API server via OpenIG, Port:9002 <br />
+   [IP Address]  travel.sample.com  # Internal Travel App, Port:8012 <br />
+   [IP Address]  travel-ig.sample.com # Internal Travel App via OpenIG, Port:9002 <br />
+   [IP Address]  benefits.sample.com # Internal Benefits App, Port:8014 <br />
+   [IP Address]  benefits-ig.sample.com # Internal Benefits App via OpenIG, Port:9002
 4. Install and configure SampleCompany application: refer https://github.com/CharanMann/SampleCompany    
    
 OpenIG Installation & Configuration:
@@ -68,15 +68,15 @@ OpenIG Use Cases testing:
 
 SampleCompany URLs :
 ===========================
-1. CommonServices direct: http://apis.sample.com:8010/history/emp1
+1. CommonServices direct: http://apis.sample.com:8010/history/emp1 <br />
    CommonServices via OpenIG: http://apis-ig.sample.com:9002/history/emp1
-2. EmployeeApp direct: http://employees.sc.com:8002/employeeApp/#/
+2. EmployeeApp direct: http://employees.sc.com:8002/employeeApp/#/ <br />
    EmployeeApp via OpenIG: http://employees-ig.sc.com:9000/employeeApp/#/
-3. CustomerApp direct: http://employees.sc.com:8002/employeeApp/#/
+3. CustomerApp direct: http://employees.sc.com:8002/employeeApp/#/ <br />
    CustomerApp via OpenIG: http://employees-ig.sc.com:9000/employeeApp/#/
-4. TravelApp direct: http://travel.sample.com:8012/travelApp/#/
+4. TravelApp direct: http://travel.sample.com:8012/travelApp/#/ <br />
    TravelApp via OpenIG: http://travel-ig.sample.com:9002/travelApp/#/
-5. BenefitsApp direct: http://benefits.sample.com:8014/benefitsApp/#/
+5. BenefitsApp direct: http://benefits.sample.com:8014/benefitsApp/#/ <br />
    BenefitsApp via OpenIG:: http://benefits-ig.sample.com:9002/benefitsApp/#/
 
 * * *
