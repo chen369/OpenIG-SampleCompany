@@ -44,8 +44,8 @@ OpenIG Installation & Configuration:
 6. Specify CORS filter for OpenIG2 in /opt/forgerock/OpenIG2/conf/web.xml. Refer https://tomcat.apache.org/tomcat-7.0-doc/config/filter.html#CORS_Filter for sample CORS filter configuration.
 7. Start both OpenIG instances. Verify there are no errors in Apache Tomcat and OpenIG logs. 
 
-OpenDJ Installation & Configuration:
-====================================
+OpenDJ Identity Store Installation & Configuration:
+===================================================
 1. Install OpenDJ 3 under /opt/forgerock/opendjis. Refer https://backstage.forgerock.com/#!/docs/opendj/3/install-guide#command-line-install <br />
    Setup params: <br />
    ============= <br />
@@ -62,44 +62,39 @@ OpenDJ Installation & Configuration:
 OpenAM Installation & Configuration:
 ====================================
 1. Install OpenAM 13 under /opt/forgerock/OpenAM-Server. Refer https://backstage.forgerock.com/#!/docs/openam/13/install-guide#configure-openam-custom <br />
+2. Navigate to http://openam13.sc.com:8080/openam for OpenAM configuration. <br />
    Setup params: <br />
    ============= <br />
+   * amAdmin password: cangetinam
+   * Server Setting:
+     * Server URL: http://openam13.sc.com:8080/openam
+     * Cookie Domain: .sc.com
+     * Configuration Directory: /home/forgerock/openam   
    * Configuration Store Details 
-     * SSL/TLS Enabled No
-Host Name
-Listening Port
-Root Suffix
-User Name
-Directory Name 	
-localhost
-50389
-dc=openam,dc=forgerock,dc=org
-cn=Directory Manager
-/home/forgerock/openam
-User Store Details edit...
-SSL/TLS Enabled
-Host Name
-Listening Port
-Root Suffix
-User Name
-User Data Store Type 	No
-opendj.sc.com
-1389
-dc=sample,dc=com
-cn=Directory Manager
-OpenDJ
-Site Configuration Details edit...
-This instance is not setup behind a load balancer 
-
-2. Stop OpenDJ and ./import-ldif --includeBranch dc=sample,dc=com --backendID userRoot --ldifFile ~/softwares/installScripts/sample.ldif
-2. Install SSO admin tools under /opt/forgerock/OpenAM-Tools
-3. Install patch: 12321-1-tpatch. 
-4. Copy openam-auth-fr-oath-13.0.0.jar file from the deployed OpenAM Server war file into the lib directory in the OpenAM Tools home.
+     * SSL/TLS Enabled: No
+     * Host Name: localhost
+     * Listening Port: 50389
+     * Root Suffix: dc=openam,dc=forgerock,dc=org
+     * User Name: cn=Directory Manager
+   * User Store Details
+     * User Data Store Type: OpenDJ
+     * SSL/TLS Enabled: No 
+     * Host Name: opendj.sc.com
+     * Listening Port: 1389 
+     * Root Suffix: dc=sample,dc=com
+     * User Name: cn=Directory Manager
+     * Password: cangetindj
+   * Site Configuration Details: This instance is not setup behind a load balancer
+   * Default Policy Agent password: cangetinwa 
+3. Stop OpenDJ Identity store and import identity data using: ./import-ldif --includeBranch dc=sample,dc=com --backendID userRoot --ldifFile ~/softwares/installScripts/sample.ldif
+4. Install SSO Admin Tools under /opt/forgerock/OpenAM-Tools. 
+5. Install patch: 12321-1-tpatch for SSO Admin Tools. Copy openam-auth-fr-oath-13.0.0.jar file from the deployed OpenAM Server war file into the lib directory in the OpenAM Tools home:
    cp /opt/forgerock/OpenAM-Server/webapps/openam/WEB-INF/lib/openam-auth-fr-oath-13.0.0.jar /opt/forgerock/OpenAM-Tools/lib
-3. Import OpenAM service configs 
-./ssoadm import-svc-cfg -u amadmin -f /tmp/pwd.txt -e password -X ~/softwares/installScripts/openam-13.xml
-Directory Service contains existing data. Do you want to delete it? [y|N] y
-4. 
+6. Import OpenAM service configs : 
+   * Execute command: ./ssoadm import-svc-cfg -u amadmin -f /tmp/pwd.txt -e password -X ~/softwares/installScripts/openam-13.xml
+   * Directory Service contains existing data. Do you want to delete it? [y|N] y
+   * Check for any errors. Check if all service configurations have been imported successfully. 
+   * Note that no OpenAM policies shall appear in any realm, this is due to bug: https://bugster.forgerock.org/jira/browse/OPENAM-8169 
 
 OpenIG Use Cases testing:
 ========================= 
@@ -111,7 +106,6 @@ OpenIG Use Cases testing:
 6. OpenIG-Credentials Replay-File-DB: Not yet implemented
 7. OpenIG-OIDC RP
 8. OpenIG-UMA RS: Not yet implemented
-
 
 SampleCompany URLs :
 ===========================
