@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:PolicySet xmlns:xacml="classpath:xsd/xacml-core-v3-schema-wd-17.xsd" xmlns:ns2="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicySetId="/employees:2016.06.21.20.25.37.631" Version="2016.06.21.20.25.37.631" PolicyCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
+    <ns2:Target/>
+    <ns2:Policy PolicyId="EmployeeApp" Version="2016.05.11.12.46.09.479" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
+        <ns2:Description></ns2:Description>
+        <ns2:Target>
+            <ns2:AnyOf>
+                <ns2:AllOf>
+                    <ns2:Match MatchId="urn:sun:opensso:entitlement:json-subject-match">
+                        <ns2:AttributeValue DataType="urn:sun:opensso:entitlement:json-subject-type:com.sun.identity.entitlement.AndSubject">{&quot;memberESubjects&quot;: [
+  {
+    &quot;className&quot;: &quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers&quot;,
+    &quot;state&quot;: &quot;{}&quot;
+  },
+  {
+    &quot;className&quot;: &quot;org.forgerock.openam.entitlement.conditions.subject.IdentitySubject&quot;,
+    &quot;state&quot;: &quot;[\&quot;id=employees,ou=group,o=employees,ou=services,dc=openam,dc=forgerock,dc=org\&quot;]&quot;
+  }
+]}</ns2:AttributeValue>
+                        <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:sun:opensso:entitlement:json-subject" DataType="urn:sun:opensso:entitlement:json-subject-type:com.sun.identity.entitlement.AndSubject" MustBePresent="true"/>
+                    </ns2:Match>
+                </ns2:AllOf>
+            </ns2:AnyOf>
+            <ns2:AnyOf>
+                <ns2:AllOf>
+                    <ns2:Match MatchId="urn:sun:opensso:entitlement:resource-match:application:OpenIG1">
+                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">*://employees.sc.com:*/*</ns2:AttributeValue>
+                        <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                    </ns2:Match>
+                </ns2:AllOf>
+            </ns2:AnyOf>
+            <ns2:AnyOf>
+                <ns2:AllOf>
+                    <ns2:Match MatchId="urn:sun:opensso:application-match">
+                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">OpenIG1</ns2:AttributeValue>
+                        <ns2:AttributeDesignator Category="urn:sun:opensso:application-category" AttributeId="urn:sun:opensso:application-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"/>
+                    </ns2:Match>
+                </ns2:AllOf>
+            </ns2:AnyOf>
+            <ns2:AnyOf>
+                <ns2:AllOf>
+                    <ns2:Match MatchId="urn:sun:opensso:entitlement:action-match:application:OpenIG1">
+                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">POST</ns2:AttributeValue>
+                        <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                    </ns2:Match>
+                </ns2:AllOf>
+                <ns2:AllOf>
+                    <ns2:Match MatchId="urn:sun:opensso:entitlement:action-match:application:OpenIG1">
+                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">GET</ns2:AttributeValue>
+                        <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                    </ns2:Match>
+                </ns2:AllOf>
+            </ns2:AnyOf>
+        </ns2:Target>
+        <ns2:VariableDefinition VariableId="sun.opensso.entitlement.applicationName">
+            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">OpenIG1</ns2:AttributeValue>
+        </ns2:VariableDefinition>
+        <ns2:VariableDefinition VariableId="sun.opensso.privilege.createdBy">
+            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org</ns2:AttributeValue>
+        </ns2:VariableDefinition>
+        <ns2:VariableDefinition VariableId="sun.opensso.privilege.lastModifiedBy">
+            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org</ns2:AttributeValue>
+        </ns2:VariableDefinition>
+        <ns2:VariableDefinition VariableId="sun.opensso.privilege.creationDate">
+            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-05T13:51:50.875</ns2:AttributeValue>
+        </ns2:VariableDefinition>
+        <ns2:VariableDefinition VariableId="sun.opensso.privilege.lastModifiedDate">
+            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-11T12:46:09.479</ns2:AttributeValue>
+        </ns2:VariableDefinition>
+        <ns2:Rule RuleId="null:permit-rule" Effect="Permit">
+            <ns2:Description>Permit Rule</ns2:Description>
+            <ns2:Target>
+                <ns2:AnyOf>
+                    <ns2:AllOf>
+                        <ns2:Match MatchId="urn:sun:opensso:entitlement:action-match:application:OpenIG1">
+                            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">POST</ns2:AttributeValue>
+                            <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                        </ns2:Match>
+                    </ns2:AllOf>
+                    <ns2:AllOf>
+                        <ns2:Match MatchId="urn:sun:opensso:entitlement:action-match:application:OpenIG1">
+                            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">GET</ns2:AttributeValue>
+                            <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                        </ns2:Match>
+                    </ns2:AllOf>
+                </ns2:AnyOf>
+            </ns2:Target>
+            <ns2:Condition>
+                <ns2:Apply FunctionId="urn:sun:opensso:entitlement:json-subject-and-condiiton-satisfied">
+                    <ns2:AttributeValue DataType="urn:sun:opensso:entitlement:json-subject-type:com.sun.identity.entitlement.AndSubject" privilegeComponent="entitlementSubject">{&quot;memberESubjects&quot;: [
+  {
+    &quot;className&quot;: &quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers&quot;,
+    &quot;state&quot;: &quot;{}&quot;
+  },
+  {
+    &quot;className&quot;: &quot;org.forgerock.openam.entitlement.conditions.subject.IdentitySubject&quot;,
+    &quot;state&quot;: &quot;[\&quot;id=employees,ou=group,o=employees,ou=services,dc=openam,dc=forgerock,dc=org\&quot;]&quot;
+  }
+]}</ns2:AttributeValue>
+                    <ns2:AttributeValue DataType="urn:sun:opensso:entitlement:json-condition-type:org.forgerock.openam.entitlement.conditions.environment.AuthenticateToRealmCondition" privilegeComponent="entitlementCondition">{&quot;authenticateToRealm&quot;: &quot;/employees&quot;}</ns2:AttributeValue>
+                </ns2:Apply>
+            </ns2:Condition>
+        </ns2:Rule>
+    </ns2:Policy>
+    <ns2:Policy PolicyId="DumpHeaders" Version="2016.05.23.17.21.55.613" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
+        <ns2:Description></ns2:Description>
+        <ns2:Target>
+            <ns2:AnyOf>
+                <ns2:AllOf>
+                    <ns2:Match MatchId="urn:sun:opensso:entitlement:json-subject-match">
+                        <ns2:AttributeValue DataType="urn:sun:opensso:entitlement:json-subject-type:org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers">{}</ns2:AttributeValue>
+                        <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:sun:opensso:entitlement:json-subject" DataType="urn:sun:opensso:entitlement:json-subject-type:org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers" MustBePresent="true"/>
+                    </ns2:Match>
+                </ns2:AllOf>
+            </ns2:AnyOf>
+            <ns2:AnyOf>
+                <ns2:AllOf>
+                    <ns2:Match MatchId="urn:sun:opensso:entitlement:resource-match:application:OpenIG1">
+                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">*://dumpheaders.sc.com:*/*</ns2:AttributeValue>
+                        <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                    </ns2:Match>
+                </ns2:AllOf>
+            </ns2:AnyOf>
+            <ns2:AnyOf>
+                <ns2:AllOf>
+                    <ns2:Match MatchId="urn:sun:opensso:application-match">
+                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">OpenIG1</ns2:AttributeValue>
+                        <ns2:AttributeDesignator Category="urn:sun:opensso:application-category" AttributeId="urn:sun:opensso:application-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"/>
+                    </ns2:Match>
+                </ns2:AllOf>
+            </ns2:AnyOf>
+            <ns2:AnyOf>
+                <ns2:AllOf>
+                    <ns2:Match MatchId="urn:sun:opensso:entitlement:action-match:application:OpenIG1">
+                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">POST</ns2:AttributeValue>
+                        <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                    </ns2:Match>
+                </ns2:AllOf>
+                <ns2:AllOf>
+                    <ns2:Match MatchId="urn:sun:opensso:entitlement:action-match:application:OpenIG1">
+                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">GET</ns2:AttributeValue>
+                        <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                    </ns2:Match>
+                </ns2:AllOf>
+            </ns2:AnyOf>
+        </ns2:Target>
+        <ns2:VariableDefinition VariableId="sun.opensso.entitlement.applicationName">
+            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">OpenIG1</ns2:AttributeValue>
+        </ns2:VariableDefinition>
+        <ns2:VariableDefinition VariableId="sun.opensso.privilege.createdBy">
+            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org</ns2:AttributeValue>
+        </ns2:VariableDefinition>
+        <ns2:VariableDefinition VariableId="sun.opensso.privilege.lastModifiedBy">
+            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org</ns2:AttributeValue>
+        </ns2:VariableDefinition>
+        <ns2:VariableDefinition VariableId="sun.opensso.privilege.creationDate">
+            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-05T13:58:34.152</ns2:AttributeValue>
+        </ns2:VariableDefinition>
+        <ns2:VariableDefinition VariableId="sun.opensso.privilege.lastModifiedDate">
+            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-23T17:21:55.613</ns2:AttributeValue>
+        </ns2:VariableDefinition>
+        <ns2:Rule RuleId="null:permit-rule" Effect="Permit">
+            <ns2:Description>Permit Rule</ns2:Description>
+            <ns2:Target>
+                <ns2:AnyOf>
+                    <ns2:AllOf>
+                        <ns2:Match MatchId="urn:sun:opensso:entitlement:action-match:application:OpenIG1">
+                            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">POST</ns2:AttributeValue>
+                            <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                        </ns2:Match>
+                    </ns2:AllOf>
+                    <ns2:AllOf>
+                        <ns2:Match MatchId="urn:sun:opensso:entitlement:action-match:application:OpenIG1">
+                            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">GET</ns2:AttributeValue>
+                            <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                        </ns2:Match>
+                    </ns2:AllOf>
+                </ns2:AnyOf>
+            </ns2:Target>
+            <ns2:Condition>
+                <ns2:Apply FunctionId="urn:sun:opensso:entitlement:json-subject-and-condiiton-satisfied">
+                    <ns2:AttributeValue DataType="urn:sun:opensso:entitlement:json-subject-type:org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers" privilegeComponent="entitlementSubject">{}</ns2:AttributeValue>
+                    <ns2:AttributeValue DataType="urn:sun:opensso:entitlement:json-condition-type:org.forgerock.openam.entitlement.conditions.environment.AuthLevelCondition" privilegeComponent="entitlementCondition">{&quot;authLevel&quot;: 100}</ns2:AttributeValue>
+                </ns2:Apply>
+            </ns2:Condition>
+        </ns2:Rule>
+    </ns2:Policy>
+    <ns2:Policy PolicyId="OAuth2ProviderPolicy" Version="2016.05.10.01.16.44.953" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
+        <ns2:Description></ns2:Description>
+        <ns2:Target>
+            <ns2:AnyOf>
+                <ns2:AllOf>
+                    <ns2:Match MatchId="urn:sun:opensso:entitlement:json-subject-match">
+                        <ns2:AttributeValue DataType="urn:sun:opensso:entitlement:json-subject-type:org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers">{}</ns2:AttributeValue>
+                        <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:sun:opensso:entitlement:json-subject" DataType="urn:sun:opensso:entitlement:json-subject-type:org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers" MustBePresent="true"/>
+                    </ns2:Match>
+                </ns2:AllOf>
+            </ns2:AnyOf>
+            <ns2:AnyOf>
+                <ns2:AllOf>
+                    <ns2:Match MatchId="urn:sun:opensso:entitlement:resource-match:application:OAuth2">
+                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">http://openam13.sc.com:8080/openam/oauth2/employees/authorize?*</ns2:AttributeValue>
+                        <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                    </ns2:Match>
+                </ns2:AllOf>
+            </ns2:AnyOf>
+            <ns2:AnyOf>
+                <ns2:AllOf>
+                    <ns2:Match MatchId="urn:sun:opensso:application-match">
+                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">OAuth2</ns2:AttributeValue>
+                        <ns2:AttributeDesignator Category="urn:sun:opensso:application-category" AttributeId="urn:sun:opensso:application-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"/>
+                    </ns2:Match>
+                </ns2:AllOf>
+            </ns2:AnyOf>
+            <ns2:AnyOf>
+                <ns2:AllOf>
+                    <ns2:Match MatchId="urn:sun:opensso:entitlement:action-match:application:OAuth2">
+                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">POST</ns2:AttributeValue>
+                        <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                    </ns2:Match>
+                </ns2:AllOf>
+                <ns2:AllOf>
+                    <ns2:Match MatchId="urn:sun:opensso:entitlement:action-match:application:OAuth2">
+                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">GET</ns2:AttributeValue>
+                        <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                    </ns2:Match>
+                </ns2:AllOf>
+            </ns2:AnyOf>
+        </ns2:Target>
+        <ns2:VariableDefinition VariableId="sun.opensso.entitlement.applicationName">
+            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">OAuth2</ns2:AttributeValue>
+        </ns2:VariableDefinition>
+        <ns2:VariableDefinition VariableId="sun.opensso.privilege.createdBy">
+            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">id=dsameuser,ou=user,dc=openam,dc=forgerock,dc=org</ns2:AttributeValue>
+        </ns2:VariableDefinition>
+        <ns2:VariableDefinition VariableId="sun.opensso.privilege.lastModifiedBy">
+            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">id=dsameuser,ou=user,dc=openam,dc=forgerock,dc=org</ns2:AttributeValue>
+        </ns2:VariableDefinition>
+        <ns2:VariableDefinition VariableId="sun.opensso.privilege.creationDate">
+            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-10T01:16:44.953</ns2:AttributeValue>
+        </ns2:VariableDefinition>
+        <ns2:VariableDefinition VariableId="sun.opensso.privilege.lastModifiedDate">
+            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-10T01:16:44.953</ns2:AttributeValue>
+        </ns2:VariableDefinition>
+        <ns2:Rule RuleId="null:permit-rule" Effect="Permit">
+            <ns2:Description>Permit Rule</ns2:Description>
+            <ns2:Target>
+                <ns2:AnyOf>
+                    <ns2:AllOf>
+                        <ns2:Match MatchId="urn:sun:opensso:entitlement:action-match:application:OAuth2">
+                            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">POST</ns2:AttributeValue>
+                            <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                        </ns2:Match>
+                    </ns2:AllOf>
+                    <ns2:AllOf>
+                        <ns2:Match MatchId="urn:sun:opensso:entitlement:action-match:application:OAuth2">
+                            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">GET</ns2:AttributeValue>
+                            <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                        </ns2:Match>
+                    </ns2:AllOf>
+                </ns2:AnyOf>
+            </ns2:Target>
+            <ns2:Condition>
+                <ns2:Apply FunctionId="urn:sun:opensso:entitlement:json-subject-and-condiiton-satisfied">
+                    <ns2:AttributeValue DataType="urn:sun:opensso:entitlement:json-subject-type:org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers" privilegeComponent="entitlementSubject">{}</ns2:AttributeValue>
+                </ns2:Apply>
+            </ns2:Condition>
+        </ns2:Rule>
+    </ns2:Policy>
+    <ns2:Policy PolicyId="APIs" Version="2016.05.20.15.18.45.870" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
+        <ns2:Description></ns2:Description>
+        <ns2:Target>
+            <ns2:AnyOf>
+                <ns2:AllOf>
+                    <ns2:Match MatchId="urn:sun:opensso:entitlement:json-subject-match">
+                        <ns2:AttributeValue DataType="urn:sun:opensso:entitlement:json-subject-type:com.sun.identity.entitlement.AndSubject">{&quot;memberESubjects&quot;: [
+  {
+    &quot;className&quot;: &quot;org.forgerock.openam.entitlement.conditions.subject.IdentitySubject&quot;,
+    &quot;state&quot;: &quot;[\&quot;id=empAdmins,ou=group,o=employees,ou=services,dc=openam,dc=forgerock,dc=org\&quot;]&quot;
+  },
+  {
+    &quot;className&quot;: &quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers&quot;,
+    &quot;state&quot;: &quot;{}&quot;
+  }
+]}</ns2:AttributeValue>
+                        <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:sun:opensso:entitlement:json-subject" DataType="urn:sun:opensso:entitlement:json-subject-type:com.sun.identity.entitlement.AndSubject" MustBePresent="true"/>
+                    </ns2:Match>
+                </ns2:AllOf>
+            </ns2:AnyOf>
+            <ns2:AnyOf>
+                <ns2:AllOf>
+                    <ns2:Match MatchId="urn:sun:opensso:entitlement:resource-match:application:OpenIG2">
+                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">*://apis.sample.com:*/*</ns2:AttributeValue>
+                        <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                    </ns2:Match>
+                </ns2:AllOf>
+            </ns2:AnyOf>
+            <ns2:AnyOf>
+                <ns2:AllOf>
+                    <ns2:Match MatchId="urn:sun:opensso:application-match">
+                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">OpenIG2</ns2:AttributeValue>
+                        <ns2:AttributeDesignator Category="urn:sun:opensso:application-category" AttributeId="urn:sun:opensso:application-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"/>
+                    </ns2:Match>
+                </ns2:AllOf>
+            </ns2:AnyOf>
+            <ns2:AnyOf>
+                <ns2:AllOf>
+                    <ns2:Match MatchId="urn:sun:opensso:entitlement:action-match:application:OpenIG2">
+                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">POST</ns2:AttributeValue>
+                        <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                    </ns2:Match>
+                </ns2:AllOf>
+                <ns2:AllOf>
+                    <ns2:Match MatchId="urn:sun:opensso:entitlement:action-match:application:OpenIG2">
+                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">GET</ns2:AttributeValue>
+                        <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                    </ns2:Match>
+                </ns2:AllOf>
+            </ns2:AnyOf>
+        </ns2:Target>
+        <ns2:VariableDefinition VariableId="sun.opensso.entitlement.applicationName">
+            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">OpenIG2</ns2:AttributeValue>
+        </ns2:VariableDefinition>
+        <ns2:VariableDefinition VariableId="sun.opensso.privilege.createdBy">
+            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org</ns2:AttributeValue>
+        </ns2:VariableDefinition>
+        <ns2:VariableDefinition VariableId="sun.opensso.privilege.lastModifiedBy">
+            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org</ns2:AttributeValue>
+        </ns2:VariableDefinition>
+        <ns2:VariableDefinition VariableId="sun.opensso.privilege.creationDate">
+            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-05T13:54:29.294</ns2:AttributeValue>
+        </ns2:VariableDefinition>
+        <ns2:VariableDefinition VariableId="sun.opensso.privilege.lastModifiedDate">
+            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-20T15:18:45.870</ns2:AttributeValue>
+        </ns2:VariableDefinition>
+        <ns2:Rule RuleId="null:permit-rule" Effect="Permit">
+            <ns2:Description>Permit Rule</ns2:Description>
+            <ns2:Target>
+                <ns2:AnyOf>
+                    <ns2:AllOf>
+                        <ns2:Match MatchId="urn:sun:opensso:entitlement:action-match:application:OpenIG2">
+                            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">POST</ns2:AttributeValue>
+                            <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                        </ns2:Match>
+                    </ns2:AllOf>
+                    <ns2:AllOf>
+                        <ns2:Match MatchId="urn:sun:opensso:entitlement:action-match:application:OpenIG2">
+                            <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">GET</ns2:AttributeValue>
+                            <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                        </ns2:Match>
+                    </ns2:AllOf>
+                </ns2:AnyOf>
+            </ns2:Target>
+            <ns2:Condition>
+                <ns2:Apply FunctionId="urn:sun:opensso:entitlement:json-subject-and-condiiton-satisfied">
+                    <ns2:AttributeValue DataType="urn:sun:opensso:entitlement:json-subject-type:com.sun.identity.entitlement.AndSubject" privilegeComponent="entitlementSubject">{&quot;memberESubjects&quot;: [
+  {
+    &quot;className&quot;: &quot;org.forgerock.openam.entitlement.conditions.subject.IdentitySubject&quot;,
+    &quot;state&quot;: &quot;[\&quot;id=empAdmins,ou=group,o=employees,ou=services,dc=openam,dc=forgerock,dc=org\&quot;]&quot;
+  },
+  {
+    &quot;className&quot;: &quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers&quot;,
+    &quot;state&quot;: &quot;{}&quot;
+  }
+]}</ns2:AttributeValue>
+                    <ns2:AttributeValue DataType="urn:sun:opensso:entitlement:json-condition-type:org.forgerock.openam.entitlement.conditions.environment.AuthenticateToRealmCondition" privilegeComponent="entitlementCondition">{&quot;authenticateToRealm&quot;: &quot;/employees&quot;}</ns2:AttributeValue>
+                </ns2:Apply>
+            </ns2:Condition>
+        </ns2:Rule>
+    </ns2:Policy>
+</ns2:PolicySet>

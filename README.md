@@ -15,9 +15,11 @@ Pre-requisites :
 ================
 1. The server hosting OpenIG should have internet connectivity as first request tries to download required jars from maven repo. The custom groovy script uses @Grab and it downloads the required dependencies under <User-Home>/.groovy/grapes.
 2. Binaries for OpenIG, OpenDJ and OpenAM are available.
+3. Copy Install scripts from 
 3. Specify below local host enteries (both on server hosting and client accessing these applications): <br />
    [IP Address]  openig1.sc.com  # OpenIG, Port:9000 <br />
    [IP Address]  openig2.sc.com  # OpenIG, Port:9002 <br />
+   [IP Address]  opendj.sc.com   # OpenDJ IS, Port 1389 <br />
    [IP Address]  openam13.sc.com # OpenAM, Port:8080 <br />
    [IP Address]  employees.sc.com # Internal Employee App, Port:8002 <br />
    [IP Address]  employees-ig.sc.com  # Internal Employee App via OpenIG, Port:9000 <br />
@@ -29,11 +31,12 @@ Pre-requisites :
    [IP Address]  travel-ig.sample.com # Internal Travel App via OpenIG, Port:9002 <br />
    [IP Address]  benefits.sample.com # Internal Benefits App, Port:8014 <br />
    [IP Address]  benefits-ig.sample.com # Internal Benefits App via OpenIG, Port:9002
-4. Install and configure SampleCompany application: refer https://github.com/CharanMann/SampleCompany    
+4. Install and configure SampleCompany application: refer https://github.com/CharanMann/SampleCompany  
+  
    
 OpenIG Installation & Configuration:
 ====================================
-1. Install 2 OpenIG instances on Apache Tomcat under /opt/forgerock/OpenIG1 and /opt/forgerock/OpenIG. Refer https://backstage.forgerock.com/#!/docs/openig/4/gateway-guide#install
+1. Install 2 OpenIG instances on Apache Tomcat under /opt/forgerock/OpenIG1 and /opt/forgerock/OpenIG2 respectively. Refer https://backstage.forgerock.com/#!/docs/openig/4/gateway-guide#install
 2. Change port number for Apache Tomcat for OpenIG1 to 9000 and OpenIG2 to 9002 respectively.  
 3. Specify config directories for each OpenIG instance by specifying OPENIG_BASE. e.g for OpenIG1 specify "export OPENIG_BASE=/home/forgerock/.openig1" in /opt/forgerock/OpenIG1/bin/setenv.sh
 4. Create logs directory for each OpenIG instance. e.g for OpenIG1 create /home/forgerock/.openig1/logs
@@ -41,18 +44,57 @@ OpenIG Installation & Configuration:
 6. Specify CORS filter for OpenIG2 in /opt/forgerock/OpenIG2/conf/web.xml. Refer https://tomcat.apache.org/tomcat-7.0-doc/config/filter.html#CORS_Filter for sample CORS filter configuration.
 7. Start both OpenIG instances. Verify there are no errors in Apache Tomcat and OpenIG logs. 
 
+OpenDJ Installation & Configuration:
+====================================
+1. Install OpenDJ under /opt/forgerock/opendjis. Refer https://backstage.forgerock.com/#!/docs/opendj/3/install-guide#command-line-install <br />
+   Setup params: <br />
+   ============= <br />
+   * LDAP Listener Port:            1389
+   * Administration Connector Port: 4444
+   * JMX Listener Port:
+   * LDAP Secure Access:            disabled
+   * Root User DN:                  cn=Directory Manager
+   * Password                       cangetindj
+   * Directory Data:                Backend Type: JE Backend
+                                    Create New Base DN dc=sample,dc=com
+   * Base DN Data: Only Create Base Entry (dc=sample,dc=com)
+
 OpenAM Installation & Configuration:
 ====================================
-1. Create 2 realms: employees and customers
-2. Add users:
-3. Create OpenID connect agent in employees with creds: employeeApp:password
+1. Install OpenAM 13.5. Refer  <br />
+   Setup params: <br />
+   ============= <br />
+Configuration Store Details 
+SSL/TLS Enabled
+Host Name
+Listening Port
+Root Suffix
+User Name
+Directory Name 	No
+localhost
+50389
+dc=openam,dc=forgerock,dc=org
+cn=Directory Manager
+/home/forgerock/openam
+User Store Details edit...
+SSL/TLS Enabled
+Host Name
+Listening Port
+Root Suffix
+User Name
+User Data Store Type 	No
+opendj.sc.com
+1389
+dc=sample,dc=com
+cn=Directory Manager
+OpenDJ
+Site Configuration Details edit...
+This instance is not setup behind a load balancer 
 
-OpenIG1:
-1. Add configs and routes
-
-OpenIG2:
-1. Add configs and routes
-2. Disable CORS filter, Sample below:
+2. Install SSO admin tools under /opt/forgerock/OpenAM-Tools
+3. Install  
+./ssoadm import-svc-cfg -u amadmin -f /tmp/pwd.txt -e password -X ~/softwares/openam.xml
+3
 
 OpenIG Use Cases testing:
 ========================= 
