@@ -14,9 +14,9 @@ ForgeRock shall not be liable for any direct, indirect or consequential damages 
 Pre-requisites :
 ================
 1. The server hosting OpenIG should have internet connectivity as first request tries to download required jars from maven repo. The custom groovy script uses @Grab and it downloads the required dependencies under <User-Home>/.groovy/grapes.
-2. Binaries for OpenIG, OpenDJ and OpenAM are available.
-3. Copy Install scripts from 
-3. Specify below local host enteries (both on server hosting and client accessing these applications): <br />
+2. Copy binaries for OpenIG, OpenDJ and OpenAM to ~/softwares directory.
+3. Copy Install scripts from https://github.com/CharanMann/OpenIG-SampleCompany/tree/master/installScripts to ~/softwares directory. 
+4. Specify below local host enteries (both on server hosting and client accessing these applications): <br />
    [IP Address]  openig1.sc.com  # OpenIG, Port:9000 <br />
    [IP Address]  openig2.sc.com  # OpenIG, Port:9002 <br />
    [IP Address]  opendj.sc.com   # OpenDJ IS, Port 1389 <br />
@@ -31,12 +31,12 @@ Pre-requisites :
    [IP Address]  travel-ig.sample.com # Internal Travel App via OpenIG, Port:9002 <br />
    [IP Address]  benefits.sample.com # Internal Benefits App, Port:8014 <br />
    [IP Address]  benefits-ig.sample.com # Internal Benefits App via OpenIG, Port:9002
-4. Install and configure SampleCompany application: refer https://github.com/CharanMann/SampleCompany  
+5. Install and configure SampleCompany application: refer https://github.com/CharanMann/SampleCompany  
   
    
 OpenIG Installation & Configuration:
 ====================================
-1. Install 2 OpenIG instances on Apache Tomcat under /opt/forgerock/OpenIG1 and /opt/forgerock/OpenIG2 respectively. Refer https://backstage.forgerock.com/#!/docs/openig/4/gateway-guide#install
+1. Install two OpenIG 4 instances on Apache Tomcat under /opt/forgerock/OpenIG1 and /opt/forgerock/OpenIG2 respectively. Refer https://backstage.forgerock.com/#!/docs/openig/4/gateway-guide#install
 2. Change port number for Apache Tomcat for OpenIG1 to 9000 and OpenIG2 to 9002 respectively.  
 3. Specify config directories for each OpenIG instance by specifying OPENIG_BASE. e.g for OpenIG1 specify "export OPENIG_BASE=/home/forgerock/.openig1" in /opt/forgerock/OpenIG1/bin/setenv.sh
 4. Create logs directory for each OpenIG instance. e.g for OpenIG1 create /home/forgerock/.openig1/logs
@@ -46,7 +46,7 @@ OpenIG Installation & Configuration:
 
 OpenDJ Installation & Configuration:
 ====================================
-1. Install OpenDJ under /opt/forgerock/opendjis. Refer https://backstage.forgerock.com/#!/docs/opendj/3/install-guide#command-line-install <br />
+1. Install OpenDJ 3 under /opt/forgerock/opendjis. Refer https://backstage.forgerock.com/#!/docs/opendj/3/install-guide#command-line-install <br />
    Setup params: <br />
    ============= <br />
    * LDAP Listener Port:            1389
@@ -61,16 +61,16 @@ OpenDJ Installation & Configuration:
 
 OpenAM Installation & Configuration:
 ====================================
-1. Install OpenAM 13.5. Refer  <br />
+1. Install OpenAM 13 under /opt/forgerock/OpenAM-Server. Refer https://backstage.forgerock.com/#!/docs/openam/13/install-guide#configure-openam-custom <br />
    Setup params: <br />
    ============= <br />
-Configuration Store Details 
-SSL/TLS Enabled
+   * Configuration Store Details 
+     * SSL/TLS Enabled No
 Host Name
 Listening Port
 Root Suffix
 User Name
-Directory Name 	No
+Directory Name 	
 localhost
 50389
 dc=openam,dc=forgerock,dc=org
@@ -91,10 +91,15 @@ OpenDJ
 Site Configuration Details edit...
 This instance is not setup behind a load balancer 
 
+2. Stop OpenDJ and ./import-ldif --includeBranch dc=sample,dc=com --backendID userRoot --ldifFile ~/softwares/installScripts/sample.ldif
 2. Install SSO admin tools under /opt/forgerock/OpenAM-Tools
-3. Install  
-./ssoadm import-svc-cfg -u amadmin -f /tmp/pwd.txt -e password -X ~/softwares/openam.xml
-3
+3. Install patch: 12321-1-tpatch. 
+4. Copy openam-auth-fr-oath-13.0.0.jar file from the deployed OpenAM Server war file into the lib directory in the OpenAM Tools home.
+   cp /opt/forgerock/OpenAM-Server/webapps/openam/WEB-INF/lib/openam-auth-fr-oath-13.0.0.jar /opt/forgerock/OpenAM-Tools/lib
+3. Import OpenAM service configs 
+./ssoadm import-svc-cfg -u amadmin -f /tmp/pwd.txt -e password -X ~/softwares/installScripts/openam-13.xml
+Directory Service contains existing data. Do you want to delete it? [y|N] y
+4. 
 
 OpenIG Use Cases testing:
 ========================= 
