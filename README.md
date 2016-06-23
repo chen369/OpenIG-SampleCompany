@@ -13,10 +13,11 @@ ForgeRock shall not be liable for any direct, indirect or consequential damages 
 
 Pre-requisites :
 ================
-1. The server hosting OpenIG should have internet connectivity as first request tries to download required jars from maven repo. The custom groovy script uses @Grab and it downloads the required dependencies under <User-Home>/.groovy/grapes.
-2. Copy binaries for OpenIG, OpenDJ and OpenAM to ~/softwares directory.
-3. Copy Install scripts from https://github.com/CharanMann/OpenIG-SampleCompany/tree/master/installScripts to ~/softwares directory. 
-4. Specify below local host enteries (both on server hosting and client accessing these applications): <br />
+1. Create Linux Server/VM with 4 CPU, 8 GB RAM and 50 GB hard drive. Create user 'forgerock', this user shall be used for all operations in this guide. 
+2. The server hosting OpenIG should have internet connectivity as first request tries to download required jars from maven repo. The custom groovy script uses @Grab and it downloads the required dependencies under <User-Home>/.groovy/grapes.
+3. Copy binaries for OpenIG, OpenDJ and OpenAM to ~/softwares directory.
+4. Copy Install scripts from https://github.com/CharanMann/OpenIG-SampleCompany/tree/master/installScripts to ~/softwares directory. 
+5. Specify below local host enteries (both on server hosting and client accessing these applications): <br />
    [IP Address]  openig1.sc.com  # OpenIG, Port:9000 <br />
    [IP Address]  openig2.sc.com  # OpenIG, Port:9002 <br />
    [IP Address]  opendj.sc.com   # OpenDJ IS, Port 1389 <br />
@@ -31,7 +32,7 @@ Pre-requisites :
    [IP Address]  travel-ig.sample.com # Internal Travel App via OpenIG, Port:9002 <br />
    [IP Address]  benefits.sample.com # Internal Benefits App, Port:8014 <br />
    [IP Address]  benefits-ig.sample.com # Internal Benefits App via OpenIG, Port:9002
-5. Install and configure SampleCompany application: refer https://github.com/CharanMann/SampleCompany  
+6. Install and configure SampleCompany application on same or different server: refer https://github.com/CharanMann/SampleCompany  
   
    
 OpenIG Installation & Configuration:
@@ -41,7 +42,16 @@ OpenIG Installation & Configuration:
 3. Specify config directories for each OpenIG instance by specifying OPENIG_BASE. e.g for OpenIG1 specify "export OPENIG_BASE=/home/forgerock/.openig1" in /opt/forgerock/OpenIG1/bin/setenv.sh
 4. Create logs directory for each OpenIG instance. e.g for OpenIG1 create /home/forgerock/.openig1/logs
 5. Copy OpenIG configurations. e.g for OpenIG1 copy https://github.com/CharanMann/OpenIG-SampleCompany/tree/master/openig1 to /home/forgerock/.openig1 
-6. Specify CORS filter for OpenIG2 in /opt/forgerock/OpenIG2/conf/web.xml. Refer https://tomcat.apache.org/tomcat-7.0-doc/config/filter.html#CORS_Filter for sample CORS filter configuration.
+6. Specify CORS filter for OpenIG2 in /opt/forgerock/OpenIG2/conf/web.xml. Refer https://tomcat.apache.org/tomcat-7.0-doc/config/filter.html#CORS_Filter for sample CORS filter template.
+   CORS filter params: <br />
+   ============= <br />
+   * url-pattern: /history/*
+   * cors.allowed.origins: http://employees-ig.sc.com:9000
+   * cors.allowed.methods: GET,POST,HEAD,OPTIONS,PUT
+   * cors.allowed.headers: Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization
+   * cors.exposed.headers: Access-Control-Allow-Origin,Access-Control-Allow-Credentials
+   * cors.support.credentials: false
+   * Leave default value for rest of parameters
 7. Start both OpenIG instances. Verify there are no errors in Apache Tomcat and OpenIG logs. 
 
 OpenDJ Identity Store Installation & Configuration:
@@ -95,6 +105,16 @@ OpenAM Installation & Configuration:
    * Directory Service contains existing data. Do you want to delete it? [y|N] y
    * Check for any errors. Check if all service configurations have been imported successfully. 
    * Note that no OpenAM policies shall appear in any realm, this is due to bug: https://bugster.forgerock.org/jira/browse/OPENAM-8169 
+7. Enable CORS filter for OpenAM. Refer https://backstage.forgerock.com/#!/docs/openam/13/install-guide/chap-prepare-install#enable-cors-support 
+   CORS filter params: <br />
+   ============= <br />
+   * url-pattern: /json/*
+   * methods: POST,GET,PUT,DELETE,PATCH,OPTIONS
+   * origins: *
+   * allowCredentials: false
+   * headers: Accept,Accept-Encoding,Accept-Language,Authorization,Cookie,Connection,Content-Length,Content-Type,iPlanetDirectoryPro,Host,Origin,User-Agent,X-OpenAM-Username,X-OpenAM-Password,X-Requested-With
+   * expectedHostname: openam13.sc.com:8080
+   * Leave default value for rest of parameters
 
 OpenIG Use Cases testing:
 ========================= 
