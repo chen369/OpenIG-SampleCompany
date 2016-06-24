@@ -30,8 +30,8 @@ Pre-requisites :
    [IP Address]  apis-ig.sample.com  # API server via OpenIG, Port:9002 <br />
    [IP Address]  travel.sample.com  # Internal Travel App, Port:8012 <br />
    [IP Address]  travel-ig.sample.com # Internal Travel App via OpenIG, Port:9002 <br />
-   [IP Address]  benefits.sample.com # Internal Benefits App, Port:8014 <br />
-   [IP Address]  benefits-ig.sample.com # Internal Benefits App via OpenIG, Port:9002
+   [IP Address]  benefits.sc.com # Internal Benefits App, Port:8014 <br />
+   [IP Address]  benefits-ig.sc.com # Internal Benefits App via OpenIG, Port:9002
 6. Install and configure SampleCompany application on same or different server: refer https://github.com/CharanMann/SampleCompany  
   
    
@@ -42,7 +42,7 @@ OpenIG Installation & Configuration:
 3. Specify config directories for each OpenIG instance by specifying OPENIG_BASE. e.g for OpenIG1 specify "export OPENIG_BASE=/home/forgerock/.openig1" in /opt/forgerock/OpenIG1/bin/setenv.sh
 4. Create logs directory for each OpenIG instance. e.g for OpenIG1 create /home/forgerock/.openig1/logs
 5. Copy OpenIG configurations. e.g for OpenIG1 copy https://github.com/CharanMann/OpenIG-SampleCompany/tree/master/openig1 to /home/forgerock/.openig1 
-6. Specify CORS filter for OpenIG2 in /opt/forgerock/OpenIG2/conf/web.xml. Refer https://tomcat.apache.org/tomcat-7.0-doc/config/filter.html#CORS_Filter for sample CORS filter template.
+6. Specify CORS filter for OpenIG2 in /opt/forgerock/OpenIG2/conf/web.xml. Refer https://tomcat.apache.org/tomcat-7.0-doc/config/filter.html#CORS_Filter for sample CORS filter template. <br />
    CORS filter params: <br />
    ============= <br />
    * url-pattern: /history/*
@@ -105,7 +105,7 @@ OpenAM Installation & Configuration:
    * Directory Service contains existing data. Do you want to delete it? [y|N] y
    * Check for any errors. Check if all service configurations have been imported successfully. 
    * Note that no OpenAM policies shall appear in any realm, this is due to bug: https://bugster.forgerock.org/jira/browse/OPENAM-8169 
-7. Enable CORS filter for OpenAM. Refer https://backstage.forgerock.com/#!/docs/openam/13/install-guide/chap-prepare-install#enable-cors-support 
+7. Enable CORS filter for OpenAM. Refer https://backstage.forgerock.com/#!/docs/openam/13/install-guide/chap-prepare-install#enable-cors-support <br />
    CORS filter params: <br />
    ============= <br />
    * url-pattern: /json/*

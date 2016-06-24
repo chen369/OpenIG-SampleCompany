@@ -1,5 +1,5 @@
 {
-  "baseURI": "http://legacy.sc.com:8002/",
+  "baseURI": "http://benefits.sc.com:8014/",
   "handler": {
     "type": "DispatchHandler",
     "config": {
@@ -15,7 +15,7 @@
               "reason": "Found",
               "headers": {
                 "Location": [
-                  "http://openam13.sc.com:8080/openam/XUI/#login&goto=${urlEncode(contexts.router.originalUri)}"
+                  "http://openam13.sc.com:8080/openam/XUI/#login/employees&goto=${urlEncode(contexts.router.originalUri)}"
                 ]
               },
               "entity": "Redirecting to OpenAM for authentication..."
@@ -31,7 +31,7 @@
             "type": "Chain",
             "config": {
               "filters": [
-                {
+                /*{
                   "comment": "OpenAM Authorization check filter",
                   "name": "OpenAM Authorization",
                   "type": "PolicyEnforcementFilter",
@@ -39,12 +39,12 @@
                     "openamUrl": "http://openam13.sc.com:8080/openam",
                     "pepUsername": "policyAdmin",
                     "pepPassword": "password",
-                    "realm": "/",
-                    "application": "DocApp",
+                    "realm": "employees",
+                    "application": "OpenIG2",
                     "ssoTokenSubject": "${request.cookies['iPlanetDirectoryPro'][0].value}"
                   },
                   "capture": "all"
-                },
+                },*/
                 {
                   "comment": "Scripted filter for retrieving session attributes and setting as HTTP headers",
                   "name": "OpenAM Password Headers",
@@ -54,12 +54,12 @@
                     "file": "OpenAMReplayHeaders.groovy",
                     "args": {
                       "passwordAttribute": "sunIdentityUserPassword",
-                      "openamUrl": "http://openam13.sc.com:8080/openam/json/"
+                      "openamUrl": "http://openam13.sc.com:8080/openam/json/employees/"
                     }
                   },
                   "capture": "all"
                 },
-                {
+                /*{
                   "comment": "OpenAM Password Replay",
                   "name": "OpenAM Password Replay",
                   "type": "PasswordReplayFilter",
@@ -73,10 +73,10 @@
                       "headers": [
                         "password"
                       ]
-                    },
+                    }
                     "request": {
-                      "method": "POST",
-                      "uri": "http://legacy.sc.com:8002/",
+                      "method": "GET",
+                      "uri": "http://benefits.sc.com:8014/benefitsApp/sections/home/home.html",
                       "form": {
                         "username": [
                           "${request.headers['username'][0]}"
@@ -85,9 +85,21 @@
                           "${request.headers['password'][0]}"
                         ]
                       }
-                    }
+                  }
                   },
                   "capture": "all"
+                },*/
+                {
+                  "name": "SetCookieFilter",
+                  "type": "HeaderFilter",
+                  "config": {
+                    "messageType": "RESPONSE",
+                    "add": {
+                      "Set-Cookie": [
+                        "ssoToken={\"username\":\"emp1\"}; domain=.sc.com; path=/ ;"
+                      ]
+                    }
+                  }
                 },
                 {
                   "comment": "Remove OpenAM Headers",
@@ -110,5 +122,5 @@
       ]
     }
   },
-  "condition": "${matches(request.uri.path, '^/replay')}"
+  "condition": "${matches(request.uri.path, '^/benefitsApp')}"
 }
