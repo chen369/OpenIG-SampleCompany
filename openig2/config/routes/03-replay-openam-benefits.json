@@ -33,7 +33,7 @@
             "type": "Chain",
             "config": {
               "filters": [
-                /*{
+                {
                   "comment": "OpenAM Authorization check filter",
                   "name": "OpenAM Authorization",
                   "type": "PolicyEnforcementFilter",
@@ -46,7 +46,7 @@
                     "ssoTokenSubject": "${request.cookies['iPlanetDirectoryPro'][0].value}"
                   },
                   "capture": "all"
-                },*/
+                },
                 {
                   "comment": "Scripted filter for retrieving session attributes and setting as HTTP headers",
                   "name": "OpenAM Password Headers",
