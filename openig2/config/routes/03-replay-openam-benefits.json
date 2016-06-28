@@ -26,7 +26,7 @@
         {
           "comment": "Password Replay",
           "name": "Password Replay",
-          "condition": "${request.cookies['iPlanetDirectoryPro'] != null and request.cookies['SSOCookie'] == null}",
+          "condition": "${request.cookies['iPlanetDirectoryPro'] != null}",
           "handler": {
             "comment": "OpenAM Password replay chain",
             "name": "OpenAM Password Replay Chain",
@@ -66,7 +66,7 @@
                   "name": "OpenAM Password Replay",
                   "type": "PasswordReplayFilter",
                   "config": {
-                    "loginPage": "${true}",
+                    "loginPage": "${matches(request.uri.path, '/login')}",
                     "headerDecryption": {
                       "algorithm": "DES/ECB/NoPadding",
                       "key": "usgpVLo7Sfg=",
@@ -108,12 +108,6 @@
               "handler": "ClientHandler"
             }
           }
-        },
-        {
-          "comment": "Application redirect",
-          "name": "Application redirect",
-          "condition": "${request.cookies['iPlanetDirectoryPro'] != null and request.cookies['SSOCookie'] != null}",
-          "handler": "ClientHandler"
         }
       ]
     }
