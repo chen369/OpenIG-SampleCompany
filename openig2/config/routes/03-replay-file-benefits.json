@@ -1,44 +1,36 @@
 {
+  "baseURI": "http://benefits.sc.com:8014/",
   "handler": {
     "type": "Chain",
     "config": {
       "filters": [
         {
+          "comment": "File Password Replay",
+          "name": "File Password Replay",
           "type": "PasswordReplayFilter",
           "config": {
-            "loginPage": "${true}",
-            "headerDecryption": {
-              "algorithm": "DES/ECB/NoPadding",
-              "key": "usgpVLo7Sfg=",
-              "keyType": "DES",
-              "charSet": "utf-8",
-              "headers": [
-                "password"
-              ]
+            "loginPage": "${matches(request.uri.path, '/login')}",
+            "credentials": {
+              "type": "FileAttributesFilter",
+              "config": {
+                "file": "${env['OPENIG_BASE']}/config/credentials",
+                "key": "username",
+                "value": "emp1",
+                "target": "${attributes.credentials}"
+              }
             },
             "request": {
               "method": "POST",
-              "uri": "http://legacy.sc.com:8002/",
+              "uri": "http://benefits.sc.com:8014/benefitsApp/login.html",
               "form": {
                 "username": [
-                  "${request.headers['username'][0]}"
+                  "${attributes.credentials.username}"
                 ],
                 "password": [
-                  "${request.headers['password'][0]}"
+                  "${attributes.credentials.password}"
                 ]
               }
             }
-          },
-          "capture": "all"
-        },
-        {
-          "type": "HeaderFilter",
-          "config": {
-            "messageType": "REQUEST",
-            "remove": [
-              "password",
-              "username"
-            ]
           },
           "capture": "all"
         }
@@ -46,5 +38,5 @@
       "handler": "ClientHandler"
     }
   },
-  "condition": "${matches(request.uri.path, '^/replay')}"
+  "condition": "${matches(request.uri.path, '^/benefitsApp')}"
 }
