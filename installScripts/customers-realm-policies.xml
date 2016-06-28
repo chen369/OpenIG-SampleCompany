@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns2:PolicySet xmlns:xacml="classpath:xsd/xacml-core-v3-schema-wd-17.xsd" xmlns:ns2="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicySetId="/customers:2016.06.21.20.25.57.984" Version="2016.06.21.20.25.57.984" PolicyCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
+<ns2:PolicySet xmlns:xacml="classpath:xsd/xacml-core-v3-schema-wd-17.xsd" xmlns:ns2="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicySetId="/customers:2016.06.28.20.37.37.501" Version="2016.06.28.20.37.37.501" PolicyCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
     <ns2:Target/>
     <ns2:Policy PolicyId="CustomerApp" Version="2016.06.05.23.47.24.084" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
         <ns2:Description></ns2:Description>

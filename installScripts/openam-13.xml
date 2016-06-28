@@ -4222,6 +4222,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="iplanet-am-auth-post-login-process-class"/>
+    <Value>com.sun.identity.authentication.spi.ReplayPasswd</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="iplanet-am-auth-username-generator-class"/>
@@ -4255,7 +4256,6 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="iplanet-am-auth-post-login-process-class"/>
-    <Value>com.sun.identity.authentication.spi.ReplayPasswd</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="iplanet-am-auth-username-generator-class"/>
@@ -9170,80 +9170,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="serverconfigxml"/>
-    <Value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; standalone=&quot;yes&quot;?&gt;
-
-&lt;!--
-   DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
-  
-   Copyright (c) 2005 Sun Microsystems Inc. All Rights Reserved
-  
-   The contents of this file are subject to the terms
-   of the Common Development and Distribution License
-   (the License). You may not use this file except in
-   compliance with the License.
-  
-   You can obtain a copy of the License at
-   https:&#47;&#47;opensso.dev.java.net&#47;public&#47;CDDLv1.0.html or
-   opensso&#47;legal&#47;CDDLv1.0.txt
-   See the License for the specific language governing
-   permission and limitations under the License.
-  
-   When distributing Covered Code, include this CDDL
-   Header Notice in each file and include the License file
-   at opensso&#47;legal&#47;CDDLv1.0.txt.
-   If applicable, add the following below the CDDL Header,
-   with the fields enclosed by brackets [] replaced by
-   your own identifying information:
-   &quot;Portions Copyrighted [year] [name of copyright owner]&quot;
-
-   $Id: serverconfig.xml,v 1.15 2008&#47;11&#47;06 05:31:02 veiming Exp $
-
-   Portions Copyright 2015 ForgeRock AS.
---&gt;
-
-
-&lt;iPlanetDataAccessLayer&gt;
-    &lt;ServerGroup name=&quot;default&quot; minConnPool=&quot;1&quot; maxConnPool=&quot;10&quot;&gt;
-        &lt;Server name=&quot;Server1&quot; host=&quot;localhost&quot; port=&quot;50389&quot; type=&quot;SIMPLE&quot; &#47;&gt;
-        &lt;User name=&quot;User1&quot; type=&quot;proxy&quot;&gt;
-            &lt;DirDN&gt;
-                cn=puser,ou=DSAME Users,dc=openam,dc=forgerock,dc=org
-            &lt;&#47;DirDN&gt;
-            &lt;DirPassword&gt;
-                AQIC48g7Wethu6o&#47;fErYkbJc&#47;eNMh1kaWCDN
-            &lt;&#47;DirPassword&gt;
-        &lt;&#47;User&gt;
-        &lt;User name=&quot;User2&quot; type=&quot;admin&quot;&gt;
-            &lt;DirDN&gt;
-                cn=dsameuser,ou=DSAME Users,dc=openam,dc=forgerock,dc=org
-            &lt;&#47;DirDN&gt;
-            &lt;DirPassword&gt;
-                AQIC48g7Wethu6o&#47;fErYkbJc&#47;eNMh1kaWCDN
-            &lt;&#47;DirPassword&gt;
-        &lt;&#47;User&gt;
-        &lt;BaseDN&gt;
-            dc=openam,dc=forgerock,dc=org
-        &lt;&#47;BaseDN&gt;                
-    &lt;&#47;ServerGroup&gt;
-
-    &lt;!--
-    Datastore for storing configuration and policy data in different Directory.
-    For SMS to use this configuration, OpenSSO must be installed in
-    REALM mode and the property &quot;com.sun.identity.sm.ldap.enableProxy&quot; must be
-    set to &quot;false&quot;.
-    --&gt;
-    &lt;ServerGroup name=&quot;sms&quot; minConnPool=&quot;1&quot; maxConnPool=&quot;10&quot;&gt;
-        &lt;Server name=&quot;Server1&quot; host=&quot;localhost&quot; port=&quot;50389&quot;
-             type=&quot;SIMPLE&quot; &#47;&gt;
-             &lt;User name=&quot;User2&quot; type=&quot;admin&quot;&gt;
-                &lt;DirDN&gt;cn=Directory Manager&lt;&#47;DirDN&gt;
-                &lt;DirPassword&gt;AQIC48g7Wethu6o&#47;fErYkbJc&#47;eNMh1kaWCDN&lt;&#47;DirPassword&gt;
-             &lt;&#47;User&gt;
-             &lt;BaseDN&gt;dc=openam,dc=forgerock,dc=org&lt;&#47;BaseDN&gt;
-    &lt;&#47;ServerGroup&gt;
-
-&lt;&#47;iPlanetDataAccessLayer&gt;
-</Value>
+    <Value>&lt;iPlanetDataAccessLayer&gt;&lt;ServerGroup name=&quot;default&quot; minConnPool=&quot;1&quot; maxConnPool=&quot;1&quot;&gt;&lt;Server name=&quot;Server1&quot; host=&quot;localhost&quot; port=&quot;50389&quot; type=&quot;SIMPLE&quot; &#47;&gt;&lt;User name=&quot;User1&quot; type=&quot;admin&quot;&gt;&lt;DirDN&gt;cn=dsameuser,ou=DSAME Users,dc=openam,dc=forgerock,dc=org&lt;&#47;DirDN&gt;&lt;DirPassword&gt;AQIC48g7Wethu6o&#47;fErYkbJc&#47;eNMh1kaWCDN&lt;&#47;DirPassword&gt;&lt;&#47;User&gt;&lt;BaseDN&gt;dc=openam,dc=forgerock,dc=org&lt;&#47;BaseDN&gt;&lt;&#47;ServerGroup&gt;&lt;ServerGroup name=&quot;sms&quot; minConnPool=&quot;1&quot; maxConnPool=&quot;10&quot;&gt;&lt;Server name=&quot;Server1&quot; host=&quot;localhost&quot; port=&quot;50389&quot; type=&quot;SIMPLE&quot; &#47;&gt;&lt;User name=&quot;User2&quot; type=&quot;admin&quot;&gt;&lt;DirDN&gt;cn=Directory Manager&lt;&#47;DirDN&gt;&lt;DirPassword&gt;AQIC48g7Wethu6o&#47;fErYkbJc&#47;eNMh1kaWCDN&lt;&#47;DirPassword&gt;&lt;&#47;User&gt;&lt;BaseDN&gt;dc=openam,dc=forgerock,dc=org&lt;&#47;BaseDN&gt;&lt;&#47;ServerGroup&gt;&lt;&#47;iPlanetDataAccessLayer&gt;</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="serverid"/>
@@ -9263,11 +9190,11 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
     <Value>org.forgerock.embedded.dsadminport=5444</Value>
     <Value>com.sun.identity.urlconnection.useCache=false</Value>
     <Value>opensso.protocol.handler.pkgs=</Value>
-    <Value>com.iplanet.services.configpath=&#47;home&#47;forgerock&#47;openam</Value>
     <Value>com.sun.embedded.sync.servers=on</Value>
     <Value>com.iplanet.services.debug.level=warning</Value>
     <Value>com.iplanet.am.server.port=8080</Value>
     <Value>com.iplanet.am.serverMode=true</Value>
+    <Value>com.iplanet.services.configpath=&#47;home&#47;forgerock&#47;openam</Value>
     <Value>com.iplanet.am.locale=en_US</Value>
     <Value>com.sun.identity.overrideAMC=true</Value>
     <Value>am.encryption.pwd=GzCay6jsDJduZK9mNpCVT3fmoFC2PkHJ</Value>
@@ -9615,13 +9542,22 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 &lt;&#47;Rule&gt;
 &lt;Subjects name=&quot;Subjects:1462970769545wuxMnzE=&quot; description=&quot;&quot;&gt;
 &lt;Subject name=&quot;2005&quot; type=&quot;PrivilegeSubject&quot; includeType=&quot;inclusive&quot;&gt;
-&lt;AttributeValuePair&gt;&lt;Attribute name=&quot;Values&quot;&#47;&gt;&lt;Value&gt;com.sun.identity.entitlement.AndSubject={&amp;quot;memberESubjects&amp;quot;: [&amp;#xA;  {&amp;#xA;    &amp;quot;className&amp;quot;: &amp;quot;org.forgerock.openam.entitlement.conditions.subject.IdentitySubject&amp;quot;,&amp;#xA;    &amp;quot;state&amp;quot;: &amp;quot;[\&amp;quot;id=employees,ou=group,o=employees,ou=services,dc=openam,dc=forgerock,dc=org\&amp;quot;]&amp;quot;&amp;#xA;  },&amp;#xA;  {&amp;#xA;    &amp;quot;className&amp;quot;: &amp;quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers&amp;quot;,&amp;#xA;    &amp;quot;state&amp;quot;: &amp;quot;{}&amp;quot;&amp;#xA;  }&amp;#xA;]}&lt;&#47;Value&gt;
+&lt;AttributeValuePair&gt;&lt;Attribute name=&quot;Values&quot;&#47;&gt;&lt;Value&gt;com.sun.identity.entitlement.AndSubject={&quot;memberESubjects&quot;: [
+  {
+    &quot;className&quot;: &quot;org.forgerock.openam.entitlement.conditions.subject.IdentitySubject&quot;,
+    &quot;state&quot;: &quot;[\&quot;id=employees,ou=group,o=employees,ou=services,dc=openam,dc=forgerock,dc=org\&quot;]&quot;
+  },
+  {
+    &quot;className&quot;: &quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers&quot;,
+    &quot;state&quot;: &quot;{}&quot;
+  }
+]}&lt;&#47;Value&gt;
 &lt;&#47;AttributeValuePair&gt;
 &lt;&#47;Subject&gt;
 &lt;&#47;Subjects&gt;
 &lt;Conditions name=&quot;null&quot; description=&quot;null&quot;&gt;
 &lt;Condition name=&quot;9037&quot; type=&quot;PrivilegeCondition&quot;&gt;
-&lt;AttributeValuePair&gt;&lt;Attribute name=&quot;org.forgerock.openam.entitlement.conditions.environment.AuthenticateToRealmCondition&quot;&#47;&gt;&lt;Value&gt;{&amp;quot;authenticateToRealm&amp;quot;: &amp;quot;&#47;employees&amp;quot;}&lt;&#47;Value&gt;
+&lt;AttributeValuePair&gt;&lt;Attribute name=&quot;org.forgerock.openam.entitlement.conditions.environment.AuthenticateToRealmCondition&quot;&#47;&gt;&lt;Value&gt;{&quot;authenticateToRealm&quot;: &quot;&#47;employees&quot;}&lt;&#47;Value&gt;
 &lt;&#47;AttributeValuePair&gt;
 &lt;&#47;Condition&gt;
 &lt;&#47;Conditions&gt;
@@ -9646,13 +9582,22 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 &lt;&#47;Rule&gt;
 &lt;Subjects name=&quot;Subjects:146375752596923poak4=&quot; description=&quot;&quot;&gt;
 &lt;Subject name=&quot;602&quot; type=&quot;PrivilegeSubject&quot; includeType=&quot;inclusive&quot;&gt;
-&lt;AttributeValuePair&gt;&lt;Attribute name=&quot;Values&quot;&#47;&gt;&lt;Value&gt;com.sun.identity.entitlement.AndSubject={&amp;quot;memberESubjects&amp;quot;: [&amp;#xA;  {&amp;#xA;    &amp;quot;className&amp;quot;: &amp;quot;org.forgerock.openam.entitlement.conditions.subject.IdentitySubject&amp;quot;,&amp;#xA;    &amp;quot;state&amp;quot;: &amp;quot;[\&amp;quot;id=empAdmins,ou=group,o=employees,ou=services,dc=openam,dc=forgerock,dc=org\&amp;quot;]&amp;quot;&amp;#xA;  },&amp;#xA;  {&amp;#xA;    &amp;quot;className&amp;quot;: &amp;quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers&amp;quot;,&amp;#xA;    &amp;quot;state&amp;quot;: &amp;quot;{}&amp;quot;&amp;#xA;  }&amp;#xA;]}&lt;&#47;Value&gt;
+&lt;AttributeValuePair&gt;&lt;Attribute name=&quot;Values&quot;&#47;&gt;&lt;Value&gt;com.sun.identity.entitlement.AndSubject={&quot;memberESubjects&quot;: [
+  {
+    &quot;className&quot;: &quot;org.forgerock.openam.entitlement.conditions.subject.IdentitySubject&quot;,
+    &quot;state&quot;: &quot;[\&quot;id=empAdmins,ou=group,o=employees,ou=services,dc=openam,dc=forgerock,dc=org\&quot;]&quot;
+  },
+  {
+    &quot;className&quot;: &quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers&quot;,
+    &quot;state&quot;: &quot;{}&quot;
+  }
+]}&lt;&#47;Value&gt;
 &lt;&#47;AttributeValuePair&gt;
 &lt;&#47;Subject&gt;
 &lt;&#47;Subjects&gt;
 &lt;Conditions name=&quot;null&quot; description=&quot;null&quot;&gt;
 &lt;Condition name=&quot;3390&quot; type=&quot;PrivilegeCondition&quot;&gt;
-&lt;AttributeValuePair&gt;&lt;Attribute name=&quot;org.forgerock.openam.entitlement.conditions.environment.AuthenticateToRealmCondition&quot;&#47;&gt;&lt;Value&gt;{&amp;quot;authenticateToRealm&amp;quot;: &amp;quot;&#47;employees&amp;quot;}&lt;&#47;Value&gt;
+&lt;AttributeValuePair&gt;&lt;Attribute name=&quot;org.forgerock.openam.entitlement.conditions.environment.AuthenticateToRealmCondition&quot;&#47;&gt;&lt;Value&gt;{&quot;authenticateToRealm&quot;: &quot;&#47;employees&quot;}&lt;&#47;Value&gt;
 &lt;&#47;AttributeValuePair&gt;
 &lt;&#47;Condition&gt;
 &lt;&#47;Conditions&gt;
@@ -9683,7 +9628,38 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 &lt;&#47;Subjects&gt;
 &lt;Conditions name=&quot;null&quot; description=&quot;null&quot;&gt;
 &lt;Condition name=&quot;7547&quot; type=&quot;PrivilegeCondition&quot;&gt;
-&lt;AttributeValuePair&gt;&lt;Attribute name=&quot;org.forgerock.openam.entitlement.conditions.environment.AuthLevelCondition&quot;&#47;&gt;&lt;Value&gt;{&amp;quot;authLevel&amp;quot;: 100}&lt;&#47;Value&gt;
+&lt;AttributeValuePair&gt;&lt;Attribute name=&quot;org.forgerock.openam.entitlement.conditions.environment.AuthLevelCondition&quot;&#47;&gt;&lt;Value&gt;{&quot;authLevel&quot;: 100}&lt;&#47;Value&gt;
+&lt;&#47;AttributeValuePair&gt;
+&lt;&#47;Condition&gt;
+&lt;&#47;Conditions&gt;
+&lt;&#47;Policy&gt;</Value>
+</AttributeValuePair>
+</SubConfiguration><SubConfiguration name="BenefitsApp" id="NamedPolicy"><AttributeValuePair>
+    <Attribute name="xmlpolicy"/>
+    <Value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;Policy name=&quot;BenefitsApp&quot; description=&quot;BenefitsApp&quot; createdby=&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot; lastmodifiedby=&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot; creationdate=&quot;1467142419542&quot; lastmodifieddate=&quot;1467142419542&quot; referralPolicy=&quot;false&quot; active=&quot;true&quot; &gt;
+&lt;Rule name=&quot;entitlement&quot;&gt;
+&lt;ServiceName name=&quot;iPlanetAMWebAgentService&quot; &#47;&gt;
+&lt;ApplicationName name=&quot;OpenIG2&quot; &#47;&gt;
+&lt;ResourceName name=&quot;*:&#47;&#47;benefits.sc.com:*&#47;*&quot; &#47;&gt;
+&lt;AttributeValuePair&gt;
+&lt;Attribute name=&quot;POST&quot; &#47;&gt;
+&lt;Value&gt;allow&lt;&#47;Value&gt;
+&lt;&#47;AttributeValuePair&gt;
+&lt;AttributeValuePair&gt;
+&lt;Attribute name=&quot;GET&quot; &#47;&gt;
+&lt;Value&gt;allow&lt;&#47;Value&gt;
+&lt;&#47;AttributeValuePair&gt;
+&lt;&#47;Rule&gt;
+&lt;Subjects name=&quot;Subjects:14671424195427LoZ&#47;X0=&quot; description=&quot;&quot;&gt;
+&lt;Subject name=&quot;1405&quot; type=&quot;PrivilegeSubject&quot; includeType=&quot;inclusive&quot;&gt;
+&lt;AttributeValuePair&gt;&lt;Attribute name=&quot;Values&quot;&#47;&gt;&lt;Value&gt;com.sun.identity.entitlement.AndSubject={&amp;quot;memberESubjects&amp;quot;: [&amp;#xA;  {&amp;#xA;    &amp;quot;className&amp;quot;: &amp;quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers&amp;quot;,&amp;#xA;    &amp;quot;state&amp;quot;: &amp;quot;{}&amp;quot;&amp;#xA;  },&amp;#xA;  {&amp;#xA;    &amp;quot;className&amp;quot;: &amp;quot;org.forgerock.openam.entitlement.conditions.subject.IdentitySubject&amp;quot;,&amp;#xA;    &amp;quot;state&amp;quot;: &amp;quot;[\&amp;quot;id=employees,ou=group,o=employees,ou=services,dc=openam,dc=forgerock,dc=org\&amp;quot;]&amp;quot;&amp;#xA;  }&amp;#xA;]}&lt;&#47;Value&gt;
+&lt;&#47;AttributeValuePair&gt;
+&lt;&#47;Subject&gt;
+&lt;&#47;Subjects&gt;
+&lt;Conditions name=&quot;null&quot; description=&quot;null&quot;&gt;
+&lt;Condition name=&quot;6980&quot; type=&quot;PrivilegeCondition&quot;&gt;
+&lt;AttributeValuePair&gt;&lt;Attribute name=&quot;org.forgerock.openam.entitlement.conditions.environment.AuthenticateToRealmCondition&quot;&#47;&gt;&lt;Value&gt;{&amp;quot;authenticateToRealm&amp;quot;: &amp;quot;&#47;employees&amp;quot;}&lt;&#47;Value&gt;
 &lt;&#47;AttributeValuePair&gt;
 &lt;&#47;Condition&gt;
 &lt;&#47;Conditions&gt;
@@ -13816,7 +13792,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 </SubConfiguration></SubConfiguration></OrganizationConfiguration><OrganizationConfiguration group="default" name="/employees"><AttributeValuePair>
     <Attribute name="indexCount"/>
-    <Value>4</Value>
+    <Value>5</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="responseAttributes"/>
@@ -13911,6 +13887,30 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 <AttributeValuePair>
     <Attribute name="serializable"/>
     <Value>{&quot;creationDate&quot;:1462456714152,&quot;createdBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;description&quot;:&quot;&quot;,&quot;name&quot;:&quot;DumpHeaders&quot;,&quot;lastModifiedBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;eSubject&quot;:{&quot;state&quot;:&quot;{}&quot;,&quot;className&quot;:&quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers&quot;},&quot;lastModifiedDate&quot;:1464024115613,&quot;active&quot;:&quot;true&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.opensso.OpenSSOPrivilege&quot;,&quot;eCondition&quot;:{&quot;state&quot;:&quot;{\&quot;authLevel\&quot;: 100}&quot;,&quot;className&quot;:&quot;org.forgerock.openam.entitlement.conditions.environment.AuthLevelCondition&quot;},&quot;entitlement&quot;:{&quot;actionsValues&quot;:{&quot;POST&quot;:true,&quot;GET&quot;:true},&quot;applicationName&quot;:&quot;OpenIG1&quot;,&quot;resourceNames&quot;:[&quot;*:&#47;&#47;dumpheaders.sc.com:*&#47;*&quot;]},&quot;resourceTypeUuid&quot;:&quot;9e87cfec-805f-4240-af65-54321ff26603&quot;}</Value>
+</AttributeValuePair>
+<AttributeValuePair>
+    <Attribute name="hostindex"/>
+    <Value>:&#47;&#47;</Value>
+</AttributeValuePair>
+<AttributeValuePair>
+    <Attribute name="resourceTypeUuid"/>
+    <Value>9e87cfec-805f-4240-af65-54321ff26603</Value>
+</AttributeValuePair>
+<AttributeValuePair>
+    <Attribute name="pathparentindex"/>
+    <Value>&#47;</Value>
+</AttributeValuePair>
+</SubConfiguration><SubConfiguration name="BenefitsApp" id="indexes"><AttributeValuePair>
+    <Attribute name="pathindex"/>
+    <Value>*:&#47;&#47;benefits.sc.com:*&#47;*</Value>
+</AttributeValuePair>
+<AttributeValuePair>
+    <Attribute name="subjectindex"/>
+    <Value>identity:=all</Value>
+</AttributeValuePair>
+<AttributeValuePair>
+    <Attribute name="serializable"/>
+    <Value>{&quot;creationDate&quot;:1467142419542,&quot;createdBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;description&quot;:&quot;BenefitsApp&quot;,&quot;name&quot;:&quot;BenefitsApp&quot;,&quot;lastModifiedBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;eSubject&quot;:{&quot;state&quot;:&quot;{\&quot;memberESubjects\&quot;: [\n  {\n    \&quot;className\&quot;: \&quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers\&quot;,\n    \&quot;state\&quot;: \&quot;{}\&quot;\n  },\n  {\n    \&quot;className\&quot;: \&quot;org.forgerock.openam.entitlement.conditions.subject.IdentitySubject\&quot;,\n    \&quot;state\&quot;: \&quot;[\\\&quot;id=employees,ou=group,o=employees,ou=services,dc=openam,dc=forgerock,dc=org\\\&quot;]\&quot;\n  }\n]}&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.AndSubject&quot;},&quot;lastModifiedDate&quot;:1467142419542,&quot;active&quot;:&quot;true&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.opensso.OpenSSOPrivilege&quot;,&quot;eCondition&quot;:{&quot;state&quot;:&quot;{\&quot;authenticateToRealm\&quot;: \&quot;&#47;employees\&quot;}&quot;,&quot;className&quot;:&quot;org.forgerock.openam.entitlement.conditions.environment.AuthenticateToRealmCondition&quot;},&quot;entitlement&quot;:{&quot;actionsValues&quot;:{&quot;POST&quot;:true,&quot;GET&quot;:true},&quot;applicationName&quot;:&quot;OpenIG2&quot;,&quot;resourceNames&quot;:[&quot;*:&#47;&#47;benefits.sc.com:*&#47;*&quot;]},&quot;resourceTypeUuid&quot;:&quot;9e87cfec-805f-4240-af65-54321ff26603&quot;}</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="hostindex"/>
@@ -15806,9 +15806,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
             &lt;Value&gt;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;idpsaehandler&#47;metaAlias&#47;employees&#47;idp&lt;&#47;Value&gt;
         &lt;&#47;Attribute&gt;
     &lt;&#47;IDPSSOConfig&gt;
-&lt;&#47;EntityConfig&gt;
-
-</Value>
+&lt;&#47;EntityConfig&gt;</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sun-fm-saml2-metadata"/>
@@ -15843,9 +15841,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
         &lt;AssertionIDRequestService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:SOAP&quot; Location=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;AIDReqSoap&#47;IDPRole&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
         &lt;AssertionIDRequestService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:URI&quot; Location=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;AIDReqUri&#47;IDPRole&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
     &lt;&#47;IDPSSODescriptor&gt;
-&lt;&#47;EntityDescriptor&gt;
-
-</Value>
+&lt;&#47;EntityDescriptor&gt;</Value>
 </AttributeValuePair>
 </SubConfiguration><SubConfiguration name="OpenIG2" id="EntityDescriptor"><AttributeValuePair>
     <Attribute name="sun-fm-saml2-entityconfig"/>
@@ -16038,9 +16034,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
             &lt;Value&gt;employeesCOT&lt;&#47;Value&gt;
         &lt;&#47;Attribute&gt;
     &lt;&#47;XACMLAuthzDecisionQueryConfig&gt;
-&lt;&#47;EntityConfig&gt;
-
-</Value>
+&lt;&#47;EntityConfig&gt;</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sun-fm-saml2-metadata"/>
@@ -16056,9 +16050,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
     &lt;&#47;SPSSODescriptor&gt;
     &lt;query:AttributeQueryDescriptor protocolSupportEnumeration=&quot;urn:oasis:names:tc:SAML:2.0:protocol&quot; xmlns:query=&quot;urn:oasis:names:tc:SAML:metadata:ext:query&quot;&#47;&gt;
     &lt;XACMLAuthzDecisionQueryDescriptor WantAssertionsSigned=&quot;false&quot; protocolSupportEnumeration=&quot;urn:oasis:names:tc:SAML:2.0:protocol&quot;&#47;&gt;
-&lt;&#47;EntityDescriptor&gt;
-
-</Value>
+&lt;&#47;EntityDescriptor&gt;</Value>
 </AttributeValuePair>
 </SubConfiguration><SubConfiguration name="OpenIG-HA" id="EntityDescriptor"><AttributeValuePair>
     <Attribute name="sun-fm-saml2-entityconfig"/>
@@ -16251,9 +16243,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
             &lt;Value&gt;employeesCOT&lt;&#47;Value&gt;
         &lt;&#47;Attribute&gt;
     &lt;&#47;XACMLAuthzDecisionQueryConfig&gt;
-&lt;&#47;EntityConfig&gt;
-
-</Value>
+&lt;&#47;EntityConfig&gt;</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sun-fm-saml2-metadata"/>
@@ -16269,9 +16259,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
     &lt;&#47;SPSSODescriptor&gt;
     &lt;query:AttributeQueryDescriptor protocolSupportEnumeration=&quot;urn:oasis:names:tc:SAML:2.0:protocol&quot; xmlns:query=&quot;urn:oasis:names:tc:SAML:metadata:ext:query&quot;&#47;&gt;
     &lt;XACMLAuthzDecisionQueryDescriptor WantAssertionsSigned=&quot;false&quot; protocolSupportEnumeration=&quot;urn:oasis:names:tc:SAML:2.0:protocol&quot;&#47;&gt;
-&lt;&#47;EntityDescriptor&gt;
-
-</Value>
+&lt;&#47;EntityDescriptor&gt;</Value>
 </AttributeValuePair>
 </SubConfiguration></OrganizationConfiguration></Configuration></Service>
 <Service name="iPlanetAMSAMLService"  version="1.0" ><Schema i18nFileName="fmSAMLConfiguration"  i18nKey="iplanet-am-saml-service-description"  revisionNumber="30"  serviceHierarchy="/DSAMEConfig/iPlanetAMSAMLService" >
@@ -17147,10 +17135,10 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
     <Value>false</Value>
 </AttributeValuePair>
 </OrganizationConfiguration><OrganizationConfiguration group="default" name="/customers"><AttributeValuePair>
-    <Attribute name="forgerock-oauth2-provider-saved-consent-attribute"/>
+    <Attribute name="forgerock-oauth2-provider-loa-mapping"/>
 </AttributeValuePair>
 <AttributeValuePair>
-    <Attribute name="forgerock-oauth2-provider-loa-mapping"/>
+    <Attribute name="forgerock-oauth2-provider-saved-consent-attribute"/>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="forgerock-oauth2-provider-hash-salt"/>
@@ -18742,8 +18730,8 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
     <Value>java.lang.Byte</Value>
     <Value>java.lang.Void</Value>
     <Value>org.forgerock.openam.scripting.api.http.GroovyHttpClient</Value>
-    <Value>java.util.LinkedHashSet</Value>
     <Value>java.lang.Math</Value>
+    <Value>java.util.LinkedHashSet</Value>
 </AttributeValuePair>
 </SubConfiguration></SubConfiguration><SubConfiguration name="AUTHENTICATION_CLIENT_SIDE" id="scriptContext"><AttributeValuePair>
     <Attribute name="defaultScript"/>
@@ -21485,10 +21473,10 @@ return new UserInfoClaims((Map)computedClaims, (Map)compositeScopes)</Value>
             </Organization>
         </Schema><Configuration><OrganizationConfiguration group="default" name="/employees"><AttributeValuePair>
     <Attribute name="forgerock-session-property-whitelist"/>
+    <Value>sunIdentityUserPassword</Value>
 </AttributeValuePair>
 </OrganizationConfiguration><OrganizationConfiguration group="default" name="/"><AttributeValuePair>
     <Attribute name="forgerock-session-property-whitelist"/>
-    <Value>sunIdentityUserPassword</Value>
 </AttributeValuePair>
 </OrganizationConfiguration></Configuration></Service>
 <Service name="selfService"  version="1.0" ><Schema i18nFileName="selfService"  i18nKey="self-service-description"  resourceName="selfService"  revisionNumber="1"  serviceHierarchy="/DSAMEConfig/selfService" >
