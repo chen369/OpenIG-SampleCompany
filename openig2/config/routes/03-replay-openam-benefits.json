@@ -24,7 +24,9 @@
           }
         },
         {
-          "condition": "${request.cookies['iPlanetDirectoryPro'] != null}",
+          "comment": "Password Replay",
+          "name": "Password Replay",
+          "condition": "${request.cookies['iPlanetDirectoryPro'] != null and request.cookies['SSOCookie'] == null}",
           "handler": {
             "comment": "OpenAM Password replay chain",
             "name": "OpenAM Password Replay Chain",
@@ -59,7 +61,7 @@
                   },
                   "capture": "all"
                 },
-                /*{
+                {
                   "comment": "OpenAM Password Replay",
                   "name": "OpenAM Password Replay",
                   "type": "PasswordReplayFilter",
@@ -73,10 +75,10 @@
                       "headers": [
                         "password"
                       ]
-                    }
+                    },
                     "request": {
-                      "method": "GET",
-                      "uri": "http://benefits.sc.com:8014/benefitsApp/sections/home/home.html",
+                      "method": "POST",
+                      "uri": "http://benefits.sc.com:8014/benefitsApp/login.html",
                       "form": {
                         "username": [
                           "${request.headers['username'][0]}"
@@ -85,21 +87,9 @@
                           "${request.headers['password'][0]}"
                         ]
                       }
-                  }
+                    }
                   },
                   "capture": "all"
-                },*/
-                {
-                  "name": "SetCookieFilter",
-                  "type": "HeaderFilter",
-                  "config": {
-                    "messageType": "RESPONSE",
-                    "add": {
-                      "Set-Cookie": [
-                        "ssoToken={\"username\":\"emp1\"}; domain=.sc.com; path=/ ;"
-                      ]
-                    }
-                  }
                 },
                 {
                   "comment": "Remove OpenAM Headers",
@@ -118,6 +108,12 @@
               "handler": "ClientHandler"
             }
           }
+        },
+        {
+          "comment": "Application redirect",
+          "name": "Application redirect",
+          "condition": "${request.cookies['iPlanetDirectoryPro'] != null and request.cookies['SSOCookie'] != null}",
+          "handler": "ClientHandler"
         }
       ]
     }
