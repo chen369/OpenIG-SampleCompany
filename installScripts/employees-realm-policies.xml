@@ -24,7 +24,7 @@
             <ns2:AnyOf>
                 <ns2:AllOf>
                     <ns2:Match MatchId="urn:sun:opensso:entitlement:resource-match:application:OpenIG1">
-                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">*://employees.sc.com:*/*</ns2:AttributeValue>
+                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">*://employees.example.com:*/*</ns2:AttributeValue>
                         <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
                     </ns2:Match>
                 </ns2:AllOf>
@@ -125,7 +125,7 @@
             <ns2:AnyOf>
                 <ns2:AllOf>
                     <ns2:Match MatchId="urn:sun:opensso:entitlement:resource-match:application:OpenIG2">
-                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">*://benefits.sc.com:*/*</ns2:AttributeValue>
+                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">*://benefits.example.com:*/*</ns2:AttributeValue>
                         <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
                     </ns2:Match>
                 </ns2:AllOf>
@@ -217,7 +217,7 @@
             <ns2:AnyOf>
                 <ns2:AllOf>
                     <ns2:Match MatchId="urn:sun:opensso:entitlement:resource-match:application:OAuth2">
-                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">http://openam13.sc.com:8080/openam/oauth2/employees/authorize?*</ns2:AttributeValue>
+                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">http://openam.example.com:18080/openam/oauth2/employees/authorize?*</ns2:AttributeValue>
                         <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
                     </ns2:Match>
                 </ns2:AllOf>
@@ -299,7 +299,7 @@
             <ns2:AnyOf>
                 <ns2:AllOf>
                     <ns2:Match MatchId="urn:sun:opensso:entitlement:resource-match:application:OpenIG1">
-                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">*://dumpheaders.sc.com:*/*</ns2:AttributeValue>
+                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">*://dumpheaders.example.com:*/*</ns2:AttributeValue>
                         <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
                     </ns2:Match>
                 </ns2:AllOf>
@@ -391,7 +391,7 @@
             <ns2:AnyOf>
                 <ns2:AllOf>
                     <ns2:Match MatchId="urn:sun:opensso:entitlement:resource-match:application:OpenIG2">
-                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">*://apis.sample.com:*/*</ns2:AttributeValue>
+                        <ns2:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">*://apis.example.net:*/*</ns2:AttributeValue>
                         <ns2:AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
                     </ns2:Match>
                 </ns2:AllOf>
