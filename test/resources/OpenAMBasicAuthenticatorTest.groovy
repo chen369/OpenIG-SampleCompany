@@ -38,7 +38,7 @@ def getUnauthorizedError() {
     return response
 }
 
-def openAMREST = new RESTClient('http://openam13.sc.com:8080/openam/json/')
+def openAMREST = new RESTClient('http://openam.example.com:18080/openam/json/')
 def response
 try {
     response = openAMREST.post(path: 'authenticate', headers: ['X-OpenAM-Username': 'testUser1', 'X-OpenAM-Password': 'password1'])

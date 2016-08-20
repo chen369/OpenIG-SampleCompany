@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<EntityConfig entityID="http://openam13.sc.com:8080/openam" hosted="0" xmlns="urn:sun:fm:SAML:2.0:entityconfig">
+<EntityConfig entityID="http://openam.example.com:18080/openam" hosted="0" xmlns="urn:sun:fm:SAML:2.0:entityconfig">
     <IDPSSOConfig metaAlias="/employees/idp">
         <Attribute name="idpAuthncontextMapper">
             <Value>com.sun.identity.saml2.plugins.DefaultIDPAuthnContextMapper</Value>
@@ -99,7 +99,7 @@
             <Value>false</Value>
         </Attribute>
         <Attribute name="saeIDPUrl">
-            <Value>http://openam13.sc.com:8080/openam/idpsaehandler/metaAlias/employees/idp</Value>
+            <Value>http://openam.example.com:18080/openam/idpsaehandler/metaAlias/employees/idp</Value>
         </Attribute>
     </IDPSSOConfig>
 </EntityConfig>

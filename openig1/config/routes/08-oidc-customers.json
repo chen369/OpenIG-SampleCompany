@@ -1,12 +1,12 @@
 {
-  "baseURI": "http://customers.sc.com:8004/customerApp",
+  "baseURI": "http://customers.example.com:8004/customerApp",
   "heap": [
     {
       "comment": "To reuse issuers, configure them in the parent route",
       "name": "openam",
       "type": "Issuer",
       "config": {
-        "wellKnownEndpoint": "http://openam13.sc.com:8080/openam/oauth2/customers/.well-known/openid-configuration"
+        "wellKnownEndpoint": "http://openam.example.com:18080/openam/oauth2/customers/.well-known/openid-configuration"
       }
     },
     {
@@ -18,7 +18,7 @@
         "clientSecret": "password",
         "issuer": "openam",
         "redirect_uris": [
-          "http://customers-ig.sc.com:9000/customerApp/callback"
+          "http://customers-ig.example.com:9000/customerApp/callback"
         ],
         "scopes": [
           "openid",

@@ -18,47 +18,28 @@ Pre-requisites :
 3. Copy binaries for OpenIG, OpenDJ and OpenAM to ~/softwares directory.
 4. Copy Install scripts from https://github.com/CharanMann/OpenIG-SampleCompany/tree/master/installScripts to ~/softwares directory. 
 5. Specify below local host enteries (both on server hosting and client accessing these applications): <br />
-   [IP Address]  openig1.sc.com  # OpenIG, Port:9000 <br />
-   [IP Address]  openig2.sc.com  # OpenIG, Port:9002 <br />
-   [IP Address]  opendj.sc.com   # OpenDJ IS, Port 1389 <br />
-   [IP Address]  openam13.sc.com # OpenAM, Port:8080 <br />
-   [IP Address]  employees.sc.com # Internal Employee App, Port:8002 <br />
-   [IP Address]  employees-ig.sc.com  # Internal Employee App via OpenIG, Port:9000 <br />
-   [IP Address]  customers.sc.com  # External Customer App, Port:8004 <br />
-   [IP Address]  customers-ig.sc.com # External Customer App  via OpenIG, Port:9000 <br />
-   [IP Address]  apis.sample.com # API server, Port:8010 <br />
-   [IP Address]  apis-ig.sample.com  # API server via OpenIG, Port:9002 <br />
-   [IP Address]  travel.sample.com  # Internal Travel App, Port:8012 <br />
-   [IP Address]  travel-ig.sample.com # Internal Travel App via OpenIG, Port:9002 <br />
-   [IP Address]  benefits.sc.com # Internal Benefits App, Port:8014 <br />
-   [IP Address]  benefits-ig.sc.com # Internal Benefits App via OpenIG, Port:9002
+   [IP Address]  openig1.example.com  # OpenIG1, Port:9000 <br />
+   [IP Address]  openig2.example.com  # OpenIG2, Port:9002 <br />
+   [IP Address]  opendj.example.com   # OpenDJ, Port 1389 <br />
+   [IP Address]  openam.example.com # OpenAM, Port:18080 <br />
+   [IP Address]  employees.example.com # Internal Employee App, Port:8002 <br />
+   [IP Address]  employees-ig.example.com  # Internal Employee App via OpenIG, Port:9000 <br />
+   [IP Address]  customers.example.com  # External Customer App, Port:8004 <br />
+   [IP Address]  customers-ig.example.com # External Customer App  via OpenIG, Port:9000 <br />
+   [IP Address]  apis.example.net # API server, Port:8010 <br />
+   [IP Address]  apis-ig.example.net  # API server via OpenIG, Port:9002 <br />
+   [IP Address]  travel.example.net  # Internal Travel App, Port:8012 <br />
+   [IP Address]  travel-ig.example.net # Internal Travel App via OpenIG, Port:9002 <br />
+   [IP Address]  benefits.example.com # Internal Benefits App, Port:8014 <br />
+   [IP Address]  benefits-ig.example.com # Internal Benefits App via OpenIG, Port:9002
 6. Install and configure SampleCompany application on same or different server: refer https://github.com/CharanMann/SampleCompany  
   
-   
-OpenIG Installation & Configuration:
-====================================
-1. Install two OpenIG 4 instances on Apache Tomcat under /opt/forgerock/OpenIG1 and /opt/forgerock/OpenIG2 respectively. Refer https://backstage.forgerock.com/#!/docs/openig/4/gateway-guide#install
-2. Change port number for Apache Tomcat for OpenIG1 to 9000 and OpenIG2 to 9002 respectively.  
-3. Specify config directories for each OpenIG instance by specifying OPENIG_BASE. e.g for OpenIG1 specify "export OPENIG_BASE=/home/forgerock/.openig1" in /opt/forgerock/OpenIG1/bin/setenv.sh
-4. Create logs directory for each OpenIG instance. e.g for OpenIG1 create /home/forgerock/.openig1/logs
-5. Copy OpenIG configurations. e.g for OpenIG1 copy https://github.com/CharanMann/OpenIG-SampleCompany/tree/master/openig1 to /home/forgerock/.openig1 
-6. Specify CORS filter for OpenIG2 in /opt/forgerock/OpenIG2/conf/web.xml. Refer https://tomcat.apache.org/tomcat-7.0-doc/config/filter.html#CORS_Filter for sample CORS filter template. <br />
-   CORS filter params: <br />
-   ============= <br />
-   * url-pattern: /history/*
-   * cors.allowed.origins: http://employees-ig.sc.com:9000
-   * cors.allowed.methods: GET,POST,HEAD,OPTIONS,PUT
-   * cors.allowed.headers: Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization
-   * cors.exposed.headers: Access-Control-Allow-Origin,Access-Control-Allow-Credentials
-   * cors.support.credentials: false
-   * Leave default value for rest of parameters
-7. Start both OpenIG instances. Verify there are no errors in Apache Tomcat and OpenIG logs. 
-
 OpenDJ Identity Store Installation & Configuration:
 ===================================================
-1. Install OpenDJ 3 under /opt/forgerock/opendjis. Refer https://backstage.forgerock.com/#!/docs/opendj/3/install-guide#command-line-install <br />
+1. Install OpenDJ 3 under /opt/opendjis. Refer https://backstage.forgerock.com/#!/docs/opendj/3/install-guide#command-line-install <br />
    Setup params: <br />
    ============= <br />
+   * Hostname:                      opendj.example.com
    * LDAP Listener Port:            1389
    * Administration Connector Port: 4444
    * JMX Listener Port:
@@ -66,20 +47,20 @@ OpenDJ Identity Store Installation & Configuration:
    * Root User DN:                  cn=Directory Manager
    * Password                       cangetindj
    * Directory Data:                Backend Type: JE Backend
-                                    Create New Base DN dc=sample,dc=com
-   * Base DN Data: Only Create Base Entry (dc=sample,dc=com)
+                                    Create New Base DN dc=example,dc=com
+   * Base DN Data: Only Create Base Entry (dc=example,dc=com)
 
 OpenAM Installation & Configuration:
 ====================================
-1. Install OpenAM 13 under /opt/forgerock/OpenAM-Server. Refer https://backstage.forgerock.com/#!/docs/openam/13/install-guide#configure-openam-custom <br />
-2. Navigate to http://openam13.sc.com:8080/openam for OpenAM configuration. <br />
+1. Install OpenAM 13.0 under /opt/tomcats/am1. Refer https://backstage.forgerock.com/#!/docs/openam/13/install-guide#configure-openam-custom <br />
+2. Navigate to http://openam.example.com:18080/openam for OpenAM configuration. <br />
    Setup params: <br />
    ============= <br />
    * amAdmin password: cangetinam
    * Server Setting:
-     * Server URL: http://openam13.sc.com:8080/openam
-     * Cookie Domain: .sc.com
-     * Configuration Directory: /home/forgerock/openam   
+     * Server URL: http://openam.example.com:18080/openam
+     * Cookie Domain: .example.com
+     * Configuration Directory: /home/forgerock/am1   
    * Configuration Store Details 
      * SSL/TLS Enabled: No
      * Host Name: localhost
@@ -89,14 +70,15 @@ OpenAM Installation & Configuration:
    * User Store Details
      * User Data Store Type: OpenDJ
      * SSL/TLS Enabled: No 
-     * Host Name: opendj.sc.com
+     * Host Name: opendj.example.com
      * Listening Port: 1389 
-     * Root Suffix: dc=sample,dc=com
+     * Root Suffix: dc=example,dc=com
      * User Name: cn=Directory Manager
      * Password: cangetindj
    * Site Configuration Details: This instance is not setup behind a load balancer
    * Default Policy Agent password: cangetinwa 
-3. Stop OpenDJ Identity store and import identity data using: ./import-ldif --includeBranch dc=sample,dc=com --backendID userRoot --ldifFile ~/softwares/installScripts/sample.ldif
+3. Stop OpenDJ Identity store and import identity data using: ./import-ldif --includeBranch dc=example,dc=com --backendID userRoot --ldifFile ~/softwares/installScripts/sample.ldif
+   * Passwords for all users in this ldif is: Passw0rd 
 4. Install SSO Admin Tools under /opt/forgerock/OpenAM-Tools. 
 5. Install patch: 12321-1-tpatch for SSO Admin Tools. Copy openam-auth-fr-oath-13.0.0.jar file from the deployed OpenAM Server war file into the lib directory in the OpenAM Tools home:
    cp /opt/forgerock/OpenAM-Server/webapps/openam/WEB-INF/lib/openam-auth-fr-oath-13.0.0.jar /opt/forgerock/OpenAM-Tools/lib
@@ -112,13 +94,50 @@ OpenAM Installation & Configuration:
    * methods: POST,GET,PUT,DELETE,PATCH,OPTIONS
    * origins: *
    * allowCredentials: false
-   * headers: Accept,Accept-Encoding,Accept-Language,Authorization,Cookie,Connection,Content-Length,Content-Type,iPlanetDirectoryPro,Host,Origin,User-Agent,X-OpenAM-Username,X-OpenAM-Password,X-Requested-With
-   * expectedHostname: openam13.sc.com:8080
+   * headers: Accept,Accept-Encoding,Accept-Language,Authorization,Cookie,Connection,Content-Length,Content-Type,iPlanetDirectoryPro,Host,Origin,User-Agent,X-OpenAM-Username,X-OpenAM-Password,X-Requested-With <br />
+   * expectedHostname: openam.example.com:18080
    * Leave default value for rest of parameters
+
+OpenIG Installation & Configuration:
+====================================
+1. Install two OpenIG 4.0 instances on Apache Tomcat under /opt/tomcats/ig1 and /opt/tomcats/ig2 respectively. Refer https://backstage.forgerock.com/#!/docs/openig/4/gateway-guide#install
+2. Change port number for Apache Tomcat for OpenIG1 to 9000 and OpenIG2 to 9002 respectively.  
+3. Specify config directories for each OpenIG instance by specifying OPENIG_BASE. e.g for OpenIG1 specify "export OPENIG_BASE=/home/forgerock/.openig1" in /opt/tomcats/ig1/bin/setenv.sh
+4. Create logs directory for each OpenIG instance. e.g for OpenIG1 create /home/forgerock/.openig1/logs
+5. Copy OpenIG configurations for each OpenIG instance. e.g for OpenIG1 copy https://github.com/CharanMann/OpenIG-SampleCompany/tree/master/openig1 to /home/forgerock/.openig1  <br />
+   Note that certain OpenIG routes needs to be disabled for specific use case testing. Refer to section 'OpenIG Use Cases testing' for more information.  
+6. Specify CORS filter for OpenIG2 in /opt/tomcats/ig2/conf/web.xml. Refer https://tomcat.apache.org/tomcat-7.0-doc/config/filter.html#CORS_Filter for sample CORS filter template. <br />
+   CORS filter params: <br />
+   ============= <br />
+   * url-pattern: /history/*
+   * cors.allowed.origins: http://employees-ig.example.com:9000
+   * cors.allowed.methods: GET,POST,HEAD,OPTIONS,PUT
+   * cors.allowed.headers: Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization
+   * cors.exposed.headers: Access-Control-Allow-Origin,Access-Control-Allow-Credentials
+   * cors.support.credentials: false
+   * Leave default value for rest of parameters
+7. Start both OpenIG instances. Verify there are no errors in Apache Tomcat and OpenIG logs. 
+
+SampleCompany URLs :
+===========================
+1. CommonServices direct: http://apis.example.net:8010/history/emp1 <br />
+   CommonServices via OpenIG: http://apis-ig.example.net:9002/history/emp1
+2. EmployeeApp direct: http://employees.example.com:8002/employeeApp/#/ <br />
+   EmployeeApp via OpenIG: http://employees-ig.example.com:9000/employeeApp/#/
+3. CustomerApp direct: http://employees.example.com:8002/employeeApp/#/ <br />
+   CustomerApp via OpenIG: http://employees-ig.example.com:9000/employeeApp/#/
+4. TravelApp direct: http://travel.example.net:8012/travelApp/#/ <br />
+   TravelApp via OpenIG: http://travel-ig.example.net:9002/travelApp/#/
+5. BenefitsApp direct: http://benefits.example.net:8014/benefitsApp/ <br />
+   BenefitsApp via OpenIG:: http://benefits-ig.example.net:9002/benefitsApp/   
 
 OpenIG Use Cases testing:
 ========================= 
-1. OpenIG-OpenAM PEP for web applications
+1. OpenIG-OpenAM PEP for web applications:
+   * Minimal version - 
+   Ensure '01-pep-employees-minimal.json' is deployed on OpenIG1. You may disable '01-pep-employees-exclusions.json' and '01-pep-employees-extended.json' by suffixing these files by '.disabled. <br />
+     Navigate to EmployeeApp URL via OpenIG
+   * Extended version -     
 2. OpenIG-OpenAM PEP for REST APIs
 3. OpenIG-OAuth2 RS
 4. OpenIG-SAML SP
@@ -127,18 +146,7 @@ OpenIG Use Cases testing:
 7. OpenIG-OIDC RP
 8. OpenIG-UMA RS: Not yet implemented
 
-SampleCompany URLs :
-===========================
-1. CommonServices direct: http://apis.sample.com:8010/history/emp1 <br />
-   CommonServices via OpenIG: http://apis-ig.sample.com:9002/history/emp1
-2. EmployeeApp direct: http://employees.sc.com:8002/employeeApp/#/ <br />
-   EmployeeApp via OpenIG: http://employees-ig.sc.com:9000/employeeApp/#/
-3. CustomerApp direct: http://employees.sc.com:8002/employeeApp/#/ <br />
-   CustomerApp via OpenIG: http://employees-ig.sc.com:9000/employeeApp/#/
-4. TravelApp direct: http://travel.sample.com:8012/travelApp/#/ <br />
-   TravelApp via OpenIG: http://travel-ig.sample.com:9002/travelApp/#/
-5. BenefitsApp direct: http://benefits.sample.com:8014/benefitsApp/#/ <br />
-   BenefitsApp via OpenIG:: http://benefits-ig.sample.com:9002/benefitsApp/#/
+
 
 * * *
 

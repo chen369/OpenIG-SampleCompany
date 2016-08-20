@@ -1,5 +1,5 @@
 {
-  "baseURI": "http://apis.sample.com:8010",
+  "baseURI": "http://apis.example.net:8010",
   "handler": {
     "type": "Chain",
     "config": {
@@ -13,7 +13,7 @@
               "uid",
               "mail"
             ],
-            "tokenInfoEndpoint": "http://openam13.sc.com:8080/openam/oauth2/employees/tokeninfo",
+            "tokenInfoEndpoint": "http://openam.example.com:18080/openam/oauth2/employees/tokeninfo",
             "requireHttps": false,
             "target": "${attributes.token}"
           },

@@ -1,13 +1,13 @@
-dn: dc=sample,dc=com
+dn: dc=example,dc=com
 objectClass: domain
 objectClass: top
-dc: sample
+dc: example
 entryUUID: 5c4d6a64-55de-36bf-aeec-c828dff10395
 modifyTimestamp: 20160427180848Z
 modifiersName: cn=Directory Manager,cn=Root DNs,cn=config
 aci: (targetattr = "objectclass || inetuserstatus || iplanet-am-user-login-status || iplanet-am-user-account-life || iplanet-am-session-quota-limit || iplanet-am-user-alias-list ||  iplanet-am-session-max-session-time || iplanet-am-session-max-idle-time || iplanet-am-session-get-valid-sessions || iplanet-am-session-destroy-sessions || iplanet-am-session-add-session-listener-on-all-sessions || iplanet-am-user-admin-start-dn || iplanet-am-auth-post-login-process-class || iplanet-am-user-federation-info || iplanet-am-user-federation-info-key || ds-pwp-account-disabled || sun-fm-saml2-nameid-info || sun-fm-saml2-nameid-infokey || sunAMAuthInvalidAttemptsData || memberof || member")(version 3.0; acl "OpenAM User self modification denied for these attributes"; deny (write) userdn ="ldap:///self";)
 
-dn: ou=people,dc=sample,dc=com
+dn: ou=people,dc=example,dc=com
 objectClass: organizationalUnit
 objectClass: top
 ou: people
@@ -15,7 +15,7 @@ createTimestamp: 20160427180848Z
 entryUUID: 0c1745e4-e4be-4d02-97ae-90407bb38a42
 creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
 
-dn: ou=groups,dc=sample,dc=com
+dn: ou=groups,dc=example,dc=com
 objectClass: organizationalUnit
 objectClass: top
 ou: groups
@@ -23,7 +23,7 @@ createTimestamp: 20160427180848Z
 entryUUID: 17747dfa-ddf4-4e41-8f63-f4f5e312f1e0
 creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
 
-dn: ou=employees,dc=sample,dc=com
+dn: ou=employees,dc=example,dc=com
 objectClass: organizationalUnit
 objectClass: top
 ou: employees
@@ -34,7 +34,7 @@ modifiersName: cn=Directory Manager,cn=Root DNs,cn=config
 aci: (targetattr = "objectclass || inetuserstatus || iplanet-am-user-login-status || iplanet-am-user-account-life || iplanet-am-session-quota-limit || iplanet-am-user-alias-list ||  iplanet-am-session-max-session-time || iplanet-am-session-max-idle-time || iplanet-am-session-get-valid-sessions || iplanet-am-session-destroy-sessions || iplanet-am-session-add-session-listener-on-all-sessions || iplanet-am-user-admin-start-dn || iplanet-am-auth-post-login-process-class || iplanet-am-user-federation-info || iplanet-am-user-federation-info-key || ds-pwp-account-disabled || sun-fm-saml2-nameid-info || sun-fm-saml2-nameid-infokey || sunAMAuthInvalidAttemptsData || memberof || member")(version 3.0; acl "OpenAM User self modification denied for these attributes"; deny (write) userdn ="ldap:///self";)
 creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
 
-dn: ou=customers,dc=sample,dc=com
+dn: ou=customers,dc=example,dc=com
 objectClass: organizationalUnit
 objectClass: top
 ou: customers
@@ -45,7 +45,7 @@ modifiersName: cn=Directory Manager,cn=Root DNs,cn=config
 aci: (targetattr = "objectclass || inetuserstatus || iplanet-am-user-login-status || iplanet-am-user-account-life || iplanet-am-session-quota-limit || iplanet-am-user-alias-list ||  iplanet-am-session-max-session-time || iplanet-am-session-max-idle-time || iplanet-am-session-get-valid-sessions || iplanet-am-session-destroy-sessions || iplanet-am-session-add-session-listener-on-all-sessions || iplanet-am-user-admin-start-dn || iplanet-am-auth-post-login-process-class || iplanet-am-user-federation-info || iplanet-am-user-federation-info-key || ds-pwp-account-disabled || sun-fm-saml2-nameid-info || sun-fm-saml2-nameid-infokey || sunAMAuthInvalidAttemptsData || memberof || member")(version 3.0; acl "OpenAM User self modification denied for these attributes"; deny (write) userdn ="ldap:///self";)
 creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
 
-dn: ou=people,ou=customers,dc=sample,dc=com
+dn: ou=people,ou=customers,dc=example,dc=com
 objectClass: organizationalUnit
 objectClass: top
 ou: people
@@ -53,7 +53,7 @@ createTimestamp: 20160427181419Z
 entryUUID: 4b5dd5fa-134b-45ef-bec6-f8f2b5479ede
 creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
 
-dn: ou=groups,ou=customers,dc=sample,dc=com
+dn: ou=groups,ou=customers,dc=example,dc=com
 objectClass: organizationalUnit
 objectClass: top
 ou: groups
@@ -61,7 +61,7 @@ createTimestamp: 20160427181419Z
 entryUUID: 2a1405ab-ce96-44a5-b5e0-ef715ccc6959
 creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
 
-dn: ou=people,ou=employees,dc=sample,dc=com
+dn: ou=people,ou=employees,dc=example,dc=com
 objectClass: organizationalUnit
 objectClass: top
 ou: people
@@ -69,7 +69,7 @@ createTimestamp: 20160427181512Z
 entryUUID: 1b875ab6-5d01-4a23-8b8d-88e6628b8e0c
 creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
 
-dn: ou=groups,ou=employees,dc=sample,dc=com
+dn: ou=groups,ou=employees,dc=example,dc=com
 objectClass: organizationalUnit
 objectClass: top
 ou: groups
@@ -77,7 +77,7 @@ createTimestamp: 20160427181512Z
 entryUUID: ec90a181-585b-46ee-b57d-d7a387090bc7
 creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
 
-dn: uid=emp1,ou=people,ou=employees,dc=sample,dc=com
+dn: uid=emp1,ou=people,ou=employees,dc=example,dc=com
 objectClass: person
 objectClass: inetorgperson
 objectClass: sunFederationManagerDataStore
@@ -96,7 +96,7 @@ objectClass: iplanet-am-user-service
 objectClass: top
 objectClass: oathDeviceProfilesContainer
 uid: emp1
-mail: john.smith@sample.com
+mail: john.smith@example.net
 sn: Smith
 userPassword: {SSHA}I5Jm0NYq+BuSIGpug4sf4VV2NoC5FQdcZVYgvQ==
 cn: John Smith
@@ -110,7 +110,7 @@ pwdChangedTime: 20160427181600.558Z
 creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
 modifyTimestamp: 20160520153031Z
 
-dn: uid=emp2,ou=people,ou=employees,dc=sample,dc=com
+dn: uid=emp2,ou=people,ou=employees,dc=example,dc=com
 objectClass: person
 objectClass: inetorgperson
 objectClass: sunFederationManagerDataStore
@@ -129,7 +129,7 @@ objectClass: iplanet-am-user-service
 objectClass: top
 objectClass: oathDeviceProfilesContainer
 uid: emp2
-mail: joe.williams@sample.com
+mail: joe.williams@example.net
 sn: Williams
 userPassword: {SSHA}EipSTHzKjP1fTRt9Mk73ZfLJMmYOYz+QtmKf0w==
 cn: Joe Williams
@@ -143,7 +143,7 @@ pwdChangedTime: 20160427183153.683Z
 creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
 modifyTimestamp: 20160509150914Z
 
-dn: uid=cus1,ou=people,ou=customers,dc=sample,dc=com
+dn: uid=cus1,ou=people,ou=customers,dc=example,dc=com
 objectClass: person
 objectClass: inetorgperson
 objectClass: sunFederationManagerDataStore
@@ -162,7 +162,7 @@ objectClass: iplanet-am-user-service
 objectClass: top
 objectClass: oathDeviceProfilesContainer
 uid: cus1
-mail: david.copper@sample.com
+mail: david.copper@example.net
 sn: Copper
 userPassword: {SSHA}KXNeWySVTPdHuiQZu5RDauB44qPTpI7QHPsutw==
 cn: David Cooper
@@ -176,10 +176,10 @@ pwdChangedTime: 20160427183251.506Z
 creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
 modifyTimestamp: 20160518030856Z
 
-dn: cn=policyAdmins,ou=groups,ou=employees,dc=sample,dc=com
+dn: cn=policyAdmins,ou=groups,ou=employees,dc=example,dc=com
 objectClass: groupofuniquenames
 objectClass: top
-uniqueMember: uid=policyAdmin,ou=people,ou=employees,dc=sample,dc=com
+uniqueMember: uid=policyAdmin,ou=people,ou=employees,dc=example,dc=com
 cn: policyAdmins
 createTimestamp: 20160503195332Z
 entryUUID: 25b96674-0d11-41d5-93af-210c7853a5a2
@@ -187,7 +187,7 @@ modifyTimestamp: 20160503195403Z
 modifiersName: cn=Directory Manager,cn=Root DNs,cn=config
 creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
 
-dn: uid=policyAdmin,ou=people,ou=employees,dc=sample,dc=com
+dn: uid=policyAdmin,ou=people,ou=employees,dc=example,dc=com
 objectClass: person
 objectClass: inetorgperson
 objectClass: sunFederationManagerDataStore
@@ -216,18 +216,18 @@ entryUUID: 89b507dc-c728-4952-b3c9-a79c75d00528
 pwdChangedTime: 20160503195357.653Z
 creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
 
-dn: cn=empAdmins,ou=groups,ou=employees,dc=sample,dc=com
+dn: cn=empAdmins,ou=groups,ou=employees,dc=example,dc=com
 objectClass: groupofuniquenames
 objectClass: top
 cn: empAdmins
-uniqueMember: uid=empAdmin,ou=people,ou=employees,dc=sample,dc=com
+uniqueMember: uid=empAdmin,ou=people,ou=employees,dc=example,dc=com
 createTimestamp: 20160505141606Z
 entryUUID: 612f7b18-fcf4-408c-af9d-5168c5af0dc5
 modifyTimestamp: 20160510134958Z
 modifiersName: cn=Directory Manager,cn=Root DNs,cn=config
 creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
 
-dn: uid=empAdmin,ou=people,ou=employees,dc=sample,dc=com
+dn: uid=empAdmin,ou=people,ou=employees,dc=example,dc=com
 objectClass: person
 objectClass: inetorgperson
 objectClass: sunFederationManagerDataStore
@@ -256,20 +256,20 @@ entryUUID: d520d4d4-53b0-4317-b317-732a625b1498
 pwdChangedTime: 20160505141637.303Z
 creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
 
-dn: cn=employees,ou=groups,ou=employees,dc=sample,dc=com
+dn: cn=employees,ou=groups,ou=employees,dc=example,dc=com
 objectClass: groupofuniquenames
 objectClass: top
 cn: employees
-uniqueMember: uid=emp2,ou=people,ou=employees,dc=sample,dc=com
-uniqueMember: uid=emp1,ou=people,ou=employees,dc=sample,dc=com
-uniqueMember: uid=empAdmin,ou=people,ou=employees,dc=sample,dc=com
+uniqueMember: uid=emp2,ou=people,ou=employees,dc=example,dc=com
+uniqueMember: uid=emp1,ou=people,ou=employees,dc=example,dc=com
+uniqueMember: uid=empAdmin,ou=people,ou=employees,dc=example,dc=com
 createTimestamp: 20160511124451Z
 entryUUID: b896eb3e-3107-4c07-b9fb-cb9b0777b473
 modifyTimestamp: 20160520151753Z
 modifiersName: cn=Directory Manager,cn=Root DNs,cn=config
 creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
 
-dn: uid=cont1,ou=people,ou=employees,dc=sample,dc=com
+dn: uid=cont1,ou=people,ou=employees,dc=example,dc=com
 objectClass: person
 objectClass: inetorgperson
 objectClass: sunFederationManagerDataStore
@@ -298,7 +298,7 @@ entryUUID: 74056d40-319e-4eab-8e8b-64ff8e38942d
 pwdChangedTime: 20160511124538.391Z
 creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
 
-dn: uid=demo,ou=people,dc=sample,dc=com
+dn: uid=demo,ou=people,dc=example,dc=com
 objectClass: person
 objectClass: inetorgperson
 objectClass: sunFederationManagerDataStore

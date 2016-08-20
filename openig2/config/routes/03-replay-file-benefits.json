@@ -1,5 +1,5 @@
 {
-  "baseURI": "http://benefits.sc.com:8014/",
+  "baseURI": "http://benefits.example.com:8014/",
   "handler": {
     "type": "Chain",
     "config": {
@@ -21,7 +21,7 @@
             },
             "request": {
               "method": "POST",
-              "uri": "http://benefits.sc.com:8014/benefitsApp/login.html",
+              "uri": "http://benefits.example.com:8014/benefitsApp/login.html",
               "form": {
                 "username": [
                   "${attributes.credentials.username}"

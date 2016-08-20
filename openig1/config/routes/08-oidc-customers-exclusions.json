@@ -1,5 +1,5 @@
 {
-  "baseURI": "http://customers.sc.com:8004/customerApp",
+  "baseURI": "http://customers.example.com:8004/customerApp",
   "handler": {
     "comment": "OpenAM URL Exclusion Chain",
     "name": "OpenAM URL Exclusion Chain",
@@ -28,7 +28,7 @@
                           "type": "application/x-groovy",
                           "file": "OpenAMLogout.groovy",
                           "args": {
-                            "openamUrl": "http://openam13.sc.com:8080/openam/json/customers/"
+                            "openamUrl": "http://openam.example.com:18080/openam/json/customers/"
                           }
                         },
                         "capture": "all"

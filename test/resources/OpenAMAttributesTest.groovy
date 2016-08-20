@@ -23,7 +23,7 @@
  */
 import groovyx.net.http.RESTClient
 
-openAMRESTClient = new RESTClient('http://openam13.sc.com:8080/openam/json/employees/')
+openAMRESTClient = new RESTClient('http://openam.example.com:18080/openam/json/employees/')
 response = openAMRESTClient.post(path: 'authenticate', headers: ['X-OpenAM-Username': 'emp1', 'X-OpenAM-Password': 'password'])
 
 assert response.status == 200  // HTTP response code; 404 means not found, etc.

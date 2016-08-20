@@ -3025,7 +3025,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
                     </AttributeSchema>
                     <AttributeSchema cosQualifier="default"  i18nKey="a3020"  isSearchable="no"  listOrder="natural"  name="sunFilesIdRepoDirectory"  syntax="string"  type="single"  validator="RequiredValueValidator" >
                         <DefaultValues>
-                            <Value>&#47;home&#47;forgerock&#47;openam1&#47;openam&#47;idRepo&#47;flatfiles</Value>
+                            <Value>&#47;home&#47;forgerock&#47;openam&#47;openam&#47;idRepo&#47;flatfiles</Value>
                         </DefaultValues>
                     </AttributeSchema>
                     <AttributeSchema cosQualifier="default"  i18nKey="a3022"  isSearchable="no"  listOrder="natural"  name="sunFilesMonitorForChanges"  syntax="boolean"  type="single" >
@@ -3368,7 +3368,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sun-idrepo-ldapv3-config-organization_name"/>
-    <Value>ou=employees,dc=sample,dc=com</Value>
+    <Value>ou=employees,dc=example,dc=com</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sun-idrepo-ldapv3-dncache-size"/>
@@ -3487,7 +3487,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sun-idrepo-ldapv3-config-ldap-server"/>
-    <Value>openam13.sc.com:1389</Value>
+    <Value>openam.example.com:1389</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sun-idrepo-ldapv3-config-people-container-name"/>
@@ -3511,7 +3511,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sun-idrepo-ldapv3-config-psearchbase"/>
-    <Value>dc=sample,dc=com</Value>
+    <Value>dc=example,dc=com</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sun-idrepo-ldapv3-config-createuser-attr-mapping"/>
@@ -3656,7 +3656,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sun-idrepo-ldapv3-config-organization_name"/>
-    <Value>dc=sample,dc=com</Value>
+    <Value>dc=example,dc=com</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sun-idrepo-ldapv3-config-connection-mode"/>
@@ -3664,18 +3664,17 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sun-idrepo-ldapv3-config-ldap-server"/>
-    <Value>openam13.sc.com:1389</Value>
+    <Value>openam.example.com:1389</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sun-idrepo-ldapv3-config-psearchbase"/>
-    <Value>dc=sample,dc=com</Value>
+    <Value>dc=example,dc=com</Value>
 </AttributeValuePair>
 </SubConfiguration><OrganizationAttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sunOrganizationAliases"/>
     <Value>openam</Value>
-    <Value>openam13.sc.com</Value>
-    <Value>openam.sc.com</Value>
+    <Value>openam.example.com</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sunOrganizationStatus"/>
@@ -3691,7 +3690,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sun-idrepo-ldapv3-config-organization_name"/>
-    <Value>ou=customers,dc=sample,dc=com</Value>
+    <Value>ou=customers,dc=example,dc=com</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sun-idrepo-ldapv3-dncache-size"/>
@@ -3810,7 +3809,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sun-idrepo-ldapv3-config-ldap-server"/>
-    <Value>openam13.sc.com:1389</Value>
+    <Value>openam.example.com:1389</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sun-idrepo-ldapv3-config-people-container-name"/>
@@ -3834,7 +3833,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sun-idrepo-ldapv3-config-psearchbase"/>
-    <Value>dc=sample,dc=com</Value>
+    <Value>dc=example,dc=com</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sun-idrepo-ldapv3-config-createuser-attr-mapping"/>
@@ -4305,14 +4304,14 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
             <Organization>
                 <AttributeSchema cosQualifier="default"  i18nKey="a101"  isSearchable="no"  listOrder="natural"  name="iplanet-am-auth-ldap-server"  resourceName="primaryLdapServer"  syntax="string"  type="list" >
                     <DefaultValues>
-                        <Value>openam13.sc.com:1389</Value>
+                        <Value>openam.example.com:1389</Value>
                     </DefaultValues>
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="a102"  isSearchable="no"  listOrder="natural"  name="iplanet-am-auth-ldap-server2"  resourceName="secondaryLdapServer"  syntax="string"  type="list" >
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="a103"  isSearchable="no"  listOrder="natural"  name="iplanet-am-auth-ldap-base-dn"  resourceName="userSearchStartDN"  syntax="dn"  type="list" >
                     <DefaultValues>
-                        <Value>dc=sample,dc=com</Value>
+                        <Value>dc=example,dc=com</Value>
                     </DefaultValues>
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="a104"  isSearchable="no"  listOrder="natural"  name="iplanet-am-auth-ldap-bind-dn"  resourceName="userBindDN"  syntax="dn"  type="single" >
@@ -4410,7 +4409,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
                     </AttributeSchema>
                     <AttributeSchema cosQualifier="default"  i18nKey="a103"  isSearchable="no"  listOrder="natural"  name="iplanet-am-auth-ldap-base-dn"  resourceName="userSearchStartDN"  syntax="dn"  type="list" >
                         <DefaultValues>
-                            <Value>dc=sample,dc=com</Value>
+                            <Value>dc=example,dc=com</Value>
                         </DefaultValues>
                     </AttributeSchema>
                     <AttributeSchema cosQualifier="default"  i18nKey="a104"  isSearchable="no"  listOrder="natural"  name="iplanet-am-auth-ldap-bind-dn"  resourceName="userBindDN"  syntax="dn"  type="single" >
@@ -6238,7 +6237,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="a103"  isSearchable="no"  listOrder="natural"  name="iplanet-am-auth-ldap-base-dn"  resourceName="userSearchStartDN"  syntax="dn"  type="list" >
                     <DefaultValues>
-                        <Value>dc=sample,dc=com</Value>
+                        <Value>dc=example,dc=com</Value>
                     </DefaultValues>
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="a104"  isSearchable="no"  listOrder="natural"  name="iplanet-am-auth-ldap-bind-dn"  resourceName="userBindDN"  syntax="dn"  type="single" >
@@ -6354,7 +6353,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
                     </AttributeSchema>
                     <AttributeSchema cosQualifier="default"  i18nKey="a103"  isSearchable="no"  listOrder="natural"  name="iplanet-am-auth-ldap-base-dn"  resourceName="userSearchStartDN"  syntax="dn"  type="list" >
                         <DefaultValues>
-                            <Value>dc=sample,dc=com</Value>
+                            <Value>dc=example,dc=com</Value>
                         </DefaultValues>
                     </AttributeSchema>
                     <AttributeSchema cosQualifier="default"  i18nKey="a104"  isSearchable="no"  listOrder="natural"  name="iplanet-am-auth-ldap-bind-dn"  resourceName="userBindDN"  syntax="dn"  type="single" >
@@ -6480,7 +6479,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="iplanet-am-auth-ldap-base-dn"/>
-    <Value>dc=sample,dc=com</Value>
+    <Value>dc=example,dc=com</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="iplanet-am-auth-ldap-search-filter"/>
@@ -6562,7 +6561,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
                 </AttributeSchema>
                   <AttributeSchema cosQualifier="default"  i18nKey="a104"  isSearchable="no"  listOrder="natural"  name="sunAMAuthMSISDNBaseDn"  resourceName="baseSearchDN"  syntax="dn"  type="list" >
                         <DefaultValues>
-                                 <Value>dc=sample,dc=com</Value>
+                                 <Value>dc=example,dc=com</Value>
                         </DefaultValues>
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="a105"  isSearchable="no"  listOrder="natural"  name="sunAMAuthMSISDNUserSearchAttribute"  resourceName="userProfileMsisdnAttribute"  syntax="string"  type="single" >
@@ -6621,7 +6620,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
                     </AttributeSchema>
                       <AttributeSchema cosQualifier="default"  i18nKey="a104"  isSearchable="no"  listOrder="natural"  name="sunAMAuthMSISDNBaseDn"  resourceName="baseSearchDN"  syntax="dn"  type="list" >
                             <DefaultValues>
-                                     <Value>dc=sample,dc=com</Value>
+                                     <Value>dc=example,dc=com</Value>
                             </DefaultValues>
                     </AttributeSchema>
                     <AttributeSchema cosQualifier="default"  i18nKey="a105"  isSearchable="no"  listOrder="natural"  name="sunAMAuthMSISDNUserSearchAttribute"  resourceName="userProfileMsisdnAttribute"  syntax="string"  type="single" >
@@ -6800,7 +6799,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="a108"  isSearchable="no"  listOrder="natural"  name="iplanet-am-auth-oauth-sso-proxy-url"  resourceName="ssoProxyUrl"  syntax="string"  type="single" >
                     <DefaultValues>
-                        <Value>http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;oauth2c&#47;OAuthProxy.jsp</Value>
+                        <Value>http:&#47;&#47;openam.example.com:18080&#47;openam&#47;oauth2c&#47;OAuthProxy.jsp</Value>
                     </DefaultValues>
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="a108a"  isSearchable="no"  listOrder="natural"  name="org-forgerock-auth-oauth-account-provider"  resourceName="accountProviderClass"  syntax="string"  type="single" >
@@ -6980,7 +6979,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
                     </AttributeSchema>
                     <AttributeSchema cosQualifier="default"  i18nKey="a108"  isSearchable="no"  listOrder="natural"  name="iplanet-am-auth-oauth-sso-proxy-url"  resourceName="ssoProxyUrl"  syntax="string"  type="single" >
                         <DefaultValues>
-                            <Value>http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;oauth2c&#47;OAuthProxy.jsp</Value>
+                            <Value>http:&#47;&#47;openam.example.com:18080&#47;openam&#47;oauth2c&#47;OAuthProxy.jsp</Value>
                         </DefaultValues>
                     </AttributeSchema>
                     <AttributeSchema cosQualifier="default"  i18nKey="a108a"  isSearchable="no"  listOrder="natural"  name="org-forgerock-auth-oauth-account-provider"  resourceName="accountProviderClass"  syntax="string"  type="single" >
@@ -8936,7 +8935,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="a103"  isSearchable="no"  listOrder="natural"  name="iplanet-am-platform-cookie-domains"  resourceName="cookieDomains"  syntax="string"  type="list" >
                     <DefaultValues>
-                        <Value>.sc.com</Value>
+                        <Value>.example.com</Value>
                     </DefaultValues>
                 </AttributeSchema>
                 <SubSchema hideConfigUI="no"  inheritance="single"  maintainPriority="no"  name="com-sun-identity-sites"  realmCloneable="yes"  supportsApplicableOrganization="no"  validate="yes" >
@@ -9165,7 +9164,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
     <Value>org.forgerock.openam.authLevel.excludeRequiredOrRequisite=false</Value>
     <Value>com.sun.identity.authentication.special.users=cn=dsameuser,ou=DSAME Users,%ROOT_SUFFIX%|cn=amService-UrlAccessAgent,ou=DSAME Users,%ROOT_SUFFIX%</Value>
 </AttributeValuePair>
-</SubConfiguration><SubConfiguration name="http:&#47;&#47;openam13.sc.com:8080&#47;openam" id="server"><AttributeValuePair>
+</SubConfiguration><SubConfiguration name="http:&#47;&#47;openam.example.com:18080&#47;openam" id="server"><AttributeValuePair>
     <Attribute name="parentsiteid"/>
 </AttributeValuePair>
 <AttributeValuePair>
@@ -9182,7 +9181,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
     <Value>com.sun.identity.sm.enableDataStoreNotification=true</Value>
     <Value>com.iplanet.am.lbcookie.value=01</Value>
     <Value>com.sun.identity.sm.sms_object_class_name=com.sun.identity.sm.ldap.SMSEmbeddedLdapObject</Value>
-    <Value>com.iplanet.am.server.host=openam13.sc.com</Value>
+    <Value>com.iplanet.am.server.host=openam.example.com</Value>
     <Value>com.sun.am.event.connection.disable.list=aci,um</Value>
     <Value>com.iplanet.am.server.protocol=http</Value>
     <Value>com.iplanet.am.services.deploymentDescriptor=&#47;openam</Value>
@@ -9192,7 +9191,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
     <Value>opensso.protocol.handler.pkgs=</Value>
     <Value>com.sun.embedded.sync.servers=on</Value>
     <Value>com.iplanet.services.debug.level=warning</Value>
-    <Value>com.iplanet.am.server.port=8080</Value>
+    <Value>com.iplanet.am.server.port=18080</Value>
     <Value>com.iplanet.am.serverMode=true</Value>
     <Value>com.iplanet.services.configpath=&#47;home&#47;forgerock&#47;openam</Value>
     <Value>com.iplanet.am.locale=en_US</Value>
@@ -9505,7 +9504,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 &lt;Rule name=&quot;entitlement&quot;&gt;
 &lt;ServiceName name=&quot;iPlanetAMWebAgentService&quot; &#47;&gt;
 &lt;ApplicationName name=&quot;OAuth2&quot; &#47;&gt;
-&lt;ResourceName name=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;oauth2&#47;employees&#47;authorize?*&quot; &#47;&gt;
+&lt;ResourceName name=&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;oauth2&#47;employees&#47;authorize?*&quot; &#47;&gt;
 &lt;AttributeValuePair&gt;
 &lt;Attribute name=&quot;POST&quot; &#47;&gt;
 &lt;Value&gt;allow&lt;&#47;Value&gt;
@@ -9530,7 +9529,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 &lt;Rule name=&quot;entitlement&quot;&gt;
 &lt;ServiceName name=&quot;iPlanetAMWebAgentService&quot; &#47;&gt;
 &lt;ApplicationName name=&quot;OpenIG1&quot; &#47;&gt;
-&lt;ResourceName name=&quot;*:&#47;&#47;employees.sc.com:*&#47;*&quot; &#47;&gt;
+&lt;ResourceName name=&quot;*:&#47;&#47;employees.example.com:*&#47;*&quot; &#47;&gt;
 &lt;AttributeValuePair&gt;
 &lt;Attribute name=&quot;POST&quot; &#47;&gt;
 &lt;Value&gt;allow&lt;&#47;Value&gt;
@@ -9570,7 +9569,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 &lt;Rule name=&quot;entitlement&quot;&gt;
 &lt;ServiceName name=&quot;iPlanetAMWebAgentService&quot; &#47;&gt;
 &lt;ApplicationName name=&quot;OpenIG2&quot; &#47;&gt;
-&lt;ResourceName name=&quot;*:&#47;&#47;apis.sample.com:*&#47;*&quot; &#47;&gt;
+&lt;ResourceName name=&quot;*:&#47;&#47;apis.example.net:*&#47;*&quot; &#47;&gt;
 &lt;AttributeValuePair&gt;
 &lt;Attribute name=&quot;POST&quot; &#47;&gt;
 &lt;Value&gt;allow&lt;&#47;Value&gt;
@@ -9610,7 +9609,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 &lt;Rule name=&quot;entitlement&quot;&gt;
 &lt;ServiceName name=&quot;iPlanetAMWebAgentService&quot; &#47;&gt;
 &lt;ApplicationName name=&quot;OpenIG1&quot; &#47;&gt;
-&lt;ResourceName name=&quot;*:&#47;&#47;dumpheaders.sc.com:*&#47;*&quot; &#47;&gt;
+&lt;ResourceName name=&quot;*:&#47;&#47;dumpheaders.example.com:*&#47;*&quot; &#47;&gt;
 &lt;AttributeValuePair&gt;
 &lt;Attribute name=&quot;POST&quot; &#47;&gt;
 &lt;Value&gt;allow&lt;&#47;Value&gt;
@@ -9641,7 +9640,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 &lt;Rule name=&quot;entitlement&quot;&gt;
 &lt;ServiceName name=&quot;iPlanetAMWebAgentService&quot; &#47;&gt;
 &lt;ApplicationName name=&quot;OpenIG2&quot; &#47;&gt;
-&lt;ResourceName name=&quot;*:&#47;&#47;benefits.sc.com:*&#47;*&quot; &#47;&gt;
+&lt;ResourceName name=&quot;*:&#47;&#47;benefits.example.com:*&#47;*&quot; &#47;&gt;
 &lt;AttributeValuePair&gt;
 &lt;Attribute name=&quot;POST&quot; &#47;&gt;
 &lt;Value&gt;allow&lt;&#47;Value&gt;
@@ -9672,7 +9671,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 &lt;Rule name=&quot;entitlement&quot;&gt;
 &lt;ServiceName name=&quot;iPlanetAMWebAgentService&quot; &#47;&gt;
 &lt;ApplicationName name=&quot;OAuth2&quot; &#47;&gt;
-&lt;ResourceName name=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;oauth2&#47;customers&#47;authorize?*&quot; &#47;&gt;
+&lt;ResourceName name=&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;oauth2&#47;customers&#47;authorize?*&quot; &#47;&gt;
 &lt;AttributeValuePair&gt;
 &lt;Attribute name=&quot;POST&quot; &#47;&gt;
 &lt;Value&gt;allow&lt;&#47;Value&gt;
@@ -9697,7 +9696,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 &lt;Rule name=&quot;entitlement&quot;&gt;
 &lt;ServiceName name=&quot;iPlanetAMWebAgentService&quot; &#47;&gt;
 &lt;ApplicationName name=&quot;OpenIG1&quot; &#47;&gt;
-&lt;ResourceName name=&quot;*:&#47;&#47;customers.sc.com:*&#47;*&quot; &#47;&gt;
+&lt;ResourceName name=&quot;*:&#47;&#47;customers.example.com:*&#47;*&quot; &#47;&gt;
 &lt;AttributeValuePair&gt;
 &lt;Attribute name=&quot;POST&quot; &#47;&gt;
 &lt;Value&gt;allow&lt;&#47;Value&gt;
@@ -9773,17 +9772,17 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 		</AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey=""  isSearchable="no"  listOrder="natural"  name="iplanet-am-policy-config-ldap-base-dn"  syntax="string"  type="single" >
 		    <DefaultValues>
-                        <Value>dc=sample,dc=com</Value>
+                        <Value>dc=example,dc=com</Value>
                     </DefaultValues>
 		</AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="a1021"  isSearchable="no"  listOrder="natural"  name="iplanet-am-policy-config-ldap-users-base-dn"  resourceName="usersBaseDn"  syntax="string"  type="single" >
                     <DefaultValues>
-                        <Value>dc=sample,dc=com</Value>
+                        <Value>dc=example,dc=com</Value>
                     </DefaultValues>
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="a1022"  isSearchable="no"  listOrder="natural"  name="iplanet-am-policy-config-is-roles-base-dn"  resourceName="rolesBaseDn"  syntax="string"  type="single" >
                     <DefaultValues>
-                        <Value>dc=sample,dc=com</Value>
+                        <Value>dc=example,dc=com</Value>
                     </DefaultValues>
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="a103"  isSearchable="no"  listOrder="natural"  name="iplanet-am-policy-config-ldap-bind-dn"  resourceName="bindDn"  syntax="string"  type="single" >
@@ -13047,7 +13046,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="com.forgerock.openam.oauth2provider.redirectionURIs"/>
-    <Value>[0]=http:&#47;&#47;employees-ig.sc.com:9000&#47;employeeApp&#47;oauth2_callback.html</Value>
+    <Value>[0]=http:&#47;&#47;employees-ig.example.com:9000&#47;employeeApp&#47;oauth2_callback.html</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="com.forgerock.openam.oauth2provider.defaultScopes"/>
@@ -13164,7 +13163,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="com.forgerock.openam.oauth2provider.redirectionURIs"/>
-    <Value>[0]=http:&#47;&#47;customers-ig.sc.com:9000&#47;customerApp&#47;callback</Value>
+    <Value>[0]=http:&#47;&#47;customers-ig.example.com:9000&#47;customerApp&#47;callback</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="com.forgerock.openam.oauth2provider.defaultScopes"/>
@@ -13802,7 +13801,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <SubConfiguration name="default" id="type"><SubConfiguration name="OAuth2ProviderPolicy" id="indexes"><AttributeValuePair>
     <Attribute name="pathindex"/>
-    <Value>http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;oauth2&#47;employees&#47;authorize?*</Value>
+    <Value>http:&#47;&#47;openam.example.com:18080&#47;openam&#47;oauth2&#47;employees&#47;authorize?*</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="subjectindex"/>
@@ -13810,11 +13809,11 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="serializable"/>
-    <Value>{&quot;creationDate&quot;:1462843004953,&quot;createdBy&quot;:&quot;id=dsameuser,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;name&quot;:&quot;OAuth2ProviderPolicy&quot;,&quot;lastModifiedBy&quot;:&quot;id=dsameuser,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;eSubject&quot;:{&quot;state&quot;:&quot;{}&quot;,&quot;className&quot;:&quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers&quot;},&quot;lastModifiedDate&quot;:1462843004953,&quot;active&quot;:&quot;true&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.opensso.OpenSSOPrivilege&quot;,&quot;entitlement&quot;:{&quot;actionsValues&quot;:{&quot;POST&quot;:true,&quot;GET&quot;:true},&quot;applicationName&quot;:&quot;OAuth2&quot;,&quot;resourceNames&quot;:[&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;oauth2&#47;employees&#47;authorize?*&quot;]},&quot;resourceTypeUuid&quot;:&quot;d7bd3cad-61e4-4ae3-bbaf-049c46358795&quot;}</Value>
+    <Value>{&quot;creationDate&quot;:1462843004953,&quot;createdBy&quot;:&quot;id=dsameuser,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;name&quot;:&quot;OAuth2ProviderPolicy&quot;,&quot;lastModifiedBy&quot;:&quot;id=dsameuser,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;eSubject&quot;:{&quot;state&quot;:&quot;{}&quot;,&quot;className&quot;:&quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers&quot;},&quot;lastModifiedDate&quot;:1462843004953,&quot;active&quot;:&quot;true&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.opensso.OpenSSOPrivilege&quot;,&quot;entitlement&quot;:{&quot;actionsValues&quot;:{&quot;POST&quot;:true,&quot;GET&quot;:true},&quot;applicationName&quot;:&quot;OAuth2&quot;,&quot;resourceNames&quot;:[&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;oauth2&#47;employees&#47;authorize?*&quot;]},&quot;resourceTypeUuid&quot;:&quot;d7bd3cad-61e4-4ae3-bbaf-049c46358795&quot;}</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="hostindex"/>
-    <Value>:&#47;&#47;openam13.sc.com</Value>
+    <Value>:&#47;&#47;openam.example.com</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="resourceTypeUuid"/>
@@ -13830,7 +13829,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 </SubConfiguration><SubConfiguration name="EmployeeApp" id="indexes"><AttributeValuePair>
     <Attribute name="pathindex"/>
-    <Value>*:&#47;&#47;employees.sc.com:*&#47;*</Value>
+    <Value>*:&#47;&#47;employees.example.com:*&#47;*</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="subjectindex"/>
@@ -13838,7 +13837,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="serializable"/>
-    <Value>{&quot;creationDate&quot;:1462456310875,&quot;createdBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;description&quot;:&quot;&quot;,&quot;name&quot;:&quot;EmployeeApp&quot;,&quot;lastModifiedBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;eSubject&quot;:{&quot;state&quot;:&quot;{\&quot;memberESubjects\&quot;: [\n  {\n    \&quot;className\&quot;: \&quot;org.forgerock.openam.entitlement.conditions.subject.IdentitySubject\&quot;,\n    \&quot;state\&quot;: \&quot;[\\\&quot;id=employees,ou=group,o=employees,ou=services,dc=openam,dc=forgerock,dc=org\\\&quot;]\&quot;\n  },\n  {\n    \&quot;className\&quot;: \&quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers\&quot;,\n    \&quot;state\&quot;: \&quot;{}\&quot;\n  }\n]}&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.AndSubject&quot;},&quot;lastModifiedDate&quot;:1462970769479,&quot;active&quot;:&quot;true&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.opensso.OpenSSOPrivilege&quot;,&quot;eCondition&quot;:{&quot;state&quot;:&quot;{\&quot;authenticateToRealm\&quot;: \&quot;&#47;employees\&quot;}&quot;,&quot;className&quot;:&quot;org.forgerock.openam.entitlement.conditions.environment.AuthenticateToRealmCondition&quot;},&quot;entitlement&quot;:{&quot;actionsValues&quot;:{&quot;POST&quot;:true,&quot;GET&quot;:true},&quot;applicationName&quot;:&quot;OpenIG1&quot;,&quot;resourceNames&quot;:[&quot;*:&#47;&#47;employees.sc.com:*&#47;*&quot;]},&quot;resourceTypeUuid&quot;:&quot;9e87cfec-805f-4240-af65-54321ff26603&quot;}</Value>
+    <Value>{&quot;creationDate&quot;:1462456310875,&quot;createdBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;description&quot;:&quot;&quot;,&quot;name&quot;:&quot;EmployeeApp&quot;,&quot;lastModifiedBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;eSubject&quot;:{&quot;state&quot;:&quot;{\&quot;memberESubjects\&quot;: [\n  {\n    \&quot;className\&quot;: \&quot;org.forgerock.openam.entitlement.conditions.subject.IdentitySubject\&quot;,\n    \&quot;state\&quot;: \&quot;[\\\&quot;id=employees,ou=group,o=employees,ou=services,dc=openam,dc=forgerock,dc=org\\\&quot;]\&quot;\n  },\n  {\n    \&quot;className\&quot;: \&quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers\&quot;,\n    \&quot;state\&quot;: \&quot;{}\&quot;\n  }\n]}&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.AndSubject&quot;},&quot;lastModifiedDate&quot;:1462970769479,&quot;active&quot;:&quot;true&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.opensso.OpenSSOPrivilege&quot;,&quot;eCondition&quot;:{&quot;state&quot;:&quot;{\&quot;authenticateToRealm\&quot;: \&quot;&#47;employees\&quot;}&quot;,&quot;className&quot;:&quot;org.forgerock.openam.entitlement.conditions.environment.AuthenticateToRealmCondition&quot;},&quot;entitlement&quot;:{&quot;actionsValues&quot;:{&quot;POST&quot;:true,&quot;GET&quot;:true},&quot;applicationName&quot;:&quot;OpenIG1&quot;,&quot;resourceNames&quot;:[&quot;*:&#47;&#47;employees.example.com:*&#47;*&quot;]},&quot;resourceTypeUuid&quot;:&quot;9e87cfec-805f-4240-af65-54321ff26603&quot;}</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="hostindex"/>
@@ -13854,7 +13853,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 </SubConfiguration><SubConfiguration name="APIs" id="indexes"><AttributeValuePair>
     <Attribute name="pathindex"/>
-    <Value>*:&#47;&#47;apis.sample.com:*&#47;*</Value>
+    <Value>*:&#47;&#47;apis.example.net:*&#47;*</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="subjectindex"/>
@@ -13862,7 +13861,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="serializable"/>
-    <Value>{&quot;creationDate&quot;:1462456469294,&quot;createdBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;description&quot;:&quot;&quot;,&quot;name&quot;:&quot;APIs&quot;,&quot;lastModifiedBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;eSubject&quot;:{&quot;state&quot;:&quot;{\&quot;memberESubjects\&quot;: [\n  {\n    \&quot;className\&quot;: \&quot;org.forgerock.openam.entitlement.conditions.subject.IdentitySubject\&quot;,\n    \&quot;state\&quot;: \&quot;[\\\&quot;id=empAdmins,ou=group,o=employees,ou=services,dc=openam,dc=forgerock,dc=org\\\&quot;]\&quot;\n  },\n  {\n    \&quot;className\&quot;: \&quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers\&quot;,\n    \&quot;state\&quot;: \&quot;{}\&quot;\n  }\n]}&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.AndSubject&quot;},&quot;lastModifiedDate&quot;:1463757525870,&quot;active&quot;:&quot;true&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.opensso.OpenSSOPrivilege&quot;,&quot;eCondition&quot;:{&quot;state&quot;:&quot;{\&quot;authenticateToRealm\&quot;: \&quot;&#47;employees\&quot;}&quot;,&quot;className&quot;:&quot;org.forgerock.openam.entitlement.conditions.environment.AuthenticateToRealmCondition&quot;},&quot;entitlement&quot;:{&quot;actionsValues&quot;:{&quot;POST&quot;:true,&quot;GET&quot;:true},&quot;applicationName&quot;:&quot;OpenIG2&quot;,&quot;resourceNames&quot;:[&quot;*:&#47;&#47;apis.sample.com:*&#47;*&quot;]},&quot;resourceTypeUuid&quot;:&quot;9e87cfec-805f-4240-af65-54321ff26603&quot;}</Value>
+    <Value>{&quot;creationDate&quot;:1462456469294,&quot;createdBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;description&quot;:&quot;&quot;,&quot;name&quot;:&quot;APIs&quot;,&quot;lastModifiedBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;eSubject&quot;:{&quot;state&quot;:&quot;{\&quot;memberESubjects\&quot;: [\n  {\n    \&quot;className\&quot;: \&quot;org.forgerock.openam.entitlement.conditions.subject.IdentitySubject\&quot;,\n    \&quot;state\&quot;: \&quot;[\\\&quot;id=empAdmins,ou=group,o=employees,ou=services,dc=openam,dc=forgerock,dc=org\\\&quot;]\&quot;\n  },\n  {\n    \&quot;className\&quot;: \&quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers\&quot;,\n    \&quot;state\&quot;: \&quot;{}\&quot;\n  }\n]}&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.AndSubject&quot;},&quot;lastModifiedDate&quot;:1463757525870,&quot;active&quot;:&quot;true&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.opensso.OpenSSOPrivilege&quot;,&quot;eCondition&quot;:{&quot;state&quot;:&quot;{\&quot;authenticateToRealm\&quot;: \&quot;&#47;employees\&quot;}&quot;,&quot;className&quot;:&quot;org.forgerock.openam.entitlement.conditions.environment.AuthenticateToRealmCondition&quot;},&quot;entitlement&quot;:{&quot;actionsValues&quot;:{&quot;POST&quot;:true,&quot;GET&quot;:true},&quot;applicationName&quot;:&quot;OpenIG2&quot;,&quot;resourceNames&quot;:[&quot;*:&#47;&#47;apis.example.net:*&#47;*&quot;]},&quot;resourceTypeUuid&quot;:&quot;9e87cfec-805f-4240-af65-54321ff26603&quot;}</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="hostindex"/>
@@ -13878,7 +13877,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 </SubConfiguration><SubConfiguration name="DumpHeaders" id="indexes"><AttributeValuePair>
     <Attribute name="pathindex"/>
-    <Value>*:&#47;&#47;dumpheaders.sc.com:*&#47;*</Value>
+    <Value>*:&#47;&#47;dumpheaders.example.com:*&#47;*</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="subjectindex"/>
@@ -13886,7 +13885,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="serializable"/>
-    <Value>{&quot;creationDate&quot;:1462456714152,&quot;createdBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;description&quot;:&quot;&quot;,&quot;name&quot;:&quot;DumpHeaders&quot;,&quot;lastModifiedBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;eSubject&quot;:{&quot;state&quot;:&quot;{}&quot;,&quot;className&quot;:&quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers&quot;},&quot;lastModifiedDate&quot;:1464024115613,&quot;active&quot;:&quot;true&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.opensso.OpenSSOPrivilege&quot;,&quot;eCondition&quot;:{&quot;state&quot;:&quot;{\&quot;authLevel\&quot;: 100}&quot;,&quot;className&quot;:&quot;org.forgerock.openam.entitlement.conditions.environment.AuthLevelCondition&quot;},&quot;entitlement&quot;:{&quot;actionsValues&quot;:{&quot;POST&quot;:true,&quot;GET&quot;:true},&quot;applicationName&quot;:&quot;OpenIG1&quot;,&quot;resourceNames&quot;:[&quot;*:&#47;&#47;dumpheaders.sc.com:*&#47;*&quot;]},&quot;resourceTypeUuid&quot;:&quot;9e87cfec-805f-4240-af65-54321ff26603&quot;}</Value>
+    <Value>{&quot;creationDate&quot;:1462456714152,&quot;createdBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;description&quot;:&quot;&quot;,&quot;name&quot;:&quot;DumpHeaders&quot;,&quot;lastModifiedBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;eSubject&quot;:{&quot;state&quot;:&quot;{}&quot;,&quot;className&quot;:&quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers&quot;},&quot;lastModifiedDate&quot;:1464024115613,&quot;active&quot;:&quot;true&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.opensso.OpenSSOPrivilege&quot;,&quot;eCondition&quot;:{&quot;state&quot;:&quot;{\&quot;authLevel\&quot;: 100}&quot;,&quot;className&quot;:&quot;org.forgerock.openam.entitlement.conditions.environment.AuthLevelCondition&quot;},&quot;entitlement&quot;:{&quot;actionsValues&quot;:{&quot;POST&quot;:true,&quot;GET&quot;:true},&quot;applicationName&quot;:&quot;OpenIG1&quot;,&quot;resourceNames&quot;:[&quot;*:&#47;&#47;dumpheaders.example.com:*&#47;*&quot;]},&quot;resourceTypeUuid&quot;:&quot;9e87cfec-805f-4240-af65-54321ff26603&quot;}</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="hostindex"/>
@@ -13902,7 +13901,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 </SubConfiguration><SubConfiguration name="BenefitsApp" id="indexes"><AttributeValuePair>
     <Attribute name="pathindex"/>
-    <Value>*:&#47;&#47;benefits.sc.com:*&#47;*</Value>
+    <Value>*:&#47;&#47;benefits.example.com:*&#47;*</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="subjectindex"/>
@@ -13910,7 +13909,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="serializable"/>
-    <Value>{&quot;creationDate&quot;:1467142419542,&quot;createdBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;description&quot;:&quot;BenefitsApp&quot;,&quot;name&quot;:&quot;BenefitsApp&quot;,&quot;lastModifiedBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;eSubject&quot;:{&quot;state&quot;:&quot;{\&quot;memberESubjects\&quot;: [\n  {\n    \&quot;className\&quot;: \&quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers\&quot;,\n    \&quot;state\&quot;: \&quot;{}\&quot;\n  },\n  {\n    \&quot;className\&quot;: \&quot;org.forgerock.openam.entitlement.conditions.subject.IdentitySubject\&quot;,\n    \&quot;state\&quot;: \&quot;[\\\&quot;id=employees,ou=group,o=employees,ou=services,dc=openam,dc=forgerock,dc=org\\\&quot;]\&quot;\n  }\n]}&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.AndSubject&quot;},&quot;lastModifiedDate&quot;:1467142419542,&quot;active&quot;:&quot;true&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.opensso.OpenSSOPrivilege&quot;,&quot;eCondition&quot;:{&quot;state&quot;:&quot;{\&quot;authenticateToRealm\&quot;: \&quot;&#47;employees\&quot;}&quot;,&quot;className&quot;:&quot;org.forgerock.openam.entitlement.conditions.environment.AuthenticateToRealmCondition&quot;},&quot;entitlement&quot;:{&quot;actionsValues&quot;:{&quot;POST&quot;:true,&quot;GET&quot;:true},&quot;applicationName&quot;:&quot;OpenIG2&quot;,&quot;resourceNames&quot;:[&quot;*:&#47;&#47;benefits.sc.com:*&#47;*&quot;]},&quot;resourceTypeUuid&quot;:&quot;9e87cfec-805f-4240-af65-54321ff26603&quot;}</Value>
+    <Value>{&quot;creationDate&quot;:1467142419542,&quot;createdBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;description&quot;:&quot;BenefitsApp&quot;,&quot;name&quot;:&quot;BenefitsApp&quot;,&quot;lastModifiedBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;eSubject&quot;:{&quot;state&quot;:&quot;{\&quot;memberESubjects\&quot;: [\n  {\n    \&quot;className\&quot;: \&quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers\&quot;,\n    \&quot;state\&quot;: \&quot;{}\&quot;\n  },\n  {\n    \&quot;className\&quot;: \&quot;org.forgerock.openam.entitlement.conditions.subject.IdentitySubject\&quot;,\n    \&quot;state\&quot;: \&quot;[\\\&quot;id=employees,ou=group,o=employees,ou=services,dc=openam,dc=forgerock,dc=org\\\&quot;]\&quot;\n  }\n]}&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.AndSubject&quot;},&quot;lastModifiedDate&quot;:1467142419542,&quot;active&quot;:&quot;true&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.opensso.OpenSSOPrivilege&quot;,&quot;eCondition&quot;:{&quot;state&quot;:&quot;{\&quot;authenticateToRealm\&quot;: \&quot;&#47;employees\&quot;}&quot;,&quot;className&quot;:&quot;org.forgerock.openam.entitlement.conditions.environment.AuthenticateToRealmCondition&quot;},&quot;entitlement&quot;:{&quot;actionsValues&quot;:{&quot;POST&quot;:true,&quot;GET&quot;:true},&quot;applicationName&quot;:&quot;OpenIG2&quot;,&quot;resourceNames&quot;:[&quot;*:&#47;&#47;benefits.example.com:*&#47;*&quot;]},&quot;resourceTypeUuid&quot;:&quot;9e87cfec-805f-4240-af65-54321ff26603&quot;}</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="hostindex"/>
@@ -13946,7 +13945,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <SubConfiguration name="default" id="type"><SubConfiguration name="OAuth2ProviderPolicy" id="indexes"><AttributeValuePair>
     <Attribute name="pathindex"/>
-    <Value>http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;oauth2&#47;customers&#47;authorize?*</Value>
+    <Value>http:&#47;&#47;openam.example.com:18080&#47;openam&#47;oauth2&#47;customers&#47;authorize?*</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="subjectindex"/>
@@ -13954,11 +13953,11 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="serializable"/>
-    <Value>{&quot;creationDate&quot;:1465169504890,&quot;createdBy&quot;:&quot;id=dsameuser,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;name&quot;:&quot;OAuth2ProviderPolicy&quot;,&quot;lastModifiedBy&quot;:&quot;id=dsameuser,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;eSubject&quot;:{&quot;state&quot;:&quot;{}&quot;,&quot;className&quot;:&quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers&quot;},&quot;lastModifiedDate&quot;:1465169504890,&quot;active&quot;:&quot;true&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.opensso.OpenSSOPrivilege&quot;,&quot;entitlement&quot;:{&quot;actionsValues&quot;:{&quot;POST&quot;:true,&quot;GET&quot;:true},&quot;applicationName&quot;:&quot;OAuth2&quot;,&quot;resourceNames&quot;:[&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;oauth2&#47;customers&#47;authorize?*&quot;]},&quot;resourceTypeUuid&quot;:&quot;f18403a3-1dfb-494d-9184-5cd8c52fd5ce&quot;}</Value>
+    <Value>{&quot;creationDate&quot;:1465169504890,&quot;createdBy&quot;:&quot;id=dsameuser,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;name&quot;:&quot;OAuth2ProviderPolicy&quot;,&quot;lastModifiedBy&quot;:&quot;id=dsameuser,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;eSubject&quot;:{&quot;state&quot;:&quot;{}&quot;,&quot;className&quot;:&quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers&quot;},&quot;lastModifiedDate&quot;:1465169504890,&quot;active&quot;:&quot;true&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.opensso.OpenSSOPrivilege&quot;,&quot;entitlement&quot;:{&quot;actionsValues&quot;:{&quot;POST&quot;:true,&quot;GET&quot;:true},&quot;applicationName&quot;:&quot;OAuth2&quot;,&quot;resourceNames&quot;:[&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;oauth2&#47;customers&#47;authorize?*&quot;]},&quot;resourceTypeUuid&quot;:&quot;f18403a3-1dfb-494d-9184-5cd8c52fd5ce&quot;}</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="hostindex"/>
-    <Value>:&#47;&#47;openam13.sc.com</Value>
+    <Value>:&#47;&#47;openam.example.com</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="resourceTypeUuid"/>
@@ -13974,7 +13973,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 </SubConfiguration><SubConfiguration name="CustomerApp" id="indexes"><AttributeValuePair>
     <Attribute name="pathindex"/>
-    <Value>*:&#47;&#47;customers.sc.com:*&#47;*</Value>
+    <Value>*:&#47;&#47;customers.example.com:*&#47;*</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="subjectindex"/>
@@ -13982,7 +13981,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="serializable"/>
-    <Value>{&quot;creationDate&quot;:1465170416425,&quot;createdBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;description&quot;:&quot;&quot;,&quot;name&quot;:&quot;CustomerApp&quot;,&quot;lastModifiedBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;eSubject&quot;:{&quot;state&quot;:&quot;{}&quot;,&quot;className&quot;:&quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers&quot;},&quot;lastModifiedDate&quot;:1465170444084,&quot;active&quot;:&quot;true&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.opensso.OpenSSOPrivilege&quot;,&quot;entitlement&quot;:{&quot;actionsValues&quot;:{&quot;POST&quot;:true,&quot;GET&quot;:true},&quot;applicationName&quot;:&quot;OpenIG1&quot;,&quot;resourceNames&quot;:[&quot;*:&#47;&#47;customers.sc.com:*&#47;*&quot;]},&quot;resourceTypeUuid&quot;:&quot;788ba77c-e044-4b53-8a0e-0f9c18de466e&quot;}</Value>
+    <Value>{&quot;creationDate&quot;:1465170416425,&quot;createdBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;description&quot;:&quot;&quot;,&quot;name&quot;:&quot;CustomerApp&quot;,&quot;lastModifiedBy&quot;:&quot;id=amadmin,ou=user,dc=openam,dc=forgerock,dc=org&quot;,&quot;eSubject&quot;:{&quot;state&quot;:&quot;{}&quot;,&quot;className&quot;:&quot;org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers&quot;},&quot;lastModifiedDate&quot;:1465170444084,&quot;active&quot;:&quot;true&quot;,&quot;className&quot;:&quot;com.sun.identity.entitlement.opensso.OpenSSOPrivilege&quot;,&quot;entitlement&quot;:{&quot;actionsValues&quot;:{&quot;POST&quot;:true,&quot;GET&quot;:true},&quot;applicationName&quot;:&quot;OpenIG1&quot;,&quot;resourceNames&quot;:[&quot;*:&#47;&#47;customers.example.com:*&#47;*&quot;]},&quot;resourceTypeUuid&quot;:&quot;788ba77c-e044-4b53-8a0e-0f9c18de466e&quot;}</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="hostindex"/>
@@ -15237,7 +15236,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="g101"  isSearchable="no"  listOrder="natural"  name="sunIdentityServerDiscoProviderID"  resourceName="providerID"  syntax="string"  type="single" >
                     <DefaultValues>
-                       <Value>http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;Liberty&#47;disco</Value>
+                       <Value>http:&#47;&#47;openam.example.com:18080&#47;openam&#47;Liberty&#47;disco</Value>
                     </DefaultValues>
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="g102"  isSearchable="no"  listOrder="natural"  name="sunIdentityServerDiscoSupportedAuthnMechs"  resourceName="supportedAuthnMechs"  syntax="string"  type="multiple_choice" >
@@ -15326,7 +15325,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="g108"  isSearchable="no"  listOrder="natural"  name="sunIdentityServerDiscoProviderResourceIDMapper"  resourceName="idMapperClasses"  syntax="string"  type="list"  uitype="name_value_list" >
                     <DefaultValues>
-                        <Value>providerid=http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;Liberty&#47;disco|idmapper=com.sun.identity.liberty.ws.disco.plugins.Default64ResourceIDMapper</Value>
+                        <Value>providerid=http:&#47;&#47;openam.example.com:18080&#47;openam&#47;Liberty&#47;disco|idmapper=com.sun.identity.liberty.ws.disco.plugins.Default64ResourceIDMapper</Value>
                     </DefaultValues>
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="g109"  isSearchable="no"  listOrder="natural"  name="sunIdentityServerDiscoOptionSecurityResponse"  resourceName="authenticateResponseMessage"  syntax="boolean"  type="single" >
@@ -15427,7 +15426,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="p104"  isSearchable="no"  listOrder="natural"  name="sunIdentityServerPPProviderID"  syntax="string"  type="single" >
                     <DefaultValues>
-                        <Value>http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;Liberty&#47;idpp</Value>
+                        <Value>http:&#47;&#47;openam.example.com:18080&#47;openam&#47;Liberty&#47;idpp</Value>
                     </DefaultValues>
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="p105"  isSearchable="no"  listOrder="natural"  name="sunIdentityServerPPNameScheme"  syntax="string"  type="single_choice" >
@@ -15680,7 +15679,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
     <Attribute name="sun-fm-trusted-providers"/>
     <Value>OpenIG2|saml2</Value>
     <Value>OpenIG-HA|saml2</Value>
-    <Value>http:&#47;&#47;openam13.sc.com:8080&#47;openam|saml2</Value>
+    <Value>http:&#47;&#47;openam.example.com:18080&#47;openam|saml2</Value>
 </AttributeValuePair>
 <AttributeValuePair>
     <Attribute name="sun-fm-cot-description"/>
@@ -15700,10 +15699,10 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
                     </AttributeSchema>
                 </SubSchema>
             </Organization>
-        </Schema><Configuration><OrganizationConfiguration group="default" name="/employees"><SubConfiguration name="http:&#47;&#47;openam13.sc.com:8080&#47;openam" id="EntityDescriptor"><AttributeValuePair>
+        </Schema><Configuration><OrganizationConfiguration group="default" name="/employees"><SubConfiguration name="http:&#47;&#47;openam.example.com:18080&#47;openam" id="EntityDescriptor"><AttributeValuePair>
     <Attribute name="sun-fm-saml2-entityconfig"/>
     <Value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-&lt;EntityConfig entityID=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&quot; hosted=&quot;true&quot; xmlns=&quot;urn:sun:fm:SAML:2.0:entityconfig&quot;&gt;
+&lt;EntityConfig entityID=&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&quot; hosted=&quot;true&quot; xmlns=&quot;urn:sun:fm:SAML:2.0:entityconfig&quot;&gt;
     &lt;IDPSSOConfig metaAlias=&quot;&#47;employees&#47;idp&quot;&gt;
         &lt;Attribute name=&quot;idpAuthncontextMapper&quot;&gt;
             &lt;Value&gt;com.sun.identity.saml2.plugins.DefaultIDPAuthnContextMapper&lt;&#47;Value&gt;
@@ -15803,7 +15802,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
             &lt;Value&gt;false&lt;&#47;Value&gt;
         &lt;&#47;Attribute&gt;
         &lt;Attribute name=&quot;saeIDPUrl&quot;&gt;
-            &lt;Value&gt;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;idpsaehandler&#47;metaAlias&#47;employees&#47;idp&lt;&#47;Value&gt;
+            &lt;Value&gt;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;idpsaehandler&#47;metaAlias&#47;employees&#47;idp&lt;&#47;Value&gt;
         &lt;&#47;Attribute&gt;
     &lt;&#47;IDPSSOConfig&gt;
 &lt;&#47;EntityConfig&gt;</Value>
@@ -15811,7 +15810,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
 <AttributeValuePair>
     <Attribute name="sun-fm-saml2-metadata"/>
     <Value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-&lt;EntityDescriptor entityID=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&quot; xmlns=&quot;urn:oasis:names:tc:SAML:2.0:metadata&quot;&gt;
+&lt;EntityDescriptor entityID=&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&quot; xmlns=&quot;urn:oasis:names:tc:SAML:2.0:metadata&quot;&gt;
     &lt;IDPSSODescriptor WantAuthnRequestsSigned=&quot;false&quot; protocolSupportEnumeration=&quot;urn:oasis:names:tc:SAML:2.0:protocol&quot;&gt;
         &lt;KeyDescriptor use=&quot;signing&quot;&gt;
             &lt;ds:KeyInfo xmlns:ds=&quot;http:&#47;&#47;www.w3.org&#47;2000&#47;09&#47;xmldsig#&quot;&gt;
@@ -15820,13 +15819,13 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
                 &lt;&#47;ds:X509Data&gt;
             &lt;&#47;ds:KeyInfo&gt;
         &lt;&#47;KeyDescriptor&gt;
-        &lt;ArtifactResolutionService index=&quot;0&quot; isDefault=&quot;true&quot; Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:SOAP&quot; Location=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;ArtifactResolver&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
-        &lt;SingleLogoutService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect&quot; Location=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;IDPSloRedirect&#47;metaAlias&#47;employees&#47;idp&quot; ResponseLocation=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;IDPSloRedirect&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
-        &lt;SingleLogoutService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST&quot; Location=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;IDPSloPOST&#47;metaAlias&#47;employees&#47;idp&quot; ResponseLocation=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;IDPSloPOST&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
-        &lt;SingleLogoutService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:SOAP&quot; Location=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;IDPSloSoap&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
-        &lt;ManageNameIDService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect&quot; Location=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;IDPMniRedirect&#47;metaAlias&#47;employees&#47;idp&quot; ResponseLocation=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;IDPMniRedirect&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
-        &lt;ManageNameIDService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST&quot; Location=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;IDPMniPOST&#47;metaAlias&#47;employees&#47;idp&quot; ResponseLocation=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;IDPMniPOST&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
-        &lt;ManageNameIDService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:SOAP&quot; Location=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;IDPMniSoap&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
+        &lt;ArtifactResolutionService index=&quot;0&quot; isDefault=&quot;true&quot; Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:SOAP&quot; Location=&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;ArtifactResolver&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
+        &lt;SingleLogoutService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect&quot; Location=&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;IDPSloRedirect&#47;metaAlias&#47;employees&#47;idp&quot; ResponseLocation=&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;IDPSloRedirect&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
+        &lt;SingleLogoutService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST&quot; Location=&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;IDPSloPOST&#47;metaAlias&#47;employees&#47;idp&quot; ResponseLocation=&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;IDPSloPOST&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
+        &lt;SingleLogoutService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:SOAP&quot; Location=&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;IDPSloSoap&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
+        &lt;ManageNameIDService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect&quot; Location=&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;IDPMniRedirect&#47;metaAlias&#47;employees&#47;idp&quot; ResponseLocation=&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;IDPMniRedirect&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
+        &lt;ManageNameIDService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST&quot; Location=&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;IDPMniPOST&#47;metaAlias&#47;employees&#47;idp&quot; ResponseLocation=&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;IDPMniPOST&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
+        &lt;ManageNameIDService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:SOAP&quot; Location=&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;IDPMniSoap&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
         &lt;NameIDFormat&gt;urn:oasis:names:tc:SAML:2.0:nameid-format:persistent&lt;&#47;NameIDFormat&gt;
         &lt;NameIDFormat&gt;urn:oasis:names:tc:SAML:2.0:nameid-format:transient&lt;&#47;NameIDFormat&gt;
         &lt;NameIDFormat&gt;urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress&lt;&#47;NameIDFormat&gt;
@@ -15834,12 +15833,12 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
         &lt;NameIDFormat&gt;urn:oasis:names:tc:SAML:1.1:nameid-format:WindowsDomainQualifiedName&lt;&#47;NameIDFormat&gt;
         &lt;NameIDFormat&gt;urn:oasis:names:tc:SAML:2.0:nameid-format:kerberos&lt;&#47;NameIDFormat&gt;
         &lt;NameIDFormat&gt;urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName&lt;&#47;NameIDFormat&gt;
-        &lt;SingleSignOnService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect&quot; Location=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;SSORedirect&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
-        &lt;SingleSignOnService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST&quot; Location=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;SSOPOST&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
-        &lt;SingleSignOnService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:SOAP&quot; Location=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;SSOSoap&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
-        &lt;NameIDMappingService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:SOAP&quot; Location=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;NIMSoap&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
-        &lt;AssertionIDRequestService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:SOAP&quot; Location=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;AIDReqSoap&#47;IDPRole&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
-        &lt;AssertionIDRequestService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:URI&quot; Location=&quot;http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;AIDReqUri&#47;IDPRole&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
+        &lt;SingleSignOnService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect&quot; Location=&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;SSORedirect&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
+        &lt;SingleSignOnService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST&quot; Location=&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;SSOPOST&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
+        &lt;SingleSignOnService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:SOAP&quot; Location=&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;SSOSoap&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
+        &lt;NameIDMappingService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:SOAP&quot; Location=&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;NIMSoap&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
+        &lt;AssertionIDRequestService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:SOAP&quot; Location=&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;AIDReqSoap&#47;IDPRole&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
+        &lt;AssertionIDRequestService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:URI&quot; Location=&quot;http:&#47;&#47;openam.example.com:18080&#47;openam&#47;AIDReqUri&#47;IDPRole&#47;metaAlias&#47;employees&#47;idp&quot;&#47;&gt;
     &lt;&#47;IDPSSODescriptor&gt;
 &lt;&#47;EntityDescriptor&gt;</Value>
 </AttributeValuePair>
@@ -15925,7 +15924,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
             &lt;Value&#47;&gt;
         &lt;&#47;Attribute&gt;
         &lt;Attribute name=&quot;appLogoutUrl&quot;&gt;
-            &lt;Value&gt;http:&#47;&#47;travel-ig.sample.com:9002&#47;saml&#47;logout&lt;&#47;Value&gt;
+            &lt;Value&gt;http:&#47;&#47;travel-ig.example.net:9002&#47;saml&#47;logout&lt;&#47;Value&gt;
         &lt;&#47;Attribute&gt;
         &lt;Attribute name=&quot;assertionTimeSkew&quot;&gt;
             &lt;Value&gt;300&lt;&#47;Value&gt;
@@ -16041,12 +16040,12 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
     <Value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
 &lt;EntityDescriptor entityID=&quot;OpenIG2&quot; xmlns=&quot;urn:oasis:names:tc:SAML:2.0:metadata&quot;&gt;
     &lt;SPSSODescriptor AuthnRequestsSigned=&quot;false&quot; WantAssertionsSigned=&quot;false&quot; protocolSupportEnumeration=&quot;urn:oasis:names:tc:SAML:2.0:protocol&quot;&gt;
-        &lt;SingleLogoutService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect&quot; Location=&quot;http:&#47;&#47;travel-ig.sample.com:9002&#47;saml&#47;fedletSloRedirect&quot; ResponseLocation=&quot;http:&#47;&#47;travel-ig.sample.com:9002&#47;saml&#47;fedletSloRedirect&quot;&#47;&gt;
-        &lt;SingleLogoutService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST&quot; Location=&quot;http:&#47;&#47;travel-ig.sample.com:9002&#47;saml&#47;fedletSloPOST&quot; ResponseLocation=&quot;http:&#47;&#47;travel-ig.sample.com:9002&#47;saml&#47;fedletSloPOST&quot;&#47;&gt;
-        &lt;SingleLogoutService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:SOAP&quot; Location=&quot;http:&#47;&#47;travel-ig.sample.com:9002&#47;saml&#47;fedletSloSoap&quot;&#47;&gt;
+        &lt;SingleLogoutService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect&quot; Location=&quot;http:&#47;&#47;travel-ig.example.net:9002&#47;saml&#47;fedletSloRedirect&quot; ResponseLocation=&quot;http:&#47;&#47;travel-ig.example.net:9002&#47;saml&#47;fedletSloRedirect&quot;&#47;&gt;
+        &lt;SingleLogoutService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST&quot; Location=&quot;http:&#47;&#47;travel-ig.example.net:9002&#47;saml&#47;fedletSloPOST&quot; ResponseLocation=&quot;http:&#47;&#47;travel-ig.example.net:9002&#47;saml&#47;fedletSloPOST&quot;&#47;&gt;
+        &lt;SingleLogoutService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:SOAP&quot; Location=&quot;http:&#47;&#47;travel-ig.example.net:9002&#47;saml&#47;fedletSloSoap&quot;&#47;&gt;
         &lt;NameIDFormat&gt;urn:oasis:names:tc:SAML:2.0:nameid-format:transient&lt;&#47;NameIDFormat&gt;
-        &lt;AssertionConsumerService index=&quot;0&quot; isDefault=&quot;true&quot; Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST&quot; Location=&quot;http:&#47;&#47;travel-ig.sample.com:9002&#47;saml&#47;fedletapplication&quot;&#47;&gt;
-        &lt;AssertionConsumerService index=&quot;1&quot; Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact&quot; Location=&quot;http:&#47;&#47;travel-ig.sample.com:9002&#47;saml&#47;fedletapplication&quot;&#47;&gt;
+        &lt;AssertionConsumerService index=&quot;0&quot; isDefault=&quot;true&quot; Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST&quot; Location=&quot;http:&#47;&#47;travel-ig.example.net:9002&#47;saml&#47;fedletapplication&quot;&#47;&gt;
+        &lt;AssertionConsumerService index=&quot;1&quot; Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact&quot; Location=&quot;http:&#47;&#47;travel-ig.example.net:9002&#47;saml&#47;fedletapplication&quot;&#47;&gt;
     &lt;&#47;SPSSODescriptor&gt;
     &lt;query:AttributeQueryDescriptor protocolSupportEnumeration=&quot;urn:oasis:names:tc:SAML:2.0:protocol&quot; xmlns:query=&quot;urn:oasis:names:tc:SAML:metadata:ext:query&quot;&#47;&gt;
     &lt;XACMLAuthzDecisionQueryDescriptor WantAssertionsSigned=&quot;false&quot; protocolSupportEnumeration=&quot;urn:oasis:names:tc:SAML:2.0:protocol&quot;&#47;&gt;
@@ -16134,7 +16133,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
             &lt;Value&#47;&gt;
         &lt;&#47;Attribute&gt;
         &lt;Attribute name=&quot;appLogoutUrl&quot;&gt;
-            &lt;Value&gt;http:&#47;&#47;openig.sample.com:9000&#47;saml&#47;logout&lt;&#47;Value&gt;
+            &lt;Value&gt;http:&#47;&#47;openig.example.net:9000&#47;saml&#47;logout&lt;&#47;Value&gt;
         &lt;&#47;Attribute&gt;
         &lt;Attribute name=&quot;assertionTimeSkew&quot;&gt;
             &lt;Value&gt;300&lt;&#47;Value&gt;
@@ -16250,12 +16249,12 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
     <Value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
 &lt;EntityDescriptor entityID=&quot;OpenIG-HA&quot; xmlns=&quot;urn:oasis:names:tc:SAML:2.0:metadata&quot;&gt;
     &lt;SPSSODescriptor AuthnRequestsSigned=&quot;false&quot; WantAssertionsSigned=&quot;false&quot; protocolSupportEnumeration=&quot;urn:oasis:names:tc:SAML:2.0:protocol&quot;&gt;
-        &lt;SingleLogoutService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect&quot; Location=&quot;http:&#47;&#47;openig.sample.com:9000&#47;saml&#47;fedletSloRedirect&quot; ResponseLocation=&quot;http:&#47;&#47;openig.sample.com:9000&#47;saml&#47;fedletSloRedirect&quot;&#47;&gt;
-        &lt;SingleLogoutService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST&quot; Location=&quot;http:&#47;&#47;openig.sample.com:9000&#47;saml&#47;fedletSloPOST&quot; ResponseLocation=&quot;http:&#47;&#47;openig.sample.com:9000&#47;saml&#47;fedletSloPOST&quot;&#47;&gt;
-        &lt;SingleLogoutService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:SOAP&quot; Location=&quot;http:&#47;&#47;openig.sample.com:9000&#47;saml&#47;fedletSloSoap&quot;&#47;&gt;
+        &lt;SingleLogoutService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect&quot; Location=&quot;http:&#47;&#47;openig.example.net:9000&#47;saml&#47;fedletSloRedirect&quot; ResponseLocation=&quot;http:&#47;&#47;openig.example.net:9000&#47;saml&#47;fedletSloRedirect&quot;&#47;&gt;
+        &lt;SingleLogoutService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST&quot; Location=&quot;http:&#47;&#47;openig.example.net:9000&#47;saml&#47;fedletSloPOST&quot; ResponseLocation=&quot;http:&#47;&#47;openig.example.net:9000&#47;saml&#47;fedletSloPOST&quot;&#47;&gt;
+        &lt;SingleLogoutService Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:SOAP&quot; Location=&quot;http:&#47;&#47;openig.example.net:9000&#47;saml&#47;fedletSloSoap&quot;&#47;&gt;
         &lt;NameIDFormat&gt;urn:oasis:names:tc:SAML:2.0:nameid-format:transient&lt;&#47;NameIDFormat&gt;
-        &lt;AssertionConsumerService index=&quot;0&quot; isDefault=&quot;true&quot; Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST&quot; Location=&quot;http:&#47;&#47;openig.sample.com:9000&#47;saml&#47;fedletapplication&quot;&#47;&gt;
-        &lt;AssertionConsumerService index=&quot;1&quot; Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact&quot; Location=&quot;http:&#47;&#47;openig.sample.com:9000&#47;saml&#47;fedletapplication&quot;&#47;&gt;
+        &lt;AssertionConsumerService index=&quot;0&quot; isDefault=&quot;true&quot; Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST&quot; Location=&quot;http:&#47;&#47;openig.example.net:9000&#47;saml&#47;fedletapplication&quot;&#47;&gt;
+        &lt;AssertionConsumerService index=&quot;1&quot; Binding=&quot;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact&quot; Location=&quot;http:&#47;&#47;openig.example.net:9000&#47;saml&#47;fedletapplication&quot;&#47;&gt;
     &lt;&#47;SPSSODescriptor&gt;
     &lt;query:AttributeQueryDescriptor protocolSupportEnumeration=&quot;urn:oasis:names:tc:SAML:2.0:protocol&quot; xmlns:query=&quot;urn:oasis:names:tc:SAML:metadata:ext:query&quot;&#47;&gt;
     &lt;XACMLAuthzDecisionQueryDescriptor WantAssertionsSigned=&quot;false&quot; protocolSupportEnumeration=&quot;urn:oasis:names:tc:SAML:2.0:protocol&quot;&#47;&gt;
@@ -16268,7 +16267,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
                     <DefaultValues><Value>iplanet-am-saml-service</Value></DefaultValues>
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="a101"  isSearchable="no"  listOrder="natural"  name="iplanet-am-saml-siteid-issuername-list"  syntax="string"  type="list"  uitype="name_value_list" >
-                    <DefaultValues><Value>instanceID=http:&#47;&#47;openam13.sc.com:8080&#47;openam|siteid=U1accOmfZJ4ciUsz8uaHJNDanK4=|issuerName=openam13.sc.com:8080</Value></DefaultValues>
+                    <DefaultValues><Value>instanceID=http:&#47;&#47;openam.example.com:18080&#47;openam|siteid=U1accOmfZJ4ciUsz8uaHJNDanK4=|issuerName=openam.example.com:18080</Value></DefaultValues>
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="a103"  isSearchable="no"  listOrder="natural"  name="iplanet-am-saml-signrequest"  syntax="boolean"  type="single" >
                     <DefaultValues><Value>false</Value></DefaultValues>
@@ -16687,7 +16686,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="a103"  isSearchable="no"  listOrder="natural"  name="IDPDiscoveryCookieDomain"  resourceName="idpDiscoveryCookieDomain"  syntax="string"  type="single" >
                     <DefaultValues>
-                        <Value>.sc.com</Value>
+                        <Value>.example.com</Value>
                     </DefaultValues>
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="a104"  isSearchable="no"  listOrder="natural"  name="IDPDiscoveryCookieType"  resourceName="idpDiscoveryCookieType"  syntax="string"  type="single_choice" >
@@ -17480,7 +17479,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="a103"  isSearchable="no"  listOrder="natural"  name="forgerockRESTSecuritySelfRegConfirmationUrl"  resourceName="selfRegistrationConfirmationUrl"  syntax="url"  type="single" >
                     <DefaultValues>
-                        <Value>http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;XUI&#47;confirm.html</Value>
+                        <Value>http:&#47;&#47;openam.example.com:18080&#47;openam&#47;XUI&#47;confirm.html</Value>
                     </DefaultValues>
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="a104"  isSearchable="no"  listOrder="natural"  name="forgerockRESTSecurityForgotPasswordEnabled"  resourceName="forgotPasswordEnabled"  syntax="boolean"  type="single"  validator="RequiredValueValidator" >
@@ -17499,7 +17498,7 @@ PUBLIC "=//iPlanet//Service Management Services (SMS) 1.0 DTD//EN"
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="a106"  isSearchable="no"  listOrder="natural"  name="forgerockRESTSecurityForgotPassConfirmationUrl"  resourceName="forgotPasswordConfirmationUrl"  syntax="url"  type="single" >
                     <DefaultValues>
-                        <Value>http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;XUI&#47;confirm.html</Value>
+                        <Value>http:&#47;&#47;openam.example.com:18080&#47;openam&#47;XUI&#47;confirm.html</Value>
                     </DefaultValues>
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="a107"  isSearchable="no"  listOrder="natural"  name="forgerockRESTSecuritySuccessfulUserRegistrationDestination"  resourceName="userRegisteredDestination"  syntax="string"  type="single_choice" >
@@ -21713,12 +21712,12 @@ return new UserInfoClaims((Map)computedClaims, (Map)compositeScopes)</Value>
 
                 <AttributeSchema cosQualifier="default"  i18nKey="user.registration.confirmation.url"  isSearchable="no"  listOrder="natural"  name="selfServiceUserRegistrationConfirmationUrl"  resourceName="userRegistrationConfirmationUrl"  syntax="url"  type="single" >
                     <DefaultValues>
-                        <Value>http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;XUI&#47;#register&#47;</Value>
+                        <Value>http:&#47;&#47;openam.example.com:18080&#47;openam&#47;XUI&#47;#register&#47;</Value>
                     </DefaultValues>
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="forgotten.password.confirmation.url"  isSearchable="no"  listOrder="natural"  name="selfServiceForgottenPasswordConfirmationUrl"  resourceName="forgottenPasswordConfirmationUrl"  syntax="url"  type="single" >
                     <DefaultValues>
-                        <Value>http:&#47;&#47;openam13.sc.com:8080&#47;openam&#47;XUI&#47;#passwordReset&#47;</Value>
+                        <Value>http:&#47;&#47;openam.example.com:18080&#47;openam&#47;XUI&#47;#passwordReset&#47;</Value>
                     </DefaultValues>
                 </AttributeSchema>
                 <AttributeSchema cosQualifier="default"  i18nKey="user.registration.service.config.class"  isSearchable="no"  listOrder="natural"  name="selfServiceUserRegistrationServiceConfigClass"  resourceName="userRegistrationServiceConfigClass"  syntax="string"  type="single" >

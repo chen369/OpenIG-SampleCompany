@@ -1,5 +1,5 @@
 {
-  "baseURI": "http://docapp.sample.com:8002",
+  "baseURI": "http://docapp.example.net:8002",
   "handler": {
     "type": "DispatchHandler",
     "config": {
@@ -54,7 +54,7 @@
                   "type": "StaticRequestFilter",
                   "config": {
                     "method": "POST",
-                    "uri": "http://docapp.sample.com:8002",
+                    "uri": "http://docapp.example.net:8002",
                     "form": {
                       "username": [
                         "${session.username}"

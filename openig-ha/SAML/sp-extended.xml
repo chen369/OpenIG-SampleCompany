@@ -81,7 +81,7 @@
            <Value></Value>
        </Attribute>
        <Attribute name="appLogoutUrl">
-           <Value>http://openig.sample.com:9000/saml/logout</Value>
+           <Value>http://openig.example.net:9000/saml/logout</Value>
        </Attribute>
        <Attribute name="assertionTimeSkew">
            <Value>300</Value>

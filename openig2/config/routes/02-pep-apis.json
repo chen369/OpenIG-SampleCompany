@@ -1,5 +1,5 @@
 {
-  "baseURI": "http://apis.sample.com:8010",
+  "baseURI": "http://apis.example.net:8010",
   "handler": {
     "comment": "OpenAM chain for authentication and authorization check",
     "name": "OpenAM Chain",
@@ -16,7 +16,7 @@
             "args": {
               "userId": "${request.headers['X-OpenAM-Username'][0]}",
               "password": "${request.headers['X-OpenAM-Password'][0]}",
-              "openamUrl": "http://openam13.sc.com:8080/openam/json/employees/"
+              "openamUrl": "http://openam.example.com:18080/openam/json/employees/"
             }
           },
           "capture": "all"
@@ -54,9 +54,9 @@
           "name": "OpenAM Authorization",
           "type": "PolicyEnforcementFilter",
           "config": {
-            "openamUrl": "http://openam13.sc.com:8080/openam",
+            "openamUrl": "http://openam.example.com:18080/openam",
             "pepUsername": "policyAdmin",
-            "pepPassword": "password",
+            "pepPassword": "Passw0rd",
             "realm": "employees",
             "application": "OpenIG2",
             "ssoTokenSubject": "${attributes.tokenId}"

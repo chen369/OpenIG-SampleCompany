@@ -1,5 +1,5 @@
 {
-  "baseURI": "http://benefits.sc.com:8014/",
+  "baseURI": "http://benefits.example.com:8014/",
   "handler": {
     "type": "DispatchHandler",
     "config": {
@@ -15,7 +15,7 @@
               "reason": "Found",
               "headers": {
                 "Location": [
-                  "http://openam13.sc.com:8080/openam/XUI/#login/employees&goto=${urlEncode(contexts.router.originalUri)}"
+                  "http://openam.example.com:18080/openam/XUI/#login/employees&goto=${urlEncode(contexts.router.originalUri)}"
                 ]
               },
               "entity": "Redirecting to OpenAM for authentication..."
@@ -38,9 +38,9 @@
                   "name": "OpenAM Authorization",
                   "type": "PolicyEnforcementFilter",
                   "config": {
-                    "openamUrl": "http://openam13.sc.com:8080/openam",
+                    "openamUrl": "http://openam.example.com:18080/openam",
                     "pepUsername": "policyAdmin",
-                    "pepPassword": "password",
+                    "pepPassword": "Passw0rd",
                     "realm": "employees",
                     "application": "OpenIG2",
                     "ssoTokenSubject": "${request.cookies['iPlanetDirectoryPro'][0].value}"
@@ -56,7 +56,7 @@
                     "file": "OpenAMReplayHeaders.groovy",
                     "args": {
                       "passwordAttribute": "sunIdentityUserPassword",
-                      "openamUrl": "http://openam13.sc.com:8080/openam/json/employees/"
+                      "openamUrl": "http://openam.example.com:18080/openam/json/employees/"
                     }
                   },
                   "capture": "all"
@@ -78,7 +78,7 @@
                     },
                     "request": {
                       "method": "POST",
-                      "uri": "http://benefits.sc.com:8014/benefitsApp/login.html",
+                      "uri": "http://benefits.example.com:8014/benefitsApp/login.html",
                       "form": {
                         "username": [
                           "${request.headers['username'][0]}"

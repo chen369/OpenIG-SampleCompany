@@ -1,5 +1,5 @@
 {
-  "baseURI": "http://travel.sample.com:8012",
+  "baseURI": "http://travel.example.net:8012",
   "handler": {
     "type": "DispatchHandler",
     "config": {
@@ -23,7 +23,7 @@
                 "mail": "mail"
               },
               "subjectMapping": "subjectName",
-              "redirectURI": "http://travel-ig.sample.com:9002/travelApp"
+              "redirectURI": "http://travel-ig.example.net:9002/travelApp"
             },
             "capture": "all"
           }
@@ -39,7 +39,7 @@
               "reason": "Found",
               "headers": {
                 "Location": [
-                  "http://travel-ig.sample.com:9002/saml/SPInitiatedSSO?RelayState=${urlEncode(contexts.router.originalUri)}"
+                  "http://travel-ig.example.net:9002/saml/SPInitiatedSSO?RelayState=${urlEncode(contexts.router.originalUri)}"
                 ]
               }
             },
@@ -80,7 +80,7 @@
                     "file": "SPCookie.groovy",
                     "args": {
                       "cookieName": "spCookie",
-                      "cookieDomain": ".sample.com",
+                      "cookieDomain": ".example.net",
                       "cookiePath": "/",
                       "cookieValue": "username:${session.uid} mail:${session.mail}"
                     }

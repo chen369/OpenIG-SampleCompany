@@ -1,5 +1,5 @@
 {
-  "baseURI": "http://dumpheaders.sc.com:8000/",
+  "baseURI": "http://dumpheaders.example.com:8000/",
   "handler": {
     "type": "DispatchHandler",
     "config": {
@@ -15,7 +15,7 @@
               "reason": "Found",
               "headers": {
                 "Location": [
-                  "http://openam13.sc.com:8080/openam/XUI/#login/employees&goto=${urlEncode(contexts.router.originalUri)}"
+                  "http://openam.example.com:18080/openam/XUI/#login/employees&goto=${urlEncode(contexts.router.originalUri)}"
                 ]
               },
               "entity": "Redirecting to OpenAM for authentication..."
@@ -36,9 +36,9 @@
                   "name": "OpenAM Authorization",
                   "type": "PolicyEnforcementFilter",
                   "config": {
-                    "openamUrl": "http://openam13.sc.com:8080/openam",
+                    "openamUrl": "http://openam.example.com:18080/openam",
                     "pepUsername": "policyAdmin",
-                    "pepPassword": "password",
+                    "pepPassword": "Passw0rd",
                     "realm": "employees",
                     "application": "OpenIG1",
                     "ssoTokenSubject": "${request.cookies['iPlanetDirectoryPro'][0].value}"
@@ -54,7 +54,7 @@
                     "file": "OpenAMAttributes.groovy",
                     "args": {
                       "profileAttributes": "uid mail",
-                      "openamUrl": "http://openam13.sc.com:8080/openam/json/employees/"
+                      "openamUrl": "http://openam.example.com:18080/openam/json/employees/"
                     }
                   },
                   "capture": "all"
