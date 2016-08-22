@@ -134,14 +134,29 @@ SampleCompany URLs :
 
 OpenIG Use Cases testing:
 ========================= 
-1. OpenIG-OpenAM PEP for web applications:
-   * Minimal - Ensure '02-pep-employees-minimal.json' is deployed on OpenIG1. Following files needs to be disabled: '05-pep-employees-extended.json' , '03-pep-employees-exclusions.json', 04-pep-employees-logout.json'. This can be done by suffixing these files by '.disabled.' Such as '01-pep-employees-logout.json.disabled' <br />
-     Navigate to EmployeeApp URL via OpenIG. Test: Login using emp1 account. 
-   * URL Exclusions - Enable '03-pep-employees-exclusions.json' by removing '.disabled' suffix. This will remove specified URL from policy evaluations.    
-   * Extended - Disable '02-pep-employees-minimal.json' and enable '05-pep-employees-extended.json' , '03-pep-employees-exclusions.json', 04-pep-employees-logout.json'. 
-     Navigate to EmployeeApp URL via OpenIG. Test: Login using emp1 account, Logout, Access denied check using cont1 account. 
-2. OpenIG-OpenAM PEP for REST APIs
-3. OpenIG-OAuth2 RS
+1. OpenIG-OpenAM PEP for web applications - Minimal:
+   * Enabled Route(s): 02-pep-employees-minimal.json
+   * Disabled Route(s): 05-pep-employees-extended.json, 03-pep-employees-exclusions.json, 04-pep-employees-logout.json. This can be done by suffixing these files by '.disabled.' Such as 04-pep-employees-logout.json.disabled.
+   * Test1: Login to EmployeeApp using emp1 account. Result: User successfully logged in. 
+2. OpenIG-OpenAM PEP for web applications - URL exclusions:
+   * Enabled Route(s): 03-pep-employees-exclusions.json
+   * Disabled Route(s): 05-pep-employees-extended.json, 04-pep-employees-logout.json.
+   * Test1: Login to EmployeeApp using emp1 account. Result: This will remove specified URL from policy evaluations.   
+3. OpenIG-OpenAM PEP for web applications - Extended:
+   * Enabled Route(s): 05-pep-employees-extended.json, 03-pep-employees-exclusions.json, 04-pep-employees-logout.json
+   * Disabled Route(s): 02-pep-employees-minimal.json
+   * Test1: Login using emp1 account, Logout, Access denied check using cont1 account. 
+4. OpenIG-OpenAM PEP for REST APIs
+   * Enabled Route(s): 06-pep-apis.json
+   * Disabled Route(s): None
+   * Test1: Get TxHistory for all users: curl -X GET -H "X-OpenAM-Username: empAdmin" -H "X-OpenAM-Password: Passw0rd" "http://apis-ig.example.net:9002/txHistory/all". Result: Should return transaction history for all users
+   * Test2: Get TxHistory for all users using unauthorized account: curl -X GET -H "X-OpenAM-Username: emp1" -H "X-OpenAM-Password: Passw0rd" "http://apis-ig.example.net:9002/txHistory/all". Result: Should return authorization failed.          
+5. OpenIG-OAuth2 RS:
+   * Enabled Route(s): 10-oauth2rs-apis.json
+   * Disabled Route(s): None
+   * Test1: Acquire OAuth Access token by using OAuth Resource Owner Password Credentials flow : curl -X POST -H "Authorization: BASIC ZW1wbG95ZWVBcHA6cGFzc3dvcmQ=" -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=password&username=emp1&password=Passw0rd&scope=uid mail' "http://openam.example.com:18080/openam/oauth2/employees/access_token" <br />
+     Get TxHistory for specified user: curl -X GET -H "Authorization: Bearer a04b0596-9ed7-4e7e-bd36-4008d901bcd2" "http://apis-ig.example.net:9002/history/emp1". Result: Should return transaction history for specified user.
+   * Test2: Get TxHistory for specified user using invalid OAuth Access token: curl -X GET -H "Authorization: Bearer a04b0596-9ed7-4e7e-bd36-qqqqqqqq" "http://apis-ig.example.net:9002/history/emp1" -v. Result: Should return error: "The access token provided is expired, revoked, malformed, or invalid for other reasons.".   
 4. OpenIG-SAML SP
 5. OpenIG-Credentials Replay-OpenAMAgent: Not yet implemented
 6. OpenIG-Credentials Replay-File-DB: Not yet implemented
