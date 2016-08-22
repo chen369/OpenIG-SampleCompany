@@ -145,6 +145,9 @@ OpenIG Use Cases testing:
 3. OpenIG-OpenAM PEP for web applications - Extended:
    * Enabled Route(s): 05-pep-employees-extended.json, 03-pep-employees-exclusions.json, 04-pep-employees-logout.json
    * Disabled Route(s): 02-pep-employees-minimal.json
+   * Test1: Login to EmployeeApp using emp1 account. Result: User successfully logged in.
+   * Test2: Logout emp1. Result: User successfully logged out. 
+   * Test3: Login to EmployeeApp using cont1 account. Result: User redirected to access denied URL.        
    * Test1: Login using emp1 account, Logout, Access denied check using cont1 account. 
 4. OpenIG-OpenAM PEP for REST APIs
    * Enabled Route(s): 06-pep-apis.json
@@ -165,9 +168,17 @@ OpenIG Use Cases testing:
    * Enabled Route(s): 21-replay-openam-benefits.json
    * Disabled Route(s): 20-replay-file-benefits.json
    * Test1: Login to BenefitsApp using emp1 account. Result: User successfully logged in.   
-8. OpenIG-SAML SP
-9. OpenIG-OIDC RP
-10. OpenIG-UMA RS: Not yet implemented
+8. OpenIG-SAML SP - Minimal
+   * Enabled Route(s): 30-saml-travel-minimal.json
+   * Disabled Route(s): 31-saml-travel-extended.json
+   * Test1: Login to TravelApp using emp1 account. Result: User successfully logged via SAML 2.0 SP init webSSO flow.   
+9. OpenIG-SAML SP - Extended
+   * Enabled Route(s): 31-saml-travel-extended.json
+   * Disabled Route(s): 30-saml-travel-minimal.json
+   * Test1: Login to TravelApp using emp1 account. Result: User successfully logged via SAML 2.0 SP init webSSO flow. 
+   * Test2: Test SAML SLO. Result: User successfully logged out.
+10. OpenIG-OIDC RP
+11. OpenIG-UMA RS: Not yet implemented
 
 
 

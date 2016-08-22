@@ -1,0 +1,54 @@
+{
+  "baseURI": "http://travel.example.net:8012",
+  "handler": {
+    "type": "DispatchHandler",
+    "config": {
+      "bindings": [
+        {
+          "comment": "SAML federation handler for /saml",
+          "name": "Saml Federation Handler",
+          "condition": "${matches(request.uri.path, '^/saml')}",
+          "handler": {
+            "type": "SamlFederationHandler",
+            "config": {
+              "assertionMapping": {
+                "uid": "uid",
+                "mail": "mail"
+              },
+              "subjectMapping": "subjectName",
+              "redirectURI": "http://travel-ig.example.net:9002/travelApp"
+            },
+            "capture": "all"
+          }
+        },
+        {
+          "comment": "SP init SSO in case user is not authenticated",
+          "name": "SP init SSO",
+          "condition": "${empty session.mail}",
+          "handler": {
+            "type": "StaticResponseHandler",
+            "config": {
+              "status": 302,
+              "reason": "Found",
+              "headers": {
+                "Location": [
+                  "http://travel-ig.example.net:9002/saml/SPInitiatedSSO?RelayState=${urlEncode(contexts.router.originalUri)}"
+                ]
+              }
+            },
+            "capture": "all"
+          }
+        },
+        {
+          "comment": "SP App Redirect",
+          "name": "SP App Redirect",
+          "condition": "${not empty session.mail}",
+          "handler": "ClientHandler"
+        }
+      ]
+    }
+  },
+  "condition": "${matches(request.uri.path, '^/travelApp') or matches(request.uri.path, '^/saml')}",
+  "session": "JwtSession"
+}
+
