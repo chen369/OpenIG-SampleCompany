@@ -129,8 +129,8 @@ SampleCompany URLs :
    CustomerApp via OpenIG: http://employees-ig.example.com:9000/employeeApp/#/
 4. TravelApp direct: http://travel.example.net:8012/travelApp/#/ <br />
    TravelApp via OpenIG: http://travel-ig.example.net:9002/travelApp/#/
-5. BenefitsApp direct: http://benefits.example.net:8014/benefitsApp/ <br />
-   BenefitsApp via OpenIG:: http://benefits-ig.example.net:9002/benefitsApp/   
+5. BenefitsApp direct: http://benefits.example.com:8014/benefitsApp/ <br />
+   BenefitsApp via OpenIG:: http://benefits-ig.example.com:9002/benefitsApp/   
 
 OpenIG Use Cases testing:
 ========================= 
@@ -157,11 +157,17 @@ OpenIG Use Cases testing:
    * Test1: Acquire OAuth Access token by using OAuth Resource Owner Password Credentials flow : curl -X POST -H "Authorization: BASIC ZW1wbG95ZWVBcHA6cGFzc3dvcmQ=" -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=password&username=emp1&password=Passw0rd&scope=uid mail' "http://openam.example.com:18080/openam/oauth2/employees/access_token" <br />
      Get TxHistory for specified user: curl -X GET -H "Authorization: Bearer a04b0596-9ed7-4e7e-bd36-4008d901bcd2" "http://apis-ig.example.net:9002/history/emp1". Result: Should return transaction history for specified user.
    * Test2: Get TxHistory for specified user using invalid OAuth Access token: curl -X GET -H "Authorization: Bearer a04b0596-9ed7-4e7e-bd36-qqqqqqqq" "http://apis-ig.example.net:9002/history/emp1" -v. Result: Should return error: "The access token provided is expired, revoked, malformed, or invalid for other reasons.".   
-4. OpenIG-SAML SP
-5. OpenIG-Credentials Replay-OpenAMAgent: Not yet implemented
-6. OpenIG-Credentials Replay-File-DB: Not yet implemented
-7. OpenIG-OIDC RP
-8. OpenIG-UMA RS: Not yet implemented
+6. OpenIG-Credentials Replay-File-DB:
+   * Enabled Route(s): 20-replay-file-benefits.json
+   * Disabled Route(s): 21-replay-openam-benefits.json
+   * Test1: Navigate to BenefitsApp. Result: User should be automatically logged in.     
+7. OpenIG-Credentials Replay-OpenAM:
+   * Enabled Route(s): 21-replay-openam-benefits.json
+   * Disabled Route(s): 20-replay-file-benefits.json
+   * Test1: Login to BenefitsApp using emp1 account. Result: User successfully logged in.   
+8. OpenIG-SAML SP
+9. OpenIG-OIDC RP
+10. OpenIG-UMA RS: Not yet implemented
 
 
 
