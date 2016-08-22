@@ -97,6 +97,7 @@ OpenAM Installation & Configuration:
    * headers: Accept,Accept-Encoding,Accept-Language,Authorization,Cookie,Connection,Content-Length,Content-Type,iPlanetDirectoryPro,Host,Origin,User-Agent,X-OpenAM-Username,X-OpenAM-Password,X-Requested-With <br />
    * expectedHostname: openam.example.com:18080
    * Leave default value for rest of parameters
+8. Note that only FireFox can be used for OpenAM admin console due to this bug: https://bugster.forgerock.org/jira/browse/OPENAM-5984  
 
 OpenIG Installation & Configuration:
 ====================================
@@ -134,10 +135,11 @@ SampleCompany URLs :
 OpenIG Use Cases testing:
 ========================= 
 1. OpenIG-OpenAM PEP for web applications:
-   * Minimal version - 
-   Ensure '01-pep-employees-minimal.json' is deployed on OpenIG1. You may disable '01-pep-employees-exclusions.json' and '01-pep-employees-extended.json' by suffixing these files by '.disabled. <br />
-     Navigate to EmployeeApp URL via OpenIG
-   * Extended version -     
+   * Minimal - Ensure '02-pep-employees-minimal.json' is deployed on OpenIG1. Following files needs to be disabled: '05-pep-employees-extended.json' , '03-pep-employees-exclusions.json', 04-pep-employees-logout.json'. This can be done by suffixing these files by '.disabled.' Such as '01-pep-employees-logout.json.disabled' <br />
+     Navigate to EmployeeApp URL via OpenIG. Test: Login using emp1 account. 
+   * URL Exclusions - Enable '03-pep-employees-exclusions.json' by removing '.disabled' suffix. This will remove specified URL from policy evaluations.    
+   * Extended - Disable '02-pep-employees-minimal.json' and enable '05-pep-employees-extended.json' , '03-pep-employees-exclusions.json', 04-pep-employees-logout.json'. 
+     Navigate to EmployeeApp URL via OpenIG. Test: Login using emp1 account, Logout, Access denied check using cont1 account. 
 2. OpenIG-OpenAM PEP for REST APIs
 3. OpenIG-OAuth2 RS
 4. OpenIG-SAML SP

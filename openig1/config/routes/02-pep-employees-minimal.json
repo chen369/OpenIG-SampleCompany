@@ -53,5 +53,5 @@
       ]
     }
   },
-  "condition": "${matches(request.uri.path, '^/employeeApp') and not contains(request.uri.path, 'not-enforced')}"
+  "condition": "${matches(request.uri.path, '^/employeeApp')}"
 }
