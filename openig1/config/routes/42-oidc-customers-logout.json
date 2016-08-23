@@ -1,14 +1,14 @@
 {
   "baseURI": "http://customers.example.com:8004/customerApp",
   "handler": {
-    "comment": "OpenAM URL Exclusion Chain",
-    "name": "OpenAM URL Exclusion Chain",
+    "comment": "OpenAM Logout Handler",
+    "name": "OpenAM Logout Handler",
     "type": "Chain",
     "config": {
       "filters": [
         {
-          "comment": "OpenAM URL Exclusion Switch",
-          "name": "OpenAM URL Exclusion Switch",
+          "comment": "OpenAM Logout Switch",
+          "name": "OpenAM Logout Switch",
           "type": "SwitchFilter",
           "config": {
             "onRequest": [
@@ -46,5 +46,5 @@
       "handler": "ClientHandler"
     }
   },
-  "condition": "${matches(request.uri.path, '^/customerApp') and (contains(request.uri.path, 'logout.html') or contains(request.uri.path, 'accessDenied.html') or contains(request.uri.path, '.ico') or contains(request.uri.path, '.js') or contains(request.uri.path, '.css') or contains(request.uri.path, '.jpg'))}"
+  "condition": "${matches(request.uri.path, '^/customerApp') and (contains(request.uri.path, 'logout.html'))}"
 }

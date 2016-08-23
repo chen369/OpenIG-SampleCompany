@@ -117,7 +117,7 @@ OpenIG Installation & Configuration:
    * cors.exposed.headers: Access-Control-Allow-Origin,Access-Control-Allow-Credentials
    * cors.support.credentials: false
    * Leave default value for rest of parameters
-7. Start both OpenIG instances. Verify there are no errors in Apache Tomcat and OpenIG logs. 
+7. Start both OpenIG instances. Verify there are no errors in Apache Tomcat and OpenIG logs. Ensure that OpenAM is started before starting OpenIG servers.
 
 SampleCompany URLs :
 ===========================
@@ -148,7 +148,6 @@ OpenIG Use Cases testing:
    * Test1: Login to EmployeeApp using emp1 account. Result: User successfully logged in.
    * Test2: Logout emp1. Result: User successfully logged out. 
    * Test3: Login to EmployeeApp using cont1 account. Result: User redirected to access denied URL.        
-   * Test1: Login using emp1 account, Logout, Access denied check using cont1 account. 
 4. OpenIG-OpenAM PEP for REST APIs
    * Enabled Route(s): 06-pep-apis.json
    * Disabled Route(s): None
@@ -177,8 +176,16 @@ OpenIG Use Cases testing:
    * Disabled Route(s): 30-saml-travel-minimal.json
    * Test1: Login to TravelApp using emp1 account. Result: User successfully logged via SAML 2.0 SP init webSSO flow. 
    * Test2: Test SAML SLO. Result: User successfully logged out.
-10. OpenIG-OIDC RP
-11. OpenIG-UMA RS: Not yet implemented
+10. OpenIG-OIDC RP - Minimal:
+   * Enabled Route(s): 40-oidc-customers-minimal.json
+   * Disabled Route(s): 41-oidc-customers-exclusions.json, 42-oidc-customers-logout.json, 43-oidc-customers-extended.json. 
+   * Test1: Login to CustomerApp using cus1 account. Result: User successfully logged in.   
+11. OpenIG-OIDC RP - Extended:
+   * Enabled Route(s): 41-oidc-customers-exclusions.json, 42-oidc-customers-logout.json, 43-oidc-customers-extended.json
+   * Disabled Route(s): 40-oidc-customers-minimal.json
+   * Test1: Login to CustomerApp using cus1 account. Result: User successfully logged in.
+   * Test2: Logout cus1. Result: User successfully logged out.
+12. OpenIG-UMA RS: Not yet implemented
 
 
 
