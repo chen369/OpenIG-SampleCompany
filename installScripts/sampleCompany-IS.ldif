@@ -1,0 +1,182 @@
+dn: dc=example,dc=com
+objectClass: domain
+objectClass: top
+dc: example
+
+dn: ou=people,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: people
+
+dn: ou=groups,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: groups
+
+dn: ou=employees,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: employees
+
+dn: ou=customers,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: customers
+
+dn: ou=people,ou=customers,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: people
+
+dn: ou=groups,ou=customers,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: groups
+
+dn: ou=people,ou=employees,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: people
+
+dn: ou=groups,ou=employees,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: groups
+
+dn: uid=emp1,ou=people,ou=employees,dc=example,dc=com
+objectClass: person
+objectClass: inetorgperson
+objectClass: top
+uid: emp1
+mail: john.smith@example.net
+userPassword: {SSHA}+jM0OqsvtZ0gL+acG/joMP7/QfVHaNVIc/LfLg==
+sn: Smith
+cn: John Smith
+givenName: John
+inetUserStatus: Active
+telephoneNumber: +1-973-400-5400
+
+dn: uid=emp2,ou=people,ou=employees,dc=example,dc=com
+objectClass: person
+objectClass: inetorgperson
+objectClass: top
+uid: emp2
+mail: joe.williams@example.net
+userPassword: {SSHA}FQTQAsvpF5DCXMBjkGyvvktao3pguNjErhHvlA==
+sn: Williams
+cn: Joe Williams
+givenName: Joe
+inetUserStatus: Active
+telephoneNumber: +1-204-888-9999
+
+dn: uid=cus1,ou=people,ou=customers,dc=example,dc=com
+objectClass: person
+objectClass: inetorgperson
+objectClass: top
+uid: cus1
+mail: david.copper@example.net
+userPassword: {SSHA}CPAuh+gVgxZHqjn2tPgEw08ak/QpzJQ5FPey+A==
+sn: Copper
+cn: David Cooper
+givenName: David
+inetUserStatus: Active
+telephoneNumber: +1-704-888-9999
+
+dn: cn=policyAdmins,ou=groups,ou=employees,dc=example,dc=com
+objectClass: groupofuniquenames
+objectClass: top
+cn: policyAdmins
+uniqueMember: uid=policyAdmin,ou=people,ou=employees,dc=example,dc=com
+
+dn: uid=policyAdmin,ou=people,ou=employees,dc=example,dc=com
+objectClass: person
+objectClass: inetorgperson
+objectClass: top
+uid: policyAdmin
+givenName: policyAdmin
+inetUserStatus: Active
+sn: policyAdmin
+userPassword: {SSHA}kOOgOMFVhiSLZS89kGmLnwC088umQCbgQqEpNw==
+cn: policyAdmin
+
+dn: cn=empAdmins,ou=groups,ou=employees,dc=example,dc=com
+objectClass: groupofuniquenames
+objectClass: top
+cn: empAdmins
+uniqueMember: uid=empAdmin,ou=people,ou=employees,dc=example,dc=com
+
+dn: uid=empAdmin,ou=people,ou=employees,dc=example,dc=com
+objectClass: person
+objectClass: inetorgperson
+objectClass: top
+uid: empAdmin
+givenName: empAdmin
+inetUserStatus: Active
+sn: empAdmin
+userPassword: {SSHA}s1ZJGxsbfUIdg9VlqR0UR8kux2csIRc5esl4XQ==
+cn: empAdmin
+
+dn: cn=employees,ou=groups,ou=employees,dc=example,dc=com
+objectClass: groupofuniquenames
+objectClass: top
+cn: employees
+uniqueMember: uid=emp2,ou=people,ou=employees,dc=example,dc=com
+uniqueMember: uid=emp1,ou=people,ou=employees,dc=example,dc=com
+uniqueMember: uid=empAdmin,ou=people,ou=employees,dc=example,dc=com
+
+dn: uid=cont1,ou=people,ou=employees,dc=example,dc=com
+objectClass: person
+objectClass: inetorgperson
+objectClass: top
+uid: cont1
+givenName: Neil
+inetUserStatus: Active
+sn: Watson
+userPassword: {SSHA}t+KbilADiHtuiw3BQGFwXrFlwpeZ2CR0v5cx7g==
+cn: Neil Watson
+
+dn: uid=demo,ou=people,dc=example,dc=com
+objectClass: person
+objectClass: inetorgperson
+objectClass: top
+givenName: demo
+uid: demo
+inetUserStatus: Active
+userPassword: {SSHA}gmPe/tSON+jbspl3yqPgMqa4W9VapD9Jyu6RSA==
+sn: demo
+cn: demo
+
+dn: uid=policyAdmin,ou=people,ou=customers,dc=example,dc=com
+objectClass: person
+objectClass: inetorgperson
+objectClass: top
+uid: policyAdmin
+sn: policyAdmin
+userPassword: {SSHA}xhIC13CntqAEvAVjUAa3qgiZgnkBC11uA7oopg==
+cn: policyAdmin
+givenName: policyAdmin
+inetUserStatus: Active
+
+dn: cn=policyAdmins,ou=groups,ou=customers,dc=example,dc=com
+objectClass: groupofuniquenames
+objectClass: top
+uniqueMember: uid=policyAdmin,ou=people,ou=customers,dc=example,dc=com
+cn: policyAdmins
+
+dn: uid=cont2,ou=people,ou=customers,dc=example,dc=com
+objectClass: person
+objectClass: inetorgperson
+objectClass: top
+givenName: Saul
+uid: cont2
+inetUserStatus: Active
+sn: Berrins
+userPassword: {SSHA}I/bs8Hns1TEjMS8wJxf3dilKfFsb3vAqVL3Aqw==
+cn: Saul Berrins
+createTimestamp: 20160823021156Z
+
+dn: cn=customers,ou=groups,ou=customers,dc=example,dc=com
+objectClass: groupofuniquenames
+objectClass: top
+uniqueMember: uid=cus1,ou=people,ou=customers,dc=example,dc=com
+cn: customers

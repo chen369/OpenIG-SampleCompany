@@ -49,6 +49,8 @@ OpenDJ Identity Store Installation & Configuration:
    * Directory Data:                Backend Type: JE Backend
                                     Create New Base DN dc=example,dc=com
    * Base DN Data: Only Create Base Entry (dc=example,dc=com)
+2. Stop OpenDJ Identity store and import identity data using: ./import-ldif --includeBranch dc=example,dc=com --backendID userRoot --ldifFile ~/softwares/installScripts/sample.ldif
+   * Passwords for all users in this ldif is: Passw0rd    
 
 OpenAM Installation & Configuration:
 ====================================
@@ -60,7 +62,7 @@ OpenAM Installation & Configuration:
    * Server Setting:
      * Server URL: http://openam.example.com:18080/openam
      * Cookie Domain: .example.com
-     * Configuration Directory: /home/forgerock/am1   
+     * Configuration Directory: /home/forgerock/openam1   
    * Configuration Store Details 
      * SSL/TLS Enabled: No
      * Host Name: localhost
@@ -77,11 +79,10 @@ OpenAM Installation & Configuration:
      * Password: cangetindj
    * Site Configuration Details: This instance is not setup behind a load balancer
    * Default Policy Agent password: cangetinwa 
-3. Stop OpenDJ Identity store and import identity data using: ./import-ldif --includeBranch dc=example,dc=com --backendID userRoot --ldifFile ~/softwares/installScripts/sample.ldif
-   * Passwords for all users in this ldif is: Passw0rd 
-4. Install SSO Admin Tools under /opt/forgerock/OpenAM-Tools. 
-5. Install patch: 12321-1-tpatch for SSO Admin Tools. Copy openam-auth-fr-oath-13.0.0.jar file from the deployed OpenAM Server war file into the lib directory in the OpenAM Tools home:
-   cp /opt/forgerock/OpenAM-Server/webapps/openam/WEB-INF/lib/openam-auth-fr-oath-13.0.0.jar /opt/forgerock/OpenAM-Tools/lib
+3. Install SSO Admin Tools under /home/forgerock/openam1/tools/admin  
+4. Install patch: 12321-1-tpatch for SSO Admin Tools. 
+5. Copy openam-auth-fr-oath-13.0.0.jar file from the deployed OpenAM Server war file into the lib directory in the OpenAM Tools home: <br />
+   cp /opt/tomcats/am1/webapps/openam/WEB-INF/lib/openam-auth-fr-oath-13.0.0.jar ~/openam1/tools/admin/lib/
 6. Import OpenAM service configs : 
    * Execute command: ./ssoadm import-svc-cfg -u amadmin -f /tmp/pwd.txt -e password -X ~/softwares/installScripts/openam-13.xml
    * Directory Service contains existing data. Do you want to delete it? [y|N] y
@@ -117,7 +118,8 @@ OpenIG Installation & Configuration:
    * cors.exposed.headers: Access-Control-Allow-Origin,Access-Control-Allow-Credentials
    * cors.support.credentials: false
    * Leave default value for rest of parameters
-7. Start both OpenIG instances. Verify there are no errors in Apache Tomcat and OpenIG logs. Ensure that OpenAM is started before starting OpenIG servers.
+7. Ensure that OpenAM are up and running before starting OpenIG servers.   
+8. Start both OpenIG instances. Verify there are no errors in Apache Tomcat and OpenIG logs. 
 
 SampleCompany URLs :
 ===========================
