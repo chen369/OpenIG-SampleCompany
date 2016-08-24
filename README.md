@@ -139,9 +139,11 @@ SampleCompany URLs :
 
 OpenIG Use Cases testing:
 ========================= 
+Note: To disable a route: Suffix route file by '.disabled.' ,such as 04-pep-employees-logout.json.disabled. To enable this route, remove '.disabled.' suffix. 
+ 
 1. OpenIG-OpenAM PEP for web applications - Minimal:
    * Enabled Route(s): 02-pep-employees-minimal.json
-   * Disabled Route(s): 05-pep-employees-extended.json, 03-pep-employees-exclusions.json, 04-pep-employees-logout.json. This can be done by suffixing these files by '.disabled.' Such as 04-pep-employees-logout.json.disabled.
+   * Disabled Route(s): 05-pep-employees-extended.json, 03-pep-employees-exclusions.json, 04-pep-employees-logout.json.
    * Test1: Login to EmployeeApp using emp1 account. Result: User successfully logged in. 
 2. OpenIG-OpenAM PEP for web applications - URL exclusions:
    * Enabled Route(s): 03-pep-employees-exclusions.json
@@ -175,12 +177,14 @@ OpenIG Use Cases testing:
 8. OpenIG-SAML SP - Minimal
    * Enabled Route(s): 30-saml-travel-minimal.json
    * Disabled Route(s): 31-saml-travel-extended.json
-   * Test1: Login to TravelApp using emp1 account. Result: User successfully logged via SAML 2.0 SP init webSSO flow.   
+   * Test1: Login to TravelApp using emp1 account. Result: User successfully logged via SAML 2.0 SP init webSSO flow. 
+   * Test2: Test SAML SLO. Result: User successfully logged out. (Note: this requires 05-pep-employees-extended.json, check use-case #3 above)   
 9. OpenIG-SAML SP - Extended
    * Enabled Route(s): 31-saml-travel-extended.json
    * Disabled Route(s): 30-saml-travel-minimal.json
    * Test1: Login to TravelApp using emp1 account. Result: User successfully logged via SAML 2.0 SP init webSSO flow. 
-   * Test2: Test SAML SLO. Result: User successfully logged out.
+   * Test2: Test SAML SLO. Result: User successfully logged out. (Note: this requires 05-pep-employees-extended.json, check use-case #3 above)  
+   * Test3: spCookie is set with values: username:emp1 mail:john.smith@example.com 
 10. OpenIG-OIDC RP - Minimal:
    * Enabled Route(s): 40-oidc-customers-minimal.json
    * Disabled Route(s): 41-oidc-customers-exclusions.json, 42-oidc-customers-logout.json, 43-oidc-customers-extended.json. 
