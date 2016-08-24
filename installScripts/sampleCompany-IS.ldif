@@ -98,6 +98,7 @@ objectClass: inetorgperson
 objectClass: inetuser
 objectClass: top
 uid: policyAdmin
+mail: policyAdmin@example.com
 givenName: policyAdmin
 inetUserStatus: Active
 sn: policyAdmin
@@ -117,6 +118,7 @@ objectClass: inetorgperson
 objectClass: inetuser
 objectClass: top
 uid: empAdmin
+mail: empAdmin@example.com
 givenName: empAdmin
 inetUserStatus: Active
 sn: empAdmin
@@ -138,6 +140,7 @@ objectClass: inetorgperson
 objectClass: inetuser
 objectClass: top
 uid: cont1
+mail: neil.watson@sample.com
 givenName: Neil
 inetUserStatus: Active
 sn: Watson
@@ -152,6 +155,7 @@ objectClass: inetuser
 objectClass: top
 givenName: demo
 uid: demo
+mail: demo@example.com
 inetUserStatus: Active
 userPassword: {SSHA}gmPe/tSON+jbspl3yqPgMqa4W9VapD9Jyu6RSA==
 sn: demo
@@ -164,6 +168,7 @@ objectClass: inetorgperson
 objectClass: inetuser
 objectClass: top
 uid: policyAdmin
+mail: policyAdmin@example.com
 sn: policyAdmin
 userPassword: {SSHA}xhIC13CntqAEvAVjUAa3qgiZgnkBC11uA7oopg==
 cn: policyAdmin
@@ -184,9 +189,9 @@ objectClass: inetuser
 objectClass: top
 givenName: Saul
 uid: cont2
+mail: saul.berrins@example.com
 inetUserStatus: Active
 sn: Berrins
-mail: saul.berrins@example.com
 userPassword: {SSHA}I/bs8Hns1TEjMS8wJxf3dilKfFsb3vAqVL3Aqw==
 cn: Saul Berrins
 
