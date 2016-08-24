@@ -45,42 +45,45 @@ ou: groups
 
 dn: uid=emp1,ou=people,ou=employees,dc=example,dc=com
 objectClass: person
+objectClass: organizationalperson
 objectClass: inetorgperson
+objectClass: inetuser
 objectClass: top
 uid: emp1
-mail: john.smith@example.net
+mail: john.smith@example.com
 userPassword: {SSHA}+jM0OqsvtZ0gL+acG/joMP7/QfVHaNVIc/LfLg==
 sn: Smith
 cn: John Smith
 givenName: John
 inetUserStatus: Active
-telephoneNumber: +1-973-400-5400
 
 dn: uid=emp2,ou=people,ou=employees,dc=example,dc=com
 objectClass: person
+objectClass: organizationalperson
 objectClass: inetorgperson
+objectClass: inetuser
 objectClass: top
 uid: emp2
-mail: joe.williams@example.net
+mail: joe.williams@example.com
 userPassword: {SSHA}FQTQAsvpF5DCXMBjkGyvvktao3pguNjErhHvlA==
 sn: Williams
 cn: Joe Williams
 givenName: Joe
 inetUserStatus: Active
-telephoneNumber: +1-204-888-9999
 
 dn: uid=cus1,ou=people,ou=customers,dc=example,dc=com
 objectClass: person
+objectClass: organizationalperson
 objectClass: inetorgperson
+objectClass: inetuser
 objectClass: top
 uid: cus1
-mail: david.copper@example.net
+mail: david.copper@example.com
 userPassword: {SSHA}CPAuh+gVgxZHqjn2tPgEw08ak/QpzJQ5FPey+A==
 sn: Copper
 cn: David Cooper
 givenName: David
 inetUserStatus: Active
-telephoneNumber: +1-704-888-9999
 
 dn: cn=policyAdmins,ou=groups,ou=employees,dc=example,dc=com
 objectClass: groupofuniquenames
@@ -90,7 +93,9 @@ uniqueMember: uid=policyAdmin,ou=people,ou=employees,dc=example,dc=com
 
 dn: uid=policyAdmin,ou=people,ou=employees,dc=example,dc=com
 objectClass: person
+objectClass: organizationalperson
 objectClass: inetorgperson
+objectClass: inetuser
 objectClass: top
 uid: policyAdmin
 givenName: policyAdmin
@@ -107,7 +112,9 @@ uniqueMember: uid=empAdmin,ou=people,ou=employees,dc=example,dc=com
 
 dn: uid=empAdmin,ou=people,ou=employees,dc=example,dc=com
 objectClass: person
+objectClass: organizationalperson
 objectClass: inetorgperson
+objectClass: inetuser
 objectClass: top
 uid: empAdmin
 givenName: empAdmin
@@ -126,7 +133,9 @@ uniqueMember: uid=empAdmin,ou=people,ou=employees,dc=example,dc=com
 
 dn: uid=cont1,ou=people,ou=employees,dc=example,dc=com
 objectClass: person
+objectClass: organizationalperson
 objectClass: inetorgperson
+objectClass: inetuser
 objectClass: top
 uid: cont1
 givenName: Neil
@@ -137,7 +146,9 @@ cn: Neil Watson
 
 dn: uid=demo,ou=people,dc=example,dc=com
 objectClass: person
+objectClass: organizationalperson
 objectClass: inetorgperson
+objectClass: inetuser
 objectClass: top
 givenName: demo
 uid: demo
@@ -148,7 +159,9 @@ cn: demo
 
 dn: uid=policyAdmin,ou=people,ou=customers,dc=example,dc=com
 objectClass: person
+objectClass: organizationalperson
 objectClass: inetorgperson
+objectClass: inetuser
 objectClass: top
 uid: policyAdmin
 sn: policyAdmin
@@ -165,15 +178,17 @@ cn: policyAdmins
 
 dn: uid=cont2,ou=people,ou=customers,dc=example,dc=com
 objectClass: person
+objectClass: organizationalperson
 objectClass: inetorgperson
+objectClass: inetuser
 objectClass: top
 givenName: Saul
 uid: cont2
 inetUserStatus: Active
 sn: Berrins
+mail: saul.berrins@example.com
 userPassword: {SSHA}I/bs8Hns1TEjMS8wJxf3dilKfFsb3vAqVL3Aqw==
 cn: Saul Berrins
-createTimestamp: 20160823021156Z
 
 dn: cn=customers,ou=groups,ou=customers,dc=example,dc=com
 objectClass: groupofuniquenames

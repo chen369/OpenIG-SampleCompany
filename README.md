@@ -15,8 +15,8 @@ Pre-requisites :
 ================
 1. Create Linux Server/VM with 4 CPU, 8 GB RAM and 50 GB hard drive. Create user 'forgerock', this user shall be used for all operations in this guide. 
 2. The server hosting OpenIG should have internet connectivity as first request tries to download required jars from maven repo. The custom groovy script uses @Grab and it downloads the required dependencies under <User-Home>/.groovy/grapes.
-3. Copy binaries for OpenIG, OpenDJ and OpenAM to ~/softwares directory.
-4. Copy Install scripts from https://github.com/CharanMann/OpenIG-SampleCompany/tree/master/installScripts to ~/softwares directory. 
+3. Copy binaries for OpenIG, OpenDJ and OpenAM to /opt/forgerock/software directory.
+4. Copy Install scripts from https://github.com/CharanMann/OpenIG-SampleCompany/tree/master/installScripts to /opt/forgerock/labfiles/installScripts directory. 
 5. Specify below local host enteries (both on server hosting and client accessing these applications): <br />
    [IP Address]  openig1.example.com  # OpenIG1, Port:9000 <br />
    [IP Address]  openig2.example.com  # OpenIG2, Port:9002 <br />
@@ -39,25 +39,27 @@ OpenDJ Identity Store Installation & Configuration:
 1. Install OpenDJ 3 under /opt/opendjis. Refer https://backstage.forgerock.com/#!/docs/opendj/3/install-guide#command-line-install <br />
    Setup params: <br />
    ============= <br />
+   * Root User DN:                  cn=Directory Manager
+   * Password                       cangetindj
    * Hostname:                      opendj.example.com
    * LDAP Listener Port:            1389
    * Administration Connector Port: 4444
-   * JMX Listener Port:
-   * LDAP Secure Access:            disabled
-   * Root User DN:                  cn=Directory Manager
-   * Password                       cangetindj
+   * SSL/TLS:                       disabled
    * Directory Data:                Backend Type: JE Backend
                                     Create New Base DN dc=example,dc=com
    * Base DN Data: Only Create Base Entry (dc=example,dc=com)
-2. Stop OpenDJ Identity store and import identity data using: ./import-ldif --includeBranch dc=example,dc=com --backendID userRoot --ldifFile ~/softwares/installScripts/sample.ldif
+2. Stop OpenDJ Identity store and import identity data using: ./import-ldif --includeBranch dc=example,dc=com --backendID userRoot --ldifFile /opt/forgerock/labfiles/installScripts/sampleCompany-IS.ldif
    * Passwords for all users in this ldif is: Passw0rd    
 
 OpenAM Installation & Configuration:
 ====================================
 1. Install OpenAM 13.0 under /opt/tomcats/am1. Refer https://backstage.forgerock.com/#!/docs/openam/13/install-guide#configure-openam-custom <br />
-2. Navigate to http://openam.example.com:18080/openam for OpenAM configuration. <br />
+2. Change Apache tomcat port to 18080
+3. Note that only FireFox can be used for OpenAM admin console due to this bug: https://bugster.forgerock.org/jira/browse/OPENAM-5984 
+4. Navigate to http://openam.example.com:18080/openam for OpenAM configuration. <br />
    Setup params: <br />
    ============= <br />
+   * Tomcat Port: 18080
    * amAdmin password: cangetinam
    * Server Setting:
      * Server URL: http://openam.example.com:18080/openam
@@ -79,16 +81,16 @@ OpenAM Installation & Configuration:
      * Password: cangetindj
    * Site Configuration Details: This instance is not setup behind a load balancer
    * Default Policy Agent password: cangetinwa 
-3. Install SSO Admin Tools under /home/forgerock/openam1/tools/admin  
-4. Install patch: 12321-1-tpatch for SSO Admin Tools. 
-5. Copy openam-auth-fr-oath-13.0.0.jar file from the deployed OpenAM Server war file into the lib directory in the OpenAM Tools home: <br />
+5. Install SSO Admin Tools under /home/forgerock/openam1/tools/admin  
+6. Install patch: 12321-1-tpatch for SSO Admin Tools. 
+7. Copy openam-auth-fr-oath-13.0.0.jar file from the deployed OpenAM Server war file into the lib directory in the OpenAM Tools home: <br />
    cp /opt/tomcats/am1/webapps/openam/WEB-INF/lib/openam-auth-fr-oath-13.0.0.jar ~/openam1/tools/admin/lib/
-6. Import OpenAM service configs : 
-   * Execute command: ./ssoadm import-svc-cfg -u amadmin -f /tmp/pwd.txt -e password -X ~/softwares/installScripts/openam-13.xml
+8. Import OpenAM service configs : 
+   * Execute command: ./ssoadm import-svc-cfg -u amadmin -f /tmp/pwd.txt -e password -X /opt/forgerock/labfiles/installScripts/openam-13.xml
    * Directory Service contains existing data. Do you want to delete it? [y|N] y
    * Check for any errors. Check if all service configurations have been imported successfully. 
    * Note that no OpenAM policies shall appear in any realm, this is due to bug: https://bugster.forgerock.org/jira/browse/OPENAM-8169 
-7. Enable CORS filter for OpenAM. Refer https://backstage.forgerock.com/#!/docs/openam/13/install-guide/chap-prepare-install#enable-cors-support <br />
+9. Enable CORS filter for OpenAM. Refer https://backstage.forgerock.com/#!/docs/openam/13/install-guide/chap-prepare-install#enable-cors-support <br />
    CORS filter params: <br />
    ============= <br />
    * url-pattern: /json/*
@@ -98,14 +100,15 @@ OpenAM Installation & Configuration:
    * headers: Accept,Accept-Encoding,Accept-Language,Authorization,Cookie,Connection,Content-Length,Content-Type,iPlanetDirectoryPro,Host,Origin,User-Agent,X-OpenAM-Username,X-OpenAM-Password,X-Requested-With <br />
    * expectedHostname: openam.example.com:18080
    * Leave default value for rest of parameters
-8. Note that only FireFox can be used for OpenAM admin console due to this bug: https://bugster.forgerock.org/jira/browse/OPENAM-5984  
-
+10. Use these keys for OpenAM /home/forgerock/openam1/openam/keystore.jks: .storepass: AQIC48g7Wethu6phNuLLO9Z6oAZasHjhzGb2 and .keypass: AQIC48g7Wethu6phNuLLO9Z6oAZasHjhzGb2  
+11. Restart OpenAM server. 
+ 
 OpenIG Installation & Configuration:
 ====================================
 1. Install two OpenIG 4.0 instances on Apache Tomcat under /opt/tomcats/ig1 and /opt/tomcats/ig2 respectively. Refer https://backstage.forgerock.com/#!/docs/openig/4/gateway-guide#install
 2. Change port number for Apache Tomcat for OpenIG1 to 9000 and OpenIG2 to 9002 respectively.  
 3. Specify config directories for each OpenIG instance by specifying OPENIG_BASE. e.g for OpenIG1 specify "export OPENIG_BASE=/home/forgerock/.openig1" in /opt/tomcats/ig1/bin/setenv.sh
-4. Create logs directory for each OpenIG instance. e.g for OpenIG1 create /home/forgerock/.openig1/logs
+4. Create OpenIG base directories such as /home/forgerock/.openig1 for OpenIG1. Also, create logs directory for each OpenIG instance: /home/forgerock/.openig1/logs
 5. Copy OpenIG configurations for each OpenIG instance. e.g for OpenIG1 copy https://github.com/CharanMann/OpenIG-SampleCompany/tree/master/openig1 to /home/forgerock/.openig1  <br />
    Note that certain OpenIG routes needs to be disabled for specific use case testing. Refer to section 'OpenIG Use Cases testing' for more information.  
 6. Specify CORS filter for OpenIG2 in /opt/tomcats/ig2/conf/web.xml. Refer https://tomcat.apache.org/tomcat-7.0-doc/config/filter.html#CORS_Filter for sample CORS filter template. <br />
