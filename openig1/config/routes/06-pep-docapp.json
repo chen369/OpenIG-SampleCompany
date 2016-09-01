@@ -1,0 +1,84 @@
+{
+  "baseURI": "http://docapp45.sample.com:8081",
+  "handler": {
+    "type": "DispatchHandler",
+    "config": {
+      "bindings": [
+        {
+          "comment": "Redirect to OpenAM authentication",
+          "name": "OpenAM Authentication",
+          "condition": "${request.cookies['iPlanetDirectoryPro'] == null}",
+          "handler": {
+            "type": "StaticResponseHandler",
+            "config": {
+              "status": 302,
+              "reason": "Found",
+              "headers": {
+                "Location": [
+                  "http://openam135.sample.com:8080/openam/XUI/#login/employees&goto=${urlEncode(contexts.router.originalUri)}"
+                ]
+              },
+              "entity": "Redirecting to OpenAM for authentication..."
+            },
+            "capture": "all"
+          }
+        },
+        {
+          "comment": "OpenAM Authorization chain for policy validation and attributes retrieval",
+          "name": "OpenAM Authorization Chain",
+          "condition": "${request.cookies['iPlanetDirectoryPro'] != null}",
+          "handler": {
+            "type": "Chain",
+            "config": {
+              "filters": [
+                {
+                  "comment": "OpenAM Session expiry",
+                  "name": "OpenAM Session expiry",
+                  "type": "SwitchFilter",
+                  "config": {
+                    "onResponse": [
+                      {
+                        "condition": "${response.status.code == 500}",
+                        "handler": {
+                          "type": "StaticResponseHandler",
+                          "config": {
+                            "status": 302,
+                            "reason": "Found",
+                            "headers": {
+                              "Location": [
+                                "http://docapp45-ig.sample.com:9000/not-enforced"
+                              ]
+                            },
+                            "entity": "Redirect to Error page"
+                          },
+                          "capture": "all"
+                        }
+                      }
+                    ]
+                  },
+                  "capture": "all"
+                },
+                {
+                  "comment": "OpenAM Authorization check filter",
+                  "name": "OpenAM Authorization",
+                  "type": "PolicyEnforcementFilter",
+                  "config": {
+                    "openamUrl": "http://openam135.sample.com:8080/openam",
+                    "pepUsername": "policyAdmin",
+                    "pepPassword": "Passw0rd",
+                    "realm": "employees",
+                    "application": "OpenIG1",
+                    "ssoTokenSubject": "${request.cookies['iPlanetDirectoryPro'][0].value}"
+                  },
+                  "capture": "all"
+                }
+              ],
+              "handler": "ClientHandler"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "condition": "${matches(request.uri.path, '^/pep') and not contains(request.uri.path, 'not-enforced')}"
+}
