@@ -29,7 +29,7 @@ session.put("openIGHome", openIGHome)
 // Iterate over session attributes
 for (sessionAttr in sessionAttributes.split()) {
     logger.info("Parsing attribute: " + sessionAttr)
-    def (attrName, attrValue) = sessionAttr.tokenize( ':' )
+    def (attrName, attrValue) = sessionAttr.tokenize(':')
 
     // Set the attributes in Session
     logger.info("Setting Session attribute: " + attrName + " ,value: " + attrValue)

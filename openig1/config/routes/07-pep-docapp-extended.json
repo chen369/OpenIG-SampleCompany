@@ -1,0 +1,46 @@
+{
+  "baseURI": "http://docapp45.sample.com:8081",
+  "handler": {
+    "comment": "OpenAM Authentication (and Attributes retrieval), Authorization chain",
+    "name": "OpenAM Chain",
+    "type": "Chain",
+    "config": {
+      "filters": [
+        {
+          "comment": "Scripted filter for OpenAM Authentication redirect",
+          "name": "OpenAM Authentication redirect",
+          "type": "ScriptableFilter",
+          "config": {
+            "type": "application/x-groovy",
+            "file": "OpenAMAuthn.groovy",
+            "args": {
+              "openamUrl": "http://openam135.sample.com:8080/openam/json/employees",
+              "openamAuthUrl": "http://openam135.sample.com:8080/openam/XUI/#login/employees&goto=${urlEncodeQueryParameterNameOrValue(contexts.router.originalUri)}",
+              "profileAttributes": [
+                "uid",
+                "mail"
+              ]
+            }
+          },
+          "capture": "all"
+        },
+        {
+          "comment": "OpenAM Authorization check filter",
+          "name": "OpenAM Authorization",
+          "type": "PolicyEnforcementFilter",
+          "config": {
+            "openamUrl": "http://openam135.sample.com:8080/openam",
+            "pepUsername": "policyAdmin",
+            "pepPassword": "Passw0rd",
+            "realm": "employees",
+            "application": "OpenIG1",
+            "ssoTokenSubject": "${request.cookies['iPlanetDirectoryPro'][0].value}"
+          },
+          "capture": "all"
+        }
+      ],
+      "handler": "ClientHandler"
+    }
+  },
+  "condition": "${matches(request.uri.path, '^/pep') and not contains(request.uri.path, 'not-enforced')}"
+}

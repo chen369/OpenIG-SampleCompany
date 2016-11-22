@@ -18,15 +18,15 @@
       "type": "JwtSession",
       "config": {
         "keystore": {
-            "type": "KeyStore",
-            "config": {
-                "url": "file://${env['OPENIG_BASE']}/config/keystore.jks",
-                "password": "password"
-            }
+          "type": "KeyStore",
+          "config": {
+            "url": "file://${env['OPENIG_BASE']}/config/keystore.jks",
+            "password": "password"
+          }
         },
         "alias": "openig",
         "password": "password"
-      }	
+      }
     },
     {
       "name": "capture",
