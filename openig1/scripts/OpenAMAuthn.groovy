@@ -88,9 +88,9 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
         // If cookie validation succeeds and has valid uid
         if (isTokenValid && null != uid) {
 
-            if (!profileAttributes.empty) {
+            if (!(profileAttributes.empty)) {
                 // Retrieving user profile attributes
-                logger.info("Retrieving user profile attributes: ${profileAttributes} for user: ${uid}" + profileAttributes.length)
+                logger.info("Retrieving user profile attributes: ${profileAttributes} for user: ${uid}")
                 Request attributes = new Request()
                 attributes.uri = "${openamUrl}/users/${uid}"
                 attributes.headers.put('iPlanetDirectoryPro', openAMCookie)

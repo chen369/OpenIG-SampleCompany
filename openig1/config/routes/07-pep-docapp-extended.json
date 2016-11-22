@@ -1,14 +1,14 @@
 {
   "baseURI": "http://docapp45.sample.com:8081",
   "handler": {
-    "comment": "OpenAM Authentication (and Attributes retrieval), Authorization chain",
+    "comment": "OpenAM Authentication redirect (and Attributes retrieval), Authorization chain",
     "name": "OpenAM Chain",
     "type": "Chain",
     "config": {
       "filters": [
         {
           "comment": "Scripted filter for OpenAM Authentication redirect",
-          "name": "OpenAM Authentication redirect",
+          "name": "OpenAM Authentication redirect (and Attributes retrieval)",
           "type": "ScriptableFilter",
           "config": {
             "type": "application/x-groovy",
