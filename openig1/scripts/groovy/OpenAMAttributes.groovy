@@ -31,27 +31,24 @@
  *
  * This script requires these arguments: profileAttributes, openamUrl
  */
-@Grab(group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.7.1')
-
-import groovyx.net.http.RESTClient
+import org.forgerock.http.protocol.Request
 import org.forgerock.http.protocol.Response
 import org.forgerock.http.protocol.Status
+import org.forgerock.util.AsyncFunction
+
+import static org.forgerock.http.protocol.Response.newResponsePromise
 
 /**
  * Creates unauthorized error
- * @return Status.UNAUTHORIZED
  */
 def getUnauthorizedError() {
     logger.info("Returning UNAUTHORIZED error")
-    Response errResponse = new Response()
+    Response errResponse = new Response(Status.UNAUTHORIZED)
+    errResponse.entity.json = [code: 401, reason: "Unauthorized", message: "Authentication Failed"];
 
-    errResponse.status = Status.UNAUTHORIZED
-    errResponse.headers.add("Content-Type", ["application/json; charset=utf-8"])
-    errResponse.entity = "{\"code\": 401,\"reason\":\"Unauthorized\",\"message\":\"Authentication Failed\"}"
-    return errResponse
+    // Need to wrap the response object in a promise
+    return newResponsePromise(errResponse)
 }
-
-def openAMRESTClient = new RESTClient(openamUrl)
 
 // Check if OpenAM session cookie is present
 if (null != request.cookies['iPlanetDirectoryPro']) {
@@ -59,33 +56,61 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
 
     // Perform cookie validation and get uid
     logger.info("iPlanetDirectoryPro cookie found, performing validation")
-    response = openAMRESTClient.post(path: 'sessions/' + openAMCookie, query: ['_action': 'validate'])
-    isTokenValid = response.getData().get("valid")
-    uid = response.getData().get("uid")
 
-    // If cookie validation succeeds and has valid uid
-    if (isTokenValid && null != uid) {
+    Request validation = new Request()
+    validation.uri = "${openamUrl}/sessions/${openAMCookie}?_action=validate"
+    validation.method = "POST"
+    return http.send(context, validation)
+    // when there will be a response available ...
+    // Need to use 'thenAsync' instead of 'then' because we'll return another promise, not directly a response
+            .thenAsync({ validationResponse ->
+        logger.info("Token Validation Response : ${validationResponse.entity.json}")
+        def data = validationResponse.entity.json
+        def isTokenValid = data['valid']
+        def uid = data['uid']
 
-        // Retrieving user profile attributes
-        logger.info("Retrieving user profile attributes: " + profileAttributes + " for user: " + uid)
-        response = openAMRESTClient.get(path: 'users/' + uid, headers: ['iPlanetDirectoryPro': openAMCookie])
+        // If cookie validation succeeds and has valid uid
+        if (isTokenValid && null != uid) {
 
-        // Iterate over required profile attributes
-        for (attrName in profileAttributes.split()) {
-            attrValue = response.getData().get(attrName)[0];
+            if (!(profileAttributes.empty)) {
+                // Retrieving user profile attributes
+                logger.info("Retrieving user profile attributes: ${profileAttributes} for user: ${uid}")
+                Request attributes = new Request()
+                attributes.uri = "${openamUrl}/users/${uid}"
+                attributes.headers.put('iPlanetDirectoryPro', openAMCookie)
+                attributes.method = "GET"
 
-            // Set the attributes in header
-            // These header values can be encrypted by a symmetric key shared between OpenIG and protected application
-            logger.info("Setting HTTP header: " + attrName + " ,value: " + attrValue)
-            request.headers.add(attrName, attrValue)
+                return http.send(context, attributes)
+                        .thenAsync({ attributesResponse ->
+                    profileAttributes.each { name ->
+                        def attrs = attributesResponse.entity.json
+                        def values = attrs[name]
+                        logger.info("Retrieved user profile attribute values: ${values} for attribute name: ${name}")
+
+                        // Check if some attribute is present for specified name
+                        if (null != values) {
+                            def attrValue = values[0]
+
+                            // Set the attributes in headers of the original request
+                            // Security tip: These header values can be encrypted by a symmetric key shared between OpenIG and protected application
+                            logger.info("Setting HTTP header: ${name}, value: ${attrValue}")
+                            request.headers.add(name, attrValue)
+                        }
+                    }
+
+                    // Call the next handler with the modified request
+                    // That returns a new promise without blocking the current flow of execution
+                    return next.handle(context, request)
+                } as AsyncFunction)
+            } else {
+                logger.info("No attributes retrieval required, invoking next handler")
+                // Call the next handler
+                return next.handle(context, request)
+            }
         }
-
-        // Call the next handler. This returns when the request has been handled.
-        return next.handle(context, request)
-    } else {
         logger.info("Token validation failed")
         return getUnauthorizedError()
-    }
+    } as AsyncFunction)
 } else {
     logger.info("No iPlanetDirectoryPro cookie present")
     return getUnauthorizedError()

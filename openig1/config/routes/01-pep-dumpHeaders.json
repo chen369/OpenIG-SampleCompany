@@ -53,8 +53,11 @@
                     "type": "application/x-groovy",
                     "file": "OpenAMAttributes.groovy",
                     "args": {
-                      "profileAttributes": "uid mail",
-                      "openamUrl": "http://openam.example.com:18080/openam/json/employees/"
+                      "openamUrl": "http://openam.example.com:18080/openam/json/employees",
+                      "profileAttributes": [
+                        "uid",
+                        "mail"
+                      ]
                     }
                   },
                   "capture": "all"
