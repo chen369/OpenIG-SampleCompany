@@ -31,24 +31,34 @@
  *
  * This script requires these arguments: openamUrl
  */
-@Grab(group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.7.1')
+import org.forgerock.http.protocol.Request
+import org.forgerock.util.AsyncFunction
 
-import groovyx.net.http.RESTClient
-
-def openAMRESTClient = new RESTClient(openamUrl)
-
+logger.info("Performing OpenAM logout")
 // Check if OpenAM session cookie is present
 if (null != request.cookies['iPlanetDirectoryPro']) {
-    String openAMCookieValue = request.cookies['iPlanetDirectoryPro'][0].value
+    String openAMCookie = request.cookies['iPlanetDirectoryPro'][0].value
 
-    // Perform logout
-    logger.info("iPlanetDirectoryPro cookie found, performing logout")
-    response = openAMRESTClient.post(path: 'sessions/', query: ['_action': 'logout'], headers: ['iplanetDirectoryPro': openAMCookieValue])
-    result = response.getData().get("result")
-    logger.info("OpenAM logout request response: " + result)
+    Request logout = new Request()
+    logout.uri = "${openamUrl}/sessions/${openAMCookie}?_action=logout"
+    logout.method = "POST"
+    logout.headers.put('iPlanetDirectoryPro', openAMCookie)
+
+    return http.send(context, logout)
+    // when there will be a response available ...
+    // Need to use 'thenAsync' instead of 'then' because we'll return another promise, not directly a response
+            .thenAsync({ logoutResponse ->
+        logger.info("OpenAM logout Response : ${logoutResponse.entity.json}")
+
+        return next.handle(context, request)
+    } as AsyncFunction)
+
+} else {
+    logger.info("No iPlanetDirectoryPro cookie present for performing OpenAM logout")
 }
 
 return next.handle(context, request)
+
 
 
 

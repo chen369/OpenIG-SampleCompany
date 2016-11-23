@@ -28,7 +28,7 @@
                           "type": "application/x-groovy",
                           "file": "OpenAMLogout.groovy",
                           "args": {
-                            "openamUrl": "http://openam.example.com:18080/openam/json/employees/"
+                            "openamUrl": "http://openam.example.com:18080/openam/json/employees"
                           }
                         },
                         "capture": "all"
