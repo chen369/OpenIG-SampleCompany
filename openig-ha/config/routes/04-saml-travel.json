@@ -39,7 +39,7 @@
               "reason": "Found",
               "headers": {
                 "Location": [
-                  "http://openig.example.net:9000/saml/SPInitiatedSSO?RelayState=${urlEncode(contexts.router.originalUri)}"
+                  "http://openig.example.net:9000/saml/SPInitiatedSSO?RelayState=${urlEncodeQueryParameterNameOrValue(contexts.router.originalUri)}"
                 ]
               }
             },

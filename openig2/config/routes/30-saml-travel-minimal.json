@@ -32,7 +32,7 @@
               "reason": "Found",
               "headers": {
                 "Location": [
-                  "http://travel-ig.example.net:9002/saml/SPInitiatedSSO?RelayState=${urlEncode(contexts.router.originalUri)}"
+                  "http://travel-ig.example.net:9002/saml/SPInitiatedSSO?RelayState=${urlEncodeQueryParameterNameOrValue(contexts.router.originalUri)}"
                 ]
               }
             },

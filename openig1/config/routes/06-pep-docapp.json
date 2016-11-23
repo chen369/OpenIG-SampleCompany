@@ -15,7 +15,7 @@
               "reason": "Found",
               "headers": {
                 "Location": [
-                  "http://openam135.sample.com:8080/openam/XUI/#login/employees&goto=${urlEncode(contexts.router.originalUri)}"
+                  "http://openam135.sample.com:8080/openam/XUI/#login/employees&goto=${urlEncodeQueryParameterNameOrValue(contexts.router.originalUri)}"
                 ]
               },
               "entity": "Redirecting to OpenAM for authentication..."

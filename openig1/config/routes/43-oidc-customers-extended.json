@@ -40,7 +40,7 @@
             "file": "OpenAMAuthnRedirect.groovy",
             "args": {
               "openamUrl": "http://openam.example.com:18080/openam/json/customers/",
-              "openamAuthUrl": "http://openam.example.com:18080/openam/XUI/#login/customers&goto=${urlEncode(contexts.router.originalUri)}"
+              "openamAuthUrl": "http://openam.example.com:18080/openam/XUI/#login/customers&goto=${urlEncodeQueryParameterNameOrValue(contexts.router.originalUri)}"
             }
           },
           "capture": "all"

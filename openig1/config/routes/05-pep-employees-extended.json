@@ -15,7 +15,7 @@
             "file": "OpenAMAuthn.groovy",
             "args": {
               "openamUrl": "http://openam.example.com:18080/openam/json/employees",
-              "openamAuthUrl": "http://openam.example.com:18080/openam/XUI/#login/employees&goto=${urlEncode(contexts.router.originalUri)}",
+              "openamAuthUrl": "http://openam.example.com:18080/openam/XUI/#login/employees&goto=${urlEncodeQueryParameterNameOrValue(contexts.router.originalUri)}",
               "profileAttributes": [
                 "uid",
                 "mail"
