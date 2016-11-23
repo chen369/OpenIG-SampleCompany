@@ -119,7 +119,7 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
                     return next.handle(context, request)
                 } as AsyncFunction)
             } else {
-                logger.info("No attributes retrieval required, redirecting to next handler")
+                logger.info("No attributes retrieval required, invoking next handler")
                 // Call the next handler
                 return next.handle(context, request)
             }

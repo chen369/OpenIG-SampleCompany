@@ -1,21 +1,25 @@
 {
   "baseURI": "http://employees.example.com:8002/employeeApp",
   "handler": {
-    "comment": "OpenAM Authentication, Authorization, Attributes retrieval chain",
+    "comment": "OpenAM Authentication redirect (and Attributes retrieval), Authorization chain",
     "name": "OpenAM Chain",
     "type": "Chain",
     "config": {
       "filters": [
         {
           "comment": "Scripted filter for OpenAM Authentication redirect",
-          "name": "OpenAM Authentication redirect",
+          "name": "OpenAM Authentication redirect (and Attributes retrieval)",
           "type": "ScriptableFilter",
           "config": {
             "type": "application/x-groovy",
-            "file": "OpenAMAuthnRedirect.groovy",
+            "file": "OpenAMAuthn.groovy",
             "args": {
-              "openamUrl": "http://openam.example.com:18080/openam/json/employees/",
-              "openamAuthUrl": "http://openam.example.com:18080/openam/XUI/#login/employees&goto=${urlEncode(contexts.router.originalUri)}"
+              "openamUrl": "http://openam.example.com:18080/openam/json/employees",
+              "openamAuthUrl": "http://openam.example.com:18080/openam/XUI/#login/employees&goto=${urlEncode(contexts.router.originalUri)}",
+              "profileAttributes": [
+                "uid",
+                "mail"
+              ]
             }
           },
           "capture": "all"
@@ -57,20 +61,6 @@
             "realm": "employees",
             "application": "OpenIG1",
             "ssoTokenSubject": "${request.cookies['iPlanetDirectoryPro'][0].value}"
-          },
-          "capture": "all"
-        },
-        {
-          "comment": "(Optional) Scripted filter for retrieving user's attributes and setting as HTTP headers",
-          "name": "OpenAM Attributes",
-          "type": "ScriptableFilter",
-          "config": {
-            "type": "application/x-groovy",
-            "file": "OpenAMAttributes.groovy",
-            "args": {
-              "profileAttributes": "uid mail",
-              "openamUrl": "http://openam.example.com:18080/openam/json/employees/"
-            }
           },
           "capture": "all"
         }
