@@ -7,38 +7,15 @@
     "config": {
       "filters": [
         {
-          "comment": "OpenAM Logout Switch",
-          "name": "OpenAM Logout Switch",
-          "type": "SwitchFilter",
+          "comment": "Scripted filter for OpenAM Logout",
+          "name": "OpenAM Logout",
+          "type": "ScriptableFilter",
           "config": {
-            "onRequest": [
-              {
-                "condition": "${contains(request.uri.path, 'logout.html')}",
-                "handler": {
-                  "comment": "(Optional) OpenAM Logout",
-                  "name": "OpenAM Logout Chain",
-                  "type": "Chain",
-                  "config": {
-                    "filters": [
-                      {
-                        "comment": "Scripted filter for OpenAM Logout",
-                        "name": "OpenAM Logout",
-                        "type": "ScriptableFilter",
-                        "config": {
-                          "type": "application/x-groovy",
-                          "file": "OpenAMLogout.groovy",
-                          "args": {
-                            "openamUrl": "http://openam.example.com:18080/openam/json/customers"
-                          }
-                        },
-                        "capture": "all"
-                      }
-                    ],
-                    "handler": "ClientHandler"
-                  }
-                }
-              }
-            ]
+            "type": "application/x-groovy",
+            "file": "OpenAMLogout.groovy",
+            "args": {
+              "openamUrl": "http://openam.example.com:18080/openam/json/customers"
+            }
           },
           "capture": "all"
         }
