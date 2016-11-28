@@ -33,14 +33,15 @@
       "filters": [
         {
           "comment": "Scripted filter for OpenAM Authentication redirect",
-          "name": "OpenAM Authentication redirect",
+          "name": "OpenAM Authentication redirect (and Attributes retrieval)",
           "type": "ScriptableFilter",
           "config": {
             "type": "application/x-groovy",
-            "file": "OpenAMAuthnRedirect.groovy",
+            "file": "OpenAMAuthn.groovy",
             "args": {
-              "openamUrl": "http://openam.example.com:18080/openam/json/customers/",
-              "openamAuthUrl": "http://openam.example.com:18080/openam/XUI/#login/customers&goto=${urlEncodeQueryParameterNameOrValue(contexts.router.originalUri)}"
+              "openamUrl": "http://openam.example.com:18080/openam/json/customers",
+              "openamAuthUrl": "http://openam.example.com:18080/openam/XUI/#login/customers&goto=${urlEncodeQueryParameterNameOrValue(contexts.router.originalUri)}",
+              "profileAttributes": []
             }
           },
           "capture": "all"
@@ -62,7 +63,8 @@
               }
             },
             "registration": "OidcRelyingParty"
-          }
+          },
+          "capture": "all"
         }
       ],
       "handler": "ClientHandler"
