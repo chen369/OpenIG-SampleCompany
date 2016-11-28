@@ -16,7 +16,7 @@
             "args": {
               "userId": "${request.headers['X-OpenAM-Username'][0]}",
               "password": "${request.headers['X-OpenAM-Password'][0]}",
-              "openamUrl": "http://openam.example.com:18080/openam/json/employees/"
+              "openamUrl": "http://openam.example.com:18080/openam/json/employees"
             }
           },
           "capture": "all"

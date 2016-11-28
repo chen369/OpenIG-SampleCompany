@@ -42,7 +42,7 @@ import static org.forgerock.http.protocol.Response.newResponsePromise
  */
 
 /**
- * Creates unauthorized error
+ * Creates Redirect response
  */
 def getRedirectResponse() {
     logger.info("Returning redirect to OpenAM Login URL")

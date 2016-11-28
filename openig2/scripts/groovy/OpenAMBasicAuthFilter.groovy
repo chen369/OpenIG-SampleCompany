@@ -31,24 +31,23 @@
  *
  * This script requires these arguments: userId, password, openamUrl
  */
-@Grab(group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.7.1')
-
-import groovyx.net.http.RESTClient
+import org.forgerock.http.protocol.Request
 import org.forgerock.http.protocol.Response
 import org.forgerock.http.protocol.Status
+import org.forgerock.util.AsyncFunction
+
+import static org.forgerock.http.protocol.Response.newResponsePromise
 
 /**
  * Creates unauthorized error
- * @return Status.UNAUTHORIZED
  */
 def getUnauthorizedError() {
-    logger.info("Returning UNAUTHORIZED error")
-    Response errResponse = new Response()
+    logger.info("Returning Unauthorized error")
+    Response errResponse = new Response(Status.UNAUTHORIZED)
+    errResponse.entity.json = [code: 401, reason: "Unauthorized", message: "Authentication Failed"];
 
-    errResponse.status = Status.UNAUTHORIZED
-    errResponse.headers.add("Content-Type", ["application/json; charset=utf-8"])
-    errResponse.entity = "{\"code\": 401,\"reason\":\"Unauthorized\",\"message\":\"Authentication Failed\"}"
-    return errResponse
+    // Need to wrap the response object in a promise
+    return newResponsePromise(errResponse)
 }
 
 /**
@@ -63,37 +62,69 @@ def callNextHandler(tokenId) {
     return next.handle(context, request)
 }
 
-def openAMRESTClient = new RESTClient(openamUrl)
+def performOpenAMAuthn() {
+    logger.info("Authenticating user: " + userId)
 
-// Check if valid session is present
+    // Invoke OpenAM authentication
+    Request authenticate = new Request()
+    authenticate.uri = "${openamUrl}/authenticate"
+    authenticate.headers.put('X-OpenAM-Username', userId)
+    authenticate.headers.put('X-OpenAM-Password', password)
+    authenticate.method = "POST"
+
+    return http.send(context, authenticate)
+    // when there will be a response available ...
+    // Need to use 'thenAsync' instead of 'then' because we'll return another promise, not directly a response
+            .thenAsync({ authenticateResponse ->
+        logger.info("User Authentication Response : ${authenticateResponse.entity.json}")
+        data = authenticateResponse.entity.json
+        def tokenId = data['tokenId']
+
+        // If cookie validation succeeds and has valid uid
+        if (null != tokenId) {
+            logger.info("User Authentication Successful, Invoking next handler")
+
+            return callNextHandler(tokenId)
+        } else {
+            logger.info("User Authentication Failed")
+            // In case of any failure like authentication failure, server exception etc, return UNAUTHORIZED status. This can be modified to return specific response status for different failures.
+            // No need to call next.handle() as we want to terminate handing here
+            return getUnauthorizedError()
+        }
+    } as AsyncFunction)
+}
+
+// Check if OpenAM session cookie is present
 if (null != request.cookies['iPlanetDirectoryPro']) {
     String openAMCookie = request.cookies['iPlanetDirectoryPro'][0].value
 
-    // Perform cookie validation
+    // Perform cookie validation and get uid
     logger.info("iPlanetDirectoryPro cookie found, performing validation")
-    response = openAMRESTClient.post(path: 'sessions/' + openAMCookie, query: ['_action': 'validate'])
-    isTokenValid = response.getData().get("valid")
 
-    if (isTokenValid) {
-        logger.info("Valid OpenAM session, skipping authentication")
+    Request validation = new Request()
+    validation.uri = "${openamUrl}/sessions/${openAMCookie}?_action=validate"
+    validation.method = "POST"
+    return http.send(context, validation)
+    // when there will be a response available ...
+    // Need to use 'thenAsync' instead of 'then' because we'll return another promise, not directly a response
+            .thenAsync({ validationResponse ->
+        logger.info("Token Validation Response : ${validationResponse.entity.json}")
+        def data = validationResponse.entity.json
+        def isTokenValid = data['valid']
 
-        return callNextHandler(openAMCookie)
-    } else {
-        logger.info("Invalid OpenAM session")
-    }
+        // If cookie validation succeeds
+        if (isTokenValid) {
+            logger.info("Valid OpenAM session, skipping authentication")
+
+            return callNextHandler(openAMCookie)
+        } else {
+            logger.info("Invalid OpenAM session, Proceeding to perform OpenAM Basic Authentication")
+
+            return performOpenAMAuthn()
+        }
+    } as AsyncFunction)
+} else {
+    return performOpenAMAuthn()
 }
 
-// Invoke OpenAM authentication
-logger.info("Authenticating user: " + userId)
 
-try {
-    response = openAMRESTClient.post(path: 'authenticate', headers: ['X-OpenAM-Username': userId, 'X-OpenAM-Password': password])
-}
-catch (Exception e) {
-    logger.info("Exception in authenticating user: " + e.getMessage())
-    // In case of any failure like authentication failure, server exception etc, return UNAUTHORIZED status. This can be modified to return specific response status for different failures.
-    // No need to call next.handle() as we want to terminate handing here
-    return getUnauthorizedError()
-}
-
-callNextHandler(response.getData().get("tokenId"))
