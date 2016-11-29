@@ -130,7 +130,8 @@ SampleCompany URLs :
 
 OpenIG Use Cases testing:
 ========================= 
-Note: To disable a route: Suffix route file by '.disabled.' ,such as 04-pep-employees-logout.json.disabled. To enable this route, remove '.disabled.' suffix. 
+Note: To disable a route: Suffix route file by '.disabled.' ,such as 04-pep-employees-logout.json.disabled. To enable this route, remove '.disabled.' suffix. <br />
+Also, some of the routes uses ScriptableFilter implemented in Groovy. <br />
  
 1. OpenIG-OpenAM PEP for web applications - Minimal:
    * Enabled Route(s): 02-pep-employees-minimal.json
@@ -181,6 +182,7 @@ Note: To disable a route: Suffix route file by '.disabled.' ,such as 04-pep-empl
    * Disabled Route(s): 41-oidc-customers-exclusions.json, 42-oidc-customers-logout.json, 43-oidc-customers-extended.json. 
    * Test1: Login to CustomerApp using cus1 account. Result: User successfully logged in.   
 11. OpenIG-OIDC RP - Extended:
+   * Note: This use-case uses ScriptableFilter which is implemented using OpenIG Aynsc client APIs, This use-case will result in thread deadlock in OpenIG 4.0 due to this bug: OPENIG-865. Upgrade to OpenIG 4.5+ to test this use-case. 
    * Enabled Route(s): 41-oidc-customers-exclusions.json, 42-oidc-customers-logout.json, 43-oidc-customers-extended.json
    * Disabled Route(s): 40-oidc-customers-minimal.json
    * Test1: Login to CustomerApp using cus1 account. Result: User successfully logged in.
