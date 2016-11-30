@@ -5,10 +5,9 @@
 Pre-requisites :
 ================
 1. Create Linux Server/VM with 4 CPU, 8 GB RAM and 50 GB hard drive. Create user 'forgerock', this user shall be used for all operations in this guide. 
-2. The server hosting OpenIG should have internet connectivity as first request tries to download required jars from maven repo. The custom groovy script uses @Grab and it downloads the required dependencies under <User-Home>/.groovy/grapes.
-3. Copy binaries for OpenIG, OpenDJ and OpenAM to /opt/forgerock/software directory.
-4. Copy Install scripts from https://github.com/CharanMann/OpenIG-SampleCompany/tree/master/installScripts to /opt/forgerock/labfiles/installScripts directory. 
-5. Specify below local host enteries (both on server hosting and client accessing these applications): <br />
+2. Copy binaries for OpenIG, OpenDJ and OpenAM to /opt/forgerock/software directory.
+3. Copy Install scripts from https://github.com/CharanMann/OpenIG-SampleCompany/tree/master/installScripts to /opt/forgerock/labfiles/installScripts directory. 
+4. Specify below local host enteries (both on server hosting and client accessing these applications): <br />
    [IP Address]  openig1.example.com  # OpenIG1, Port:9000 <br />
    [IP Address]  openig2.example.com  # OpenIG2, Port:9002 <br />
    [IP Address]  opendj.example.com   # OpenDJ, Port 1389 <br />
@@ -23,7 +22,7 @@ Pre-requisites :
    [IP Address]  travel-ig.example.net # Internal Travel App via OpenIG, Port:9002 <br />
    [IP Address]  benefits.example.com # Internal Benefits App, Port:8014 <br />
    [IP Address]  benefits-ig.example.com # Internal Benefits App via OpenIG, Port:9002
-6. Install and configure SampleCompany application on same or different server: refer https://github.com/CharanMann/SampleCompany  
+5. Install and configure SampleCompany application on same or different server: refer https://github.com/CharanMann/SampleCompany  
   
 OpenDJ Identity Store Installation & Configuration:
 ===================================================
