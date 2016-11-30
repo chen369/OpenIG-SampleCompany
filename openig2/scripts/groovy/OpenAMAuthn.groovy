@@ -35,7 +35,8 @@ import static org.forgerock.http.protocol.Response.newResponsePromise
 /*
  * This Groovy script performs following functions:
  * 1. Redirects user to OpenAM login URL in case invalid or no OpenAM cookie is present in the request
- * 2. (Optional) Retrieves user profile attributes and sets as HTTP headers
+ * 2. (Optional) Retrieves specified user profile attributes and sets as HTTP headers
+ * 3. (Optional) Retrieves specified session attributes and sets as HTTP headers
  *
  * This script requires these arguments: openamUrl(String), openamAuthUrl(String), profileAttributes([String]), sessionAttributes([String]).
  * Note: profileAttributes and sessionAttributes are optional arguments.
@@ -198,10 +199,11 @@ def retrieveSessionAttributes(uid, openAMCookie) {
 
         } as AsyncFunction)
     } else if (!binding.hasVariable("profileAttributes") || (profileAttributes.empty)) {
+
+        // In case no profile or session attributes retrieval is required.
         logger.info("No profile or session attributes retrieval required, invoking next handler")
     }
 
-    // Call the next handler with the modified request
-    // That returns a new promise without blocking the current flow of execution
+    // Call the next handler
     return next.handle(context, request)
 }
