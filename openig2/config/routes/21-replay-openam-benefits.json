@@ -1,115 +1,92 @@
 {
   "baseURI": "http://benefits.example.com:8014/",
+  "comment": "OpenAM Password Replay",
+  "name": "OpenAM Password Replay",
   "handler": {
-    "type": "DispatchHandler",
+    "comment": "OpenAM Password replay chain",
+    "name": "OpenAM Password Replay Chain",
+    "type": "Chain",
     "config": {
-      "bindings": [
+      "filters": [
         {
-          "comment": "Redirect to OpenAM authentication",
-          "name": "OpenAM Authentication",
-          "condition": "${request.cookies['iPlanetDirectoryPro'] == null}",
-          "handler": {
-            "type": "StaticResponseHandler",
-            "config": {
-              "status": 302,
-              "reason": "Found",
-              "headers": {
-                "Location": [
-                  "http://openam.example.com:18080/openam/XUI/#login/employees&goto=${urlEncodeQueryParameterNameOrValue(contexts.router.originalUri)}"
-                ]
-              },
-              "entity": "Redirecting to OpenAM for authentication..."
-            },
-            "capture": "all"
-          }
+          "comment": "Scripted filter for OpenAM Authentication redirect",
+          "name": "OpenAM Authentication redirect (and Attributes retrieval)",
+          "type": "ScriptableFilter",
+          "config": {
+            "type": "application/x-groovy",
+            "file": "OpenAMAuthn.groovy",
+            "args": {
+              "openamUrl": "http://openam.example.com:18080/openam/json/employees",
+              "openamAuthUrl": "http://openam.example.com:18080/openam/XUI/#login/employees&goto=${urlEncodeQueryParameterNameOrValue(contexts.router.originalUri)}",
+              "profileAttributes": [
+                "uid"
+              ],
+              "sessionAttributes": [
+                "sunIdentityUserPassword"
+              ]
+            }
+          },
+          "capture": "all"
+        },
+        {
+          "comment": "OpenAM Authorization check filter",
+          "name": "OpenAM Authorization",
+          "type": "PolicyEnforcementFilter",
+          "config": {
+            "openamUrl": "http://openam.example.com:18080/openam",
+            "pepUsername": "policyAdmin",
+            "pepPassword": "Passw0rd",
+            "realm": "employees",
+            "application": "OpenIG2",
+            "ssoTokenSubject": "${request.cookies['iPlanetDirectoryPro'][0].value}"
+          },
+          "capture": "all"
         },
         {
           "comment": "Password Replay",
           "name": "Password Replay",
-          "condition": "${request.cookies['iPlanetDirectoryPro'] != null}",
-          "handler": {
-            "comment": "OpenAM Password replay chain",
-            "name": "OpenAM Password Replay Chain",
-            "type": "Chain",
-            "config": {
-              "filters": [
-                {
-                  "comment": "OpenAM Authorization check filter",
-                  "name": "OpenAM Authorization",
-                  "type": "PolicyEnforcementFilter",
-                  "config": {
-                    "openamUrl": "http://openam.example.com:18080/openam",
-                    "pepUsername": "policyAdmin",
-                    "pepPassword": "Passw0rd",
-                    "realm": "employees",
-                    "application": "OpenIG2",
-                    "ssoTokenSubject": "${request.cookies['iPlanetDirectoryPro'][0].value}"
-                  },
-                  "capture": "all"
-                },
-                {
-                  "comment": "Scripted filter for retrieving session attributes and setting as HTTP headers",
-                  "name": "OpenAM Password Headers",
-                  "type": "ScriptableFilter",
-                  "config": {
-                    "type": "application/x-groovy",
-                    "file": "OpenAMReplayHeaders.groovy",
-                    "args": {
-                      "passwordAttribute": "sunIdentityUserPassword",
-                      "openamUrl": "http://openam.example.com:18080/openam/json/employees/"
-                    }
-                  },
-                  "capture": "all"
-                },
-                {
-                  "comment": "OpenAM Password Replay",
-                  "name": "OpenAM Password Replay",
-                  "type": "PasswordReplayFilter",
-                  "config": {
-                    "loginPage": "${matches(request.uri.path, '/login')}",
-                    "headerDecryption": {
-                      "algorithm": "DES/ECB/NoPadding",
-                      "key": "usgpVLo7Sfg=",
-                      "keyType": "DES",
-                      "charSet": "utf-8",
-                      "headers": [
-                        "password"
-                      ]
-                    },
-                    "request": {
-                      "method": "POST",
-                      "uri": "http://benefits.example.com:8014/benefitsApp/login.html",
-                      "form": {
-                        "username": [
-                          "${request.headers['username'][0]}"
-                        ],
-                        "password": [
-                          "${request.headers['password'][0]}"
-                        ]
-                      }
-                    }
-                  },
-                  "capture": "all"
-                },
-                {
-                  "comment": "Remove OpenAM Headers",
-                  "name": "Remove OpenAM Headers",
-                  "type": "HeaderFilter",
-                  "config": {
-                    "messageType": "REQUEST",
-                    "remove": [
-                      "password",
-                      "username"
-                    ]
-                  },
-                  "capture": "all"
-                }
-              ],
-              "handler": "ClientHandler"
+          "type": "PasswordReplayFilter",
+          "config": {
+            "loginPage": "${matches(request.uri.path, '/login')}",
+            "headerDecryption": {
+              "algorithm": "DES/ECB/NoPadding",
+              "key": "usgpVLo7Sfg=",
+              "keyType": "DES",
+              "charSet": "utf-8",
+              "headers": [
+                "sunIdentityUserPassword"
+              ]
+            },
+            "request": {
+              "method": "POST",
+              "uri": "http://benefits.example.com:8014/benefitsApp/login.html",
+              "form": {
+                "username": [
+                  "${request.headers['uid'][0]}"
+                ],
+                "password": [
+                  "${request.headers['sunIdentityUserPassword'][0]}"
+                ]
+              }
             }
-          }
+          },
+          "capture": "all"
+        },
+        {
+          "comment": "Remove OpenAM Headers",
+          "name": "Remove OpenAM Headers",
+          "type": "HeaderFilter",
+          "config": {
+            "messageType": "REQUEST",
+            "remove": [
+              "uid",
+              "sunIdentityUserPassword"
+            ]
+          },
+          "capture": "all"
         }
-      ]
+      ],
+      "handler": "ClientHandler"
     }
   },
   "condition": "${matches(request.uri.path, '^/benefitsApp')}"
