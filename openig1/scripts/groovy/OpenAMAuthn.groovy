@@ -37,8 +37,30 @@ import static org.forgerock.http.protocol.Response.newResponsePromise
  * 1. Redirects user to OpenAM login URL in case invalid or no OpenAM cookie is present in the request
  * 2. (Optional) Retrieves user profile attributes and sets as HTTP headers
  *
- * This script requires these arguments: openamUrl(String), openamAuthUrl(String), profileAttributes([String]).
- * Note: In case attributes retrieval is not required, then set profileAttributes to empty array.
+ * This script requires these arguments: openamUrl(String), openamAuthUrl(String), profileAttributes([String]), sessionAttributes([String]).
+ * Note: profileAttributes and sessionAttributes are optional arguments.
+ *
+ * Sample:
+ *         {
+          "comment": "Scripted filter for OpenAM Authentication redirect",
+          "name": "OpenAM Authentication redirect (and Attributes retrieval)",
+          "type": "ScriptableFilter",
+          "config": {
+            "type": "application/x-groovy",
+            "file": "OpenAMAuthnS.groovy",
+            "args": {
+              "openamUrl": "http://openam.example.com:18080/openam/json/employees",
+              "openamAuthUrl": "http://openam.example.com:18080/openam/XUI/#login/employees&goto=${urlEncodeQueryParameterNameOrValue(contexts.router.originalUri)}",
+              "profileAttributes": [
+                "uid"
+              ],
+              "sessionAttributes": [
+                "sunIdentityUserPassword"
+              ]
+            }
+          },
+          "capture": "all"
+        }
  */
 
 /**
@@ -88,40 +110,38 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
         // If cookie validation succeeds and has valid uid
         if (isTokenValid && null != uid) {
 
-            if (!(profileAttributes.empty)) {
+            if (binding.hasVariable("profileAttributes") && !(profileAttributes.empty)) {
                 // Retrieving user profile attributes
                 logger.info("Retrieving user profile attributes: ${profileAttributes} for user: ${uid}")
-                Request attributes = new Request()
-                attributes.uri = "${openamUrl}/users/${uid}"
-                attributes.headers.put('iPlanetDirectoryPro', openAMCookie)
-                attributes.method = "GET"
+                Request pAttributes = new Request()
+                pAttributes.uri = "${openamUrl}/users/${uid}"
+                pAttributes.headers.put('iPlanetDirectoryPro', openAMCookie)
+                pAttributes.method = "GET"
 
-                return http.send(context, attributes)
-                        .thenAsync({ attributesResponse ->
-                    profileAttributes.each { name ->
-                        def attrs = attributesResponse.entity.json
-                        def values = attrs[name]
-                        logger.info("Retrieved user profile attribute values: ${values} for attribute name: ${name}")
+                return http.send(context, pAttributes)
+                        .thenAsync({ pAttributesResponse ->
+                    profileAttributes.each { pName ->
+                        def pAttrs = pAttributesResponse.entity.json
+                        def pValues = pAttrs[pName]
+                        logger.info("Retrieved user profile attribute values: ${pValues} for attribute name: ${pName}")
 
                         // Check if some attribute is present for specified name
-                        if (null != values) {
-                            def attrValue = values[0]
+                        if (null != pValues) {
+                            def pAttrValue = pValues[0]
 
                             // Set the attributes in headers of the original request
                             // Security tip: These header values can be encrypted by a symmetric key shared between OpenIG and protected application
-                            logger.info("Setting HTTP header: ${name}, value: ${attrValue}")
-                            request.headers.add(name, attrValue)
+                            logger.info("Setting HTTP header: ${pName}, value: ${pAttrValue}")
+                            request.headers.add(pName, pAttrValue)
                         }
                     }
 
-                    // Call the next handler with the modified request
-                    // That returns a new promise without blocking the current flow of execution
-                    return next.handle(context, request)
+                    // Now retrieve session attributes
+                    return retrieveSessionAttributes(uid, openAMCookie)
                 } as AsyncFunction)
             } else {
-                logger.info("No attributes retrieval required, invoking next handler")
-                // Call the next handler
-                return next.handle(context, request)
+                // In case of no profile attributes, just retrieve session attributes
+                return retrieveSessionAttributes(uid, openAMCookie)
             }
         }
         logger.info("Token validation failed")
@@ -133,3 +153,55 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
 }
 
 
+def retrieveSessionAttributes(uid, openAMCookie) {
+    if (binding.hasVariable("sessionAttributes") && !(sessionAttributes.empty)) {
+        // Retrieving user profile attributes
+        logger.info("Retrieving session attributes: ${sessionAttributes} for user: ${uid}")
+        Request sAttributes = new Request()
+        sAttributes.uri = "${openamUrl}/sessions/?_action=getProperty"
+        sAttributes.headers.put('iPlanetDirectoryPro', openAMCookie)
+        sAttributes.headers.put('Content-Type', 'application/json')
+        sAttributes.method = "POST"
+
+        // Create session attribute string
+        def sAttrString
+        sessionAttributes.each { sName ->
+            sAttrString = sName + ','
+        }
+
+        if (null != sAttrString) {
+            sAttrString = sAttrString.reverse().drop(1).reverse()
+            sAttributes.entity.json = [properties: [sAttrString]]
+        }
+
+        return http.send(context, sAttributes)
+                .thenAsync({ sAttributesResponse ->
+            sessionAttributes.each { name ->
+                def sAttrs = sAttributesResponse.entity.json
+                def sValues = sAttrs[name]
+                logger.info("Retrieved session attribute values: ${sValues} for attribute name: ${name}")
+
+                // Check if some attribute is present for specified name
+                if (null != sValues) {
+                    def sAttrValue = sValues
+
+                    // Set the attributes in headers of the original request
+                    // Security tip: These header values can be encrypted by a symmetric key shared between OpenIG and protected application
+                    logger.info("Setting HTTP header: ${name}, value: ${sAttrValue}")
+                    request.headers.add(name, sAttrValue)
+                }
+            }
+
+            // Call the next handler with the modified request
+            // That returns a new promise without blocking the current flow of execution
+            return next.handle(context, request)
+
+        } as AsyncFunction)
+    } else if (!binding.hasVariable("profileAttributes") || (profileAttributes.empty)) {
+        logger.info("No profile or session attributes retrieval required, invoking next handler")
+    }
+
+    // Call the next handler with the modified request
+    // That returns a new promise without blocking the current flow of execution
+    return next.handle(context, request)
+}

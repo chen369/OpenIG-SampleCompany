@@ -134,22 +134,14 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
                             logger.info("Setting HTTP header: ${pName}, value: ${pAttrValue}")
                             request.headers.add(pName, pAttrValue)
                         }
-
-                        // Now retrieve session attributes
-                        retrieveSessionAttributes(uid, openAMCookie)
                     }
 
-                    // Call the next handler with the modified request
-                    // That returns a new promise without blocking the current flow of execution
-                    return next.handle(context, request)
+                    // Now retrieve session attributes
+                    return retrieveSessionAttributes(uid, openAMCookie)
                 } as AsyncFunction)
             } else {
                 // In case of no profile attributes, just retrieve session attributes
-                retrieveSessionAttributes(uid, openAMCookie)
-
-                // Call the next handler with the modified request
-                // That returns a new promise without blocking the current flow of execution
-                return next.handle(context, request)
+                return retrieveSessionAttributes(uid, openAMCookie)
             }
         }
         logger.info("Token validation failed")
@@ -200,10 +192,16 @@ def retrieveSessionAttributes(uid, openAMCookie) {
                 }
             }
 
+            // Call the next handler with the modified request
+            // That returns a new promise without blocking the current flow of execution
+            return next.handle(context, request)
+
         } as AsyncFunction)
     } else if (!binding.hasVariable("profileAttributes") || (profileAttributes.empty)) {
         logger.info("No profile or session attributes retrieval required, invoking next handler")
     }
+
+    // Call the next handler with the modified request
+    // That returns a new promise without blocking the current flow of execution
+    return next.handle(context, request)
 }
-
-
