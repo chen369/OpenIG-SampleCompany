@@ -179,7 +179,7 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
                 }
 
                 sResult = http.send(context, sAttributes)
-                        .then({ sAttributesResponse ->
+                        .then { sAttributesResponse ->
                     sessionAttributes.each { sName ->
                         def sAttrs = sAttributesResponse.entity.json
                         def sValues = sAttrs[sName]
@@ -196,11 +196,11 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
 
                     sAttributesResponse.close()
                     return sAttrMap
-                })
+                }
             }
 
             // Create list of promises
-            List promiseList = new ArrayList();
+            List promiseList = [];
             if (profileAttributesPresent) {
                 promiseList.add(pResult)
             }
@@ -213,18 +213,13 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
             return Promises.when(promiseList)
                     .thenAsync({ attrList ->
                 // attrList is List<Map<String, String>>
-                if (null != attrList) {
-                    attrList.each { attrMap ->
-                        if (null != attrMap) {
-                            attrMap.each { attrName, attrValue ->
+                attrList.each { attrMap ->
+                    attrMap.each { attrName, attrValue ->
 
-                                // Set the attributes in headers of the original request
-                                // Security tip: These header values can be encrypted by a symmetric key shared between OpenIG and protected application
-                                logger.info("Setting HTTP header: ${attrName}, value: ${attrValue}")
-                                request.headers.add(attrName, attrValue)
-
-                            }
-                        }
+                        // Set the attributes in headers of the original request
+                        // Security tip: These header values can be encrypted by a symmetric key shared between OpenIG and protected application
+                        logger.info("Setting HTTP header: ${attrName}, value: ${attrValue}")
+                        request.headers.add(attrName, attrValue)
                     }
                 }
 
