@@ -112,8 +112,6 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
         // If cookie validation succeeds and has valid uid
         if (isTokenValid && null != uid) {
 
-            def pResult
-            def sResult
             def profileAttributesPresent = binding.hasVariable("profileAttributes") && !(profileAttributes.empty)
             def sessionAttributesPresent = binding.hasVariable("sessionAttributes") && !(sessionAttributes.empty)
 
@@ -124,6 +122,9 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
                 return next.handle(context, request)
             }
 
+            def pResult
+            def sResult
+
             // Process profile attributes
             if (profileAttributesPresent) {
                 // Retrieving user profile attributes
@@ -132,6 +133,7 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
                 pAttributes.uri = "${openamUrl}/users/${uid}"
                 pAttributes.headers.put('iPlanetDirectoryPro', openAMCookie)
                 pAttributes.method = "GET"
+                def pAttrMap = [:]
 
                 pResult = http.send(context, pAttributes)
                         .thenAsync({ pAttributesResponse ->
@@ -144,14 +146,12 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
                         if (null != pValues) {
                             def pAttrValue = pValues[0]
 
-                            // Set the attributes in headers of the original request
-                            // Security tip: These header values can be encrypted by a symmetric key shared between OpenIG and protected application
-                            logger.info("Setting HTTP header: ${pName}, value: ${pAttrValue}")
-                            request.headers.add(pName, pAttrValue)
+                            logger.info("Adding following entry in profile attribute map-> ${pName} : ${pAttrValue}")
+                            pAttrMap.put(pName, pAttrValue)
                         }
                     }
 
-                    return Promises.newResultPromise(request)
+                    return Promises.newResultPromise(pAttrMap)
                 } as AsyncFunction)
             }
 
@@ -164,6 +164,7 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
                 sAttributes.headers.put('iPlanetDirectoryPro', openAMCookie)
                 sAttributes.headers.put('Content-Type', 'application/json')
                 sAttributes.method = "POST"
+                def sAttrMap = [:]
 
                 // Create session attribute string
                 def sAttrString
@@ -178,26 +179,25 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
 
                 sResult = http.send(context, sAttributes)
                         .thenAsync({ sAttributesResponse ->
-                    sessionAttributes.each { name ->
+                    sessionAttributes.each { sName ->
                         def sAttrs = sAttributesResponse.entity.json
-                        def sValues = sAttrs[name]
-                        logger.info("Retrieved session attribute values: ${sValues} for attribute name: ${name}")
+                        def sValues = sAttrs[sName]
+                        logger.info("Retrieved session attribute values: ${sValues} for attribute name: ${sName}")
 
                         // Check if some attribute is present for specified name
                         if (null != sValues) {
                             def sAttrValue = sValues
 
-                            // Set the attributes in headers of the original request
-                            // Security tip: These header values can be encrypted by a symmetric key shared between OpenIG and protected application
-                            logger.info("Setting HTTP header: ${name}, value: ${sAttrValue}")
-                            request.headers.add(name, sAttrValue)
+                            logger.info("Adding following entry in session attribute map-> ${sName} : ${sAttrValue}")
+                            sAttrMap.put(sName, sAttrValue)
                         }
                     }
 
-                    return Promises.newResultPromise(request)
+                    return Promises.newResultPromise(sAttrMap)
                 } as AsyncFunction)
             }
 
+            // Create list of promises
             List promiseList = new ArrayList();
             if (profileAttributesPresent) {
                 promiseList.add(pResult)
@@ -211,7 +211,20 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
             return Promises.when(promiseList)
                     .thenAsync({
 
-                // Call next handler
+                promiseList.each { promise ->
+                    def attrs = promise.get(); // We can call get() here as we know the promise is completed
+                    if (null != attrs) {
+                        attrs.each { attrName, attrValue ->
+
+                            // Set the attributes in headers of the original request
+                            // Security tip: These header values can be encrypted by a symmetric key shared between OpenIG and protected application
+                            logger.info("Setting HTTP header: ${attrName}, value: ${attrValue}")
+                            request.headers.add(attrName, attrValue)
+                        }
+                    }
+                }
+
+                // Call next handler with updated request
                 return next.handle(context, request)
             } as AsyncFunction)
         }
