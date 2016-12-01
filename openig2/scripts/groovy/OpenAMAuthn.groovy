@@ -136,7 +136,7 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
                 def pAttrMap = [:]
 
                 pResult = http.send(context, pAttributes)
-                        .thenAsync({ pAttributesResponse ->
+                        .then { pAttributesResponse ->
                     profileAttributes.each { pName ->
                         def pAttrs = pAttributesResponse.entity.json
                         def pValues = pAttrs[pName]
@@ -151,8 +151,9 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
                         }
                     }
 
-                    return Promises.newResultPromise(pAttrMap)
-                } as AsyncFunction)
+                    pAttributesResponse.close()
+                    return pAttrMap
+                }
             }
 
             // Process session attributes
@@ -178,7 +179,7 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
                 }
 
                 sResult = http.send(context, sAttributes)
-                        .thenAsync({ sAttributesResponse ->
+                        .then({ sAttributesResponse ->
                     sessionAttributes.each { sName ->
                         def sAttrs = sAttributesResponse.entity.json
                         def sValues = sAttrs[sName]
@@ -193,8 +194,9 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
                         }
                     }
 
-                    return Promises.newResultPromise(sAttrMap)
-                } as AsyncFunction)
+                    sAttributesResponse.close()
+                    return sAttrMap
+                })
             }
 
             // Create list of promises
@@ -209,17 +211,19 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
 
             // When both user and session profile results are available, call next handler
             return Promises.when(promiseList)
-                    .thenAsync({
+                    .thenAsync({ attrList ->
+                // attrList is List<Map<String, String>>
+                if (null != attrList) {
+                    attrList.each { attrMap ->
+                        if(null != attrMap) {
+                            attrMap.each { attrName, attrValue ->
 
-                promiseList.each { promise ->
-                    def attrs = promise.get(); // We can call get() here as we know the promise is completed
-                    if (null != attrs) {
-                        attrs.each { attrName, attrValue ->
+                                // Set the attributes in headers of the original request
+                                // Security tip: These header values can be encrypted by a symmetric key shared between OpenIG and protected application
+                                logger.info("Setting HTTP header: ${attrName}, value: ${attrValue}")
+                                request.headers.add(attrName, attrValue)
 
-                            // Set the attributes in headers of the original request
-                            // Security tip: These header values can be encrypted by a symmetric key shared between OpenIG and protected application
-                            logger.info("Setting HTTP header: ${attrName}, value: ${attrValue}")
-                            request.headers.add(attrName, attrValue)
+                            }
                         }
                     }
                 }
@@ -228,6 +232,7 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
                 return next.handle(context, request)
             } as AsyncFunction)
         }
+
         logger.info("Token validation failed")
         return getRedirectResponse()
     } as AsyncFunction)
