@@ -215,16 +215,16 @@ if (null != request.cookies['iPlanetDirectoryPro']) {
                 // attrList is List<Map<String, String>>
                 if (null != attrList) {
                     attrList.each { attrMap ->
-                    if(null != attrMap) {
-                        attrMap.each { attrName, attrValue ->
+                        if (null != attrMap) {
+                            attrMap.each { attrName, attrValue ->
 
-                            // Set the attributes in headers of the original request
-                            // Security tip: These header values can be encrypted by a symmetric key shared between OpenIG and protected application
-                            logger.info("Setting HTTP header: ${attrName}, value: ${attrValue}")
-                            request.headers.add(attrName, attrValue)
+                                // Set the attributes in headers of the original request
+                                // Security tip: These header values can be encrypted by a symmetric key shared between OpenIG and protected application
+                                logger.info("Setting HTTP header: ${attrName}, value: ${attrValue}")
+                                request.headers.add(attrName, attrValue)
 
+                            }
                         }
-                    }
                     }
                 }
 
